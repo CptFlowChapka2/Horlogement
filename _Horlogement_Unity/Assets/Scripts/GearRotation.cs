@@ -1,16 +1,12 @@
+using System;
 using UnityEngine;
 
 public class GearRotation : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
+    public float rotationSpeed = 5f;
 
-    // Update is called once per frame
-    void Update()
+    private void Update()
     {
-        
+        transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime); // Just doing a rotation in the z axis.
     }
 }
