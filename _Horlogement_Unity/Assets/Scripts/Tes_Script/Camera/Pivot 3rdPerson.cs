@@ -16,17 +16,21 @@ public class Pivot3rdPerson : MonoBehaviour
     }
     private void Update()
     {
-        cameraMouvement = cameraAction.ReadValue<Vector2>();//we recover teh V2 value of the action
-        transform.position = player.transform.position;//we maintain the pivot on the player
-
-        Vector3 currentEuleur = transform.eulerAngles;//we remember the Initial angles
-
-        float currentEuleurX = currentEuleur.x + cameraMouvement.y * cameraSpeed * Time.deltaTime;//we add the mouse mouvement value in the correct angles
-        float currentEuleurY = currentEuleur.y - cameraMouvement.x * cameraSpeed * Time.deltaTime;
-
-        currentEuleur.x = currentEuleurX;//we assign the new values
-
-        currentEuleur.y = currentEuleurY;
-        transform.eulerAngles = currentEuleur;//we update the angles
+        // cameraMouvement = cameraAction.ReadValue<Vector2>();//we recover teh V2 value of the action
+        // transform.position = player.transform.position;//we maintain the pivot on the player
+        //
+        // Vector3 currentEuleur = transform.eulerAngles;//we remember the Initial angles
+        //
+        // float currentEuleurX = currentEuleur.x + cameraMouvement.y * cameraSpeed * Time.deltaTime;//we add the mouse mouvement value in the correct angles
+        // float currentEuleurY = currentEuleur.y - cameraMouvement.x * cameraSpeed * Time.deltaTime;
+        //
+        // currentEuleur.x = currentEuleurX;//we assign the new values
+        //
+        // currentEuleur.y = currentEuleurY;
+        // transform.eulerAngles = currentEuleur;//we update the angles
+        
+        
+        
+       
     }
 }
