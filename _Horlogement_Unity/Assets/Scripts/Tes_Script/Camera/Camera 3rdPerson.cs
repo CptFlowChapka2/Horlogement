@@ -3,12 +3,12 @@ using UnityEngine;
 
 public class Camera3rdPerson : MonoBehaviour
 {
-    public GameObject playerPivot;
+    public GameObject target;
 
 
 
     private void Update()
     {
-        transform.LookAt(playerPivot.transform.position,Vector3.up);
+        transform.LookAt(target.transform.position,Vector3.up);
     }
 }
