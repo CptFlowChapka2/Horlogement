@@ -9,7 +9,7 @@ public class Camera3rdPerson : MonoBehaviour
     private void Start()
     {
         transform.localPosition = distToPivot;
-        throw new NotImplementedException();
+        
     }
 
     private void Update()
