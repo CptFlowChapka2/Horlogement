@@ -4,8 +4,13 @@ using UnityEngine;
 public class Camera3rdPerson : MonoBehaviour
 {
     public GameObject target;
+    public Vector3 distToPivot=new Vector3(0,0,-7f);
 
-
+    private void Start()
+    {
+        transform.localPosition = distToPivot;
+        throw new NotImplementedException();
+    }
 
     private void Update()
     {
