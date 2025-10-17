@@ -1,5 +1,5 @@
 sceneSetups:
-- path: "Assets/Scenes/Test_Cam\xE9ra.unity"
+- path: Assets/Scenes/Test cam.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
