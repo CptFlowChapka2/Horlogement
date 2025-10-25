@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class InputInterpreter : MonoBehaviour
@@ -6,13 +7,15 @@ public class InputInterpreter : MonoBehaviour
     
     private playerMove playerMove;
     private inputReader inputReader;
-    
+    private ContextReader context;
+    private GearAction GearAction;
 
     private void Start()
     {
         playerMove = gameObject.GetComponent<playerMove>();
         inputReader = gameObject.GetComponent<inputReader>();
     }
+        
 
     public void InterpretMoove(string actionType)
     {

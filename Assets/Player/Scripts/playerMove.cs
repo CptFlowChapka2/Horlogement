@@ -30,6 +30,7 @@ public class playerMove : MonoBehaviour
         if (rb.linearVelocity.magnitude <maxMoveSpeed )
         {
             rb.AddRelativeForce(mouvement*sustainedSpeed,ForceMode.Force);
+          
         }
         
         
@@ -43,6 +44,7 @@ public class playerMove : MonoBehaviour
     public void PressedMove(Vector3 mouvement)
     { 
         rb.AddRelativeForce(mouvement*initialSpeed,ForceMode.Force);
+       
     }
 
 

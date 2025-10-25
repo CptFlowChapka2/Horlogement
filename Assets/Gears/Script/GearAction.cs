@@ -32,6 +32,8 @@ public class GearAction : MonoBehaviour
     
     }
 
+    private float[] test = new float [3] {1,2,3};
+
 
 
 }
