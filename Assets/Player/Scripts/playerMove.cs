@@ -11,6 +11,8 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float maxMoveSpeed = 10f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private float maxAirAngle = 5f;
+    
 
     
 
@@ -76,6 +78,32 @@ public class playerMove : MonoBehaviour
     {
         
     }
+    
+    public void AirSustainMove(Vector3 mouvement)
+    {
+       
+
+        if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle)
+        {
+            rb.AddRelativeForce(mouvement*sustainedSpeed,ForceMode.Force);
+        }
+        
+    }
+    public void AirReleaseMove()
+    {
+        Vector3 stopVector = rb.linearVelocity.normalized*stopSpeed;
+        rb.linearVelocity -= stopVector;
+
+    }
+    public void AirPressedMove(Vector3 mouvement)
+    { 
+        if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle)
+        {
+            rb.AddRelativeForce(mouvement*initialSpeed,ForceMode.Force);
+        }
+       
+    }
+
 
 
 }
