@@ -11,7 +11,7 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float maxMoveSpeed = 10f;
     [SerializeField] private float jumpForce = 5f;
     [SerializeField] private Rigidbody rb;
-    
+
     
 
 
@@ -19,6 +19,7 @@ public class playerMove : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        
     }
 
 
@@ -45,6 +46,35 @@ public class playerMove : MonoBehaviour
     { 
         rb.AddRelativeForce(mouvement*initialSpeed,ForceMode.Force);
        
+    }
+
+    public void GearPressedMove(Vector3 mouvement,JointManager jointManager)
+    {
+        jointManager.MooveJoint(new Vector3(mouvement.x,0,0) * (Time.deltaTime * initialSpeed));
+        
+    }
+    public void GearSustainedMove(Vector3 mouvement,JointManager jointManager)
+    {
+        jointManager.MooveJoint(new Vector3(mouvement.x,0,0) * (Time.deltaTime * sustainedSpeed));
+        
+    }
+    public void GearReleasedMove(Vector3 mouvement,GameObject gear)
+    {
+        
+    }
+
+    public void PresedJump()
+    {
+        
+        rb.AddForce(new Vector3(0,jumpForce,0),ForceMode.Impulse);
+    }
+    public void SustainJump()
+    {
+        
+    }
+    public void ReleaseJump()
+    {
+        
     }
 
 

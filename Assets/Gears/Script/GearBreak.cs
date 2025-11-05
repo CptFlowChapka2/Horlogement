@@ -156,7 +156,7 @@ public class GearBreak : MonoBehaviour
 
 }
 
-enum mode //make the little multichoice button in editor feel nice 
+public enum mode //make the little multichoice button in editor feel nice 
 {
     Random,
     Continius,
