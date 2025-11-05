@@ -4,6 +4,7 @@ using UnityEngine;
 public class TEst1 : MonoBehaviour
 {
     public GearPhysRotation GearPhysRotation;
+    public float xMax = 250f;
 
     private void Update()
     {
@@ -11,5 +12,14 @@ public class TEst1 : MonoBehaviour
         {
             GearPhysRotation.rotationSpeed += 10f;
         }
+
+        if (GearPhysRotation.rotationSpeed >= 250f)
+        {
+            GearPhysRotation.rotationSpeed = 250f; 
+        }
+        
+        
+
+        
     }
 }
