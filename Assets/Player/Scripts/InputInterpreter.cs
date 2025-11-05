@@ -56,12 +56,23 @@ public class InputInterpreter : MonoBehaviour
                 break;
             
             case ("pressed",groundedType.Airborn):
+                playerMove.AirPressedMove(inputReader.horizontalMove);
+                break;
+            case ("sustained",groundedType.Airborn):
+                playerMove.AirSustainMove(inputReader.horizontalMove);
                 
                 break;
+            case ("released",groundedType.Airborn):
+                playerMove.AirReleaseMove();
+                
+                break;
+            
+        }
+        
         }
 
 
-    }
+    
     public void InterpretJump(string actionType)
     {
         
