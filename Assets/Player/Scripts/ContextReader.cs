@@ -27,7 +27,7 @@ public class ContextReader : MonoBehaviour
         {
             //isOnGear = true; // Si c'est une collision avec un Gear alors isOnGear = true et currentGear est le gameobject sur lequel on est.
             currentGear = collision.gameObject;
-            jointManager.CreateJoint(currentGear);
+            jointManager.CreateJoint(currentGear); // todo 
             groundedType = groundedType.IsOnGear;
         }
     }

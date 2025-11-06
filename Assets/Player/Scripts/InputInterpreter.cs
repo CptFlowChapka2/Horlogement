@@ -36,6 +36,7 @@ public class InputInterpreter : MonoBehaviour
             case ("sustained",groundedType.IsGrounded):
                 playerMove.SustainMove(inputReader.horizontalMove);
                 
+                
                 break;
             case ("released",groundedType.IsGrounded):
                 playerMove.ReleaseMove();

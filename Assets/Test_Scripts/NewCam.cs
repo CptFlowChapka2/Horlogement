@@ -13,6 +13,7 @@ public class NewCam : MonoBehaviour
 
         Vector3 targetPosition = new Vector3(player.position.x + offset.x,
             player.position.y + offset.y, offset.z);
+        
 
 
         transform.position = Vector3.Lerp(transform.position, targetPosition, smoothSpeed * Time.deltaTime);

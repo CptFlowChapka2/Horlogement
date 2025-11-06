@@ -25,7 +25,6 @@ public class inputReader : MonoBehaviour
         CheckHorizontal();
         CheckJump();
     }
-
     private void CheckHorizontal()
     {
         

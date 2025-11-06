@@ -1,5 +1,52 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2193338003244086607
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3814607688025635965}
+  - component: {fileID: 485575063632732306}
+  m_Layer: 0
+  m_Name: Pivot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3814607688025635965
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193338003244086607}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5186948899086234585}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &485575063632732306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2193338003244086607}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c349323cec0509b43afe52f468b072ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 5186948899086234585}
+  offset: {x: 0, y: 2, z: -10}
+  smoothSpeed: 5
 --- !u!1 &5289051645395968450
 GameObject:
   m_ObjectHideFlags: 0
@@ -37,7 +84,8 @@ Transform:
   m_LocalPosition: {x: 10.55, y: 2.17, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 3814607688025635965}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 23.223, z: 0}
 --- !u!33 &4385382900889038699
@@ -161,7 +209,9 @@ MonoBehaviour:
   maxMoveSpeed: 10
   jumpForce: 10
   rb: {fileID: 6170259284749659912}
-  gearAction: {fileID: 0}
+  maxAirAngle: 5
+  airSustainedSpeed: 0.5
+  airInitialSpeed: 0.5
 --- !u!114 &7873681039381326591
 MonoBehaviour:
   m_ObjectHideFlags: 0
