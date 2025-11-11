@@ -35,6 +35,8 @@ public class playerMove : MonoBehaviour
     
     [Header("Gear Parameters")]
     [SerializeField] private gearAxeLiberty gearAxeLiberty=gearAxeLiberty.X;
+    [SerializeField] private float gearInitialSpeed=1f;
+    [SerializeField] private float gearSustainSpeed=0.5f;
 
     private Vector2 gearAxeControlMod=new Vector2(0,0);
 
@@ -86,7 +88,7 @@ public class playerMove : MonoBehaviour
     {
         if (jointManager.currentJoint is not null)
         {
-            jointManager.MooveJoint(new Vector3(mouvement.x*gearAxeControlMod.x, 0, mouvement.z*gearAxeControlMod.y) * (Time.deltaTime * sustainedSpeed));
+            jointManager.MooveJoint(new Vector3(mouvement.x*gearAxeControlMod.x, 0, mouvement.z*gearAxeControlMod.y) * (Time.deltaTime * gearInitialSpeed));
         }
     }
 
@@ -94,7 +96,7 @@ public class playerMove : MonoBehaviour
     {
         if (jointManager.currentJoint is not null)
         {
-            jointManager.MooveJoint(new Vector3(mouvement.x*gearAxeControlMod.x, 0, mouvement.z*gearAxeControlMod.y) * (Time.deltaTime * sustainedSpeed));
+            jointManager.MooveJoint(new Vector3(mouvement.x*gearAxeControlMod.x, 0, mouvement.z*gearAxeControlMod.y) * (Time.deltaTime*gearSustainSpeed));
         }
     }
 

@@ -45,12 +45,12 @@ public class InputInterpreter : MonoBehaviour
                 break;
             case (actionState.pressed,groundedType.IsOnGear):
                 playerMove.GearPressedMove(inputReader.horizontalMove,jointManager);
-                gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z);
+                gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z,gearAction.transfertInitialSpeed);
                 
                 break;
             case (actionState.sustained,groundedType.IsOnGear):
                 playerMove.GearSustainedMove(inputReader.horizontalMove,jointManager);
-                gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z);
+                gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z,gearAction.transfertSustainSpeed);
                 break;
             case (actionState.released,groundedType.IsOnGear):
                 
