@@ -4,21 +4,21 @@ using Random = UnityEngine.Random;
 
 public class GearBreak : MonoBehaviour
 {
-    [SerializeField] private float speedDecrease;//MUST BE POSSITIVE. Value added or substracted to the Gear
+    [SerializeField] private float speedDecrease; //MUST BE POSSITIVE. Value added or substracted to the Gear
     [SerializeField] private mode mode; //See Enum Mode Below .
 
-    [Header("Parameters")] 
-    
-    [SerializeField]private float  maxBreakSpeed = 120f;
-    [SerializeField]private float minBReakSpeed = 15f;
-    
+    [Header("Parameters")] [SerializeField]
+    private float maxBreakSpeed = 120f;
+
+    [SerializeField] private float minBReakSpeed = 15f;
+
     //parameter for random mode
-    [SerializeField]private float random_RangeMin = 5f;
-    [SerializeField] private float random_RangeMax = 30f;//the min and max for the Random.range
-    [SerializeField] private bool random_reRandomOnBreak;//if the Random intervall must be reroll on each Break
-    
-    [SerializeField] private bool fullStop;//when true set gear.rotationSpeed to 0
-    [SerializeField] private float delay_delay = 5f;//the delay for the delay mode .delay
+    [SerializeField] private float random_RangeMin = 5f;
+    [SerializeField] private float random_RangeMax = 30f; //the min and max for the Random.range
+    [SerializeField] private bool random_reRandomOnBreak; //if the Random intervall must be reroll on each Break
+
+    [SerializeField] private bool fullStop; //when true set gear.rotationSpeed to 0
+    [SerializeField] private float delay_delay = 5f; //the delay for the delay mode .delay
 
     private float cooldown;
     private float initialCooldown;
@@ -27,11 +27,11 @@ public class GearBreak : MonoBehaviour
     private float directionModifiyer;
     [SerializeField] private bool canInvert = false;
 
-    public bool canBreak;//if the Break behavior work
+    public bool canBreak; //if the Break behavior work
 
     private void Start()
     {
-        gameObject.TryGetComponent<GearPhysRotation>(out thisRotation);//recover this gameObject GearRotation
+        gameObject.TryGetComponent<GearPhysRotation>(out thisRotation); //recover this gameObject GearRotation
 
         if (thisRotation.rotationSpeed.Equals(MathF.Abs(thisRotation.rotationSpeed)))
         {
@@ -48,7 +48,7 @@ public class GearBreak : MonoBehaviour
 
 
         }
-        else if (mode == mode.Delay)//will trigger a Break after a fixed Delay
+        else if (mode == mode.Delay) //will trigger a Break after a fixed Delay
         {
             cooldown = delay_delay;
 
@@ -59,7 +59,7 @@ public class GearBreak : MonoBehaviour
             cooldown = 0f;
         }
 
-        initialCooldown = cooldown;//cache in the initial delay
+        initialCooldown = cooldown; //cache in the initial delay
     }
 
     private void Update()
@@ -90,7 +90,7 @@ public class GearBreak : MonoBehaviour
                     cooldown = initialCooldown;
                 }
 
-               ModifyRotationSpeed();
+                ModifyRotationSpeed();
 
 
             }
@@ -109,12 +109,14 @@ public class GearBreak : MonoBehaviour
         }
         else if (mode == mode.Continius)
         {
-           ModifyRotationSpeed();
+            ModifyRotationSpeed();
 
         }
     }
-    public void ForceBreak()//WRATH OF ZEUS !!
-    {Break();}
+    public void ForceBreak() //WRATH OF ZEUS !!
+    {
+        Break();
+    }
 
 
     private void ModifyRotationSpeed()
@@ -125,16 +127,39 @@ public class GearBreak : MonoBehaviour
         }
         else
         {
-            if (thisRotation.rotationSpeed > 0)
+
+
+            if (canInvert)
             {
-                thisRotation.rotationSpeed -= speedDecrease*directionModifiyer;
+                if (MathF.Abs(thisRotation.rotationSpeed) <= maxBreakSpeed)
+                {
+                    thisRotation.rotationSpeed -= speedDecrease * directionModifiyer;
+                }
+                else
+                {
+                    thisRotation.rotationSpeed = maxBreakSpeed*(directionModifiyer*-1);
+                }
+
+            }
+            else if (CheckOrignalDirection()&&MathF.Abs(thisRotation.rotationSpeed)>=minBReakSpeed)
+            {
+                
+                thisRotation.rotationSpeed -= speedDecrease * directionModifiyer;
+            }
+            else
+            {
+                thisRotation.rotationSpeed = minBReakSpeed;
             }
 
-            if (thisRotation.rotationSpeed < 0)
-            {
-                thisRotation.rotationSpeed += speedDecrease*directionModifiyer;
-            }
+
         }
+    }
+
+    private bool CheckOrignalDirection()
+    {
+        bool dir = directionModifiyer.Equals(thisRotation.rotationSpeed / MathF.Abs( thisRotation.rotationSpeed));
+
+        return dir;
     }
 }
 
