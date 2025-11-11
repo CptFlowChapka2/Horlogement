@@ -956,6 +956,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3451843696698860295, guid: 73713c2409098c3409f58f5d43b93a09, type: 3}
+      propertyPath: gearAxeLiberty
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3451843696698860295, guid: 73713c2409098c3409f58f5d43b93a09, type: 3}
       propertyPath: sustainedSpeed
       value: 6
       objectReference: {fileID: 0}

@@ -3,6 +3,13 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+ enum gearAxeLiberty
+{
+    X,
+    Z,
+    XZ
+}
+
 public class playerMove : MonoBehaviour
 {
     [Header("Initialise")]
@@ -26,11 +33,30 @@ public class playerMove : MonoBehaviour
     [Header("Jump Parameters")]
     [SerializeField] private float jumpForce = 5f;
     
+    [Header("Gear Parameters")]
+    [SerializeField] private gearAxeLiberty gearAxeLiberty=gearAxeLiberty.X;
+
+    private Vector2 gearAxeControlMod=new Vector2(0,0);
 
 
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+
+        switch (gearAxeLiberty)
+        {
+            case gearAxeLiberty.X:
+                gearAxeControlMod = new Vector2(1, 0);
+                break;
+            case gearAxeLiberty.Z:
+                gearAxeControlMod = new Vector2(0, 1);
+                
+                break;
+            case gearAxeLiberty.XZ:
+                gearAxeControlMod = new Vector2(1, 1);
+                
+                break;
+        }
     }
 
 
@@ -60,7 +86,7 @@ public class playerMove : MonoBehaviour
     {
         if (jointManager.currentJoint is not null)
         {
-            jointManager.MooveJoint(new Vector3(mouvement.x, 0, 0) * (Time.deltaTime * sustainedSpeed));
+            jointManager.MooveJoint(new Vector3(mouvement.x*gearAxeControlMod.x, 0, mouvement.z*gearAxeControlMod.y) * (Time.deltaTime * sustainedSpeed));
         }
     }
 
@@ -68,7 +94,7 @@ public class playerMove : MonoBehaviour
     {
         if (jointManager.currentJoint is not null)
         {
-            jointManager.MooveJoint(new Vector3(mouvement.x, 0, 0) * (Time.deltaTime * sustainedSpeed));
+            jointManager.MooveJoint(new Vector3(mouvement.x*gearAxeControlMod.x, 0, mouvement.z*gearAxeControlMod.y) * (Time.deltaTime * sustainedSpeed));
         }
     }
 
