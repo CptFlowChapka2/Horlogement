@@ -9,6 +9,9 @@ public class GearBreak : MonoBehaviour
 
     [Header("Parameters")] 
     
+    [SerializeField]private float  maxBreakSpeed = 120f;
+    [SerializeField]private float minBReakSpeed = 15f;
+    
     //parameter for random mode
     [SerializeField]private float random_RangeMin = 5f;
     [SerializeField] private float random_RangeMax = 30f;//the min and max for the Random.range
@@ -21,14 +24,23 @@ public class GearBreak : MonoBehaviour
     private float initialCooldown;
 
     private GearPhysRotation thisRotation;
+    private float directionModifiyer;
+    [SerializeField] private bool canInvert = false;
 
     public bool canBreak;//if the Break behavior work
 
     private void Start()
     {
         gameObject.TryGetComponent<GearPhysRotation>(out thisRotation);//recover this gameObject GearRotation
-        
-        
+
+        if (thisRotation.rotationSpeed.Equals(MathF.Abs(thisRotation.rotationSpeed)))
+        {
+            directionModifiyer = 1f;
+        }
+        else
+        {
+            directionModifiyer = -1f;
+        }
 
         if (mode == mode.Random) // On random mode will trigger a Break event after a fixed* ammount of time
         {
@@ -78,24 +90,7 @@ public class GearBreak : MonoBehaviour
                     cooldown = initialCooldown;
                 }
 
-                if (fullStop)
-                {
-                    thisRotation.rotationSpeed = 0f;
-                }
-                else
-                {
-
-
-                    if (thisRotation.rotationSpeed > 0)
-                    {
-                        thisRotation.rotationSpeed -= speedDecrease;
-                    }
-                    else
-                    {
-                        thisRotation.rotationSpeed += speedDecrease;
-
-                    }
-                }
+               ModifyRotationSpeed();
 
 
             }
@@ -107,46 +102,14 @@ public class GearBreak : MonoBehaviour
             if (cooldown <= 0f)
             {
                 cooldown = initialCooldown;
-                if (fullStop)
-                {
-
-                    thisRotation.rotationSpeed = 0f;
-                }
-                else
-                {
-
-                    if (thisRotation.rotationSpeed > 0)
-                    {
-                        thisRotation.rotationSpeed -= speedDecrease;
-                    }
-                    else
-                    {
-                        thisRotation.rotationSpeed += speedDecrease;
-
-                    }
-                }
+                ModifyRotationSpeed();
             }
 
 
         }
         else if (mode == mode.Continius)
         {
-            if (fullStop)
-            {
-                thisRotation.rotationSpeed = 0f;
-            }
-            else
-            {
-                if (thisRotation.rotationSpeed > 0)
-                {
-                    thisRotation.rotationSpeed -= speedDecrease;
-                }
-
-                if (thisRotation.rotationSpeed < 0)
-                {
-                    thisRotation.rotationSpeed += speedDecrease;
-                }
-            }
+           ModifyRotationSpeed();
 
         }
     }
@@ -154,6 +117,25 @@ public class GearBreak : MonoBehaviour
     {Break();}
 
 
+    private void ModifyRotationSpeed()
+    {
+        if (fullStop)
+        {
+            thisRotation.rotationSpeed = 0f;
+        }
+        else
+        {
+            if (thisRotation.rotationSpeed > 0)
+            {
+                thisRotation.rotationSpeed -= speedDecrease*directionModifiyer;
+            }
+
+            if (thisRotation.rotationSpeed < 0)
+            {
+                thisRotation.rotationSpeed += speedDecrease*directionModifiyer;
+            }
+        }
+    }
 }
 
 public enum mode //make the little multichoice button in editor feel nice 
