@@ -31,8 +31,8 @@ Transform:
   m_GameObject: {fileID: 2067485360050701113}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.457, y: -0.7463, z: 2.3519}
-  m_LocalScale: {x: 7, y: 0.2, z: 7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 8, y: 0.2, z: 8}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -151,7 +151,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee89562901888d542b0a1761715f51ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rotationSpeed: 60
+  rotationSpeed: 100
+  rotationAxe: {x: 0, y: 1, z: 0}
 --- !u!114 &704096303923985923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -164,11 +165,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3834c99728ce6b42960c549720f0abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedDecrease: 0
-  mode: 0
+  speedDecrease: 0.01
+  mode: 1
+  maxBreakSpeed: 120
+  minBreakSpeed: 0
   random_RangeMin: 5
   random_RangeMax: 30
   random_reRandomOnBreak: 0
   fullStop: 0
   delay_delay: 5
-  canBreak: 0
+  canInvert: 0
+  canBreak: 1
