@@ -30,17 +30,18 @@ public class InputInterpreter : MonoBehaviour
         
         switch (actionType,context.groundedType)
         {
+            //Grounded
             case ("pressed",groundedType.IsGrounded):
                 playerMove.PressedMove(inputReader.horizontalMove);
                 break;
             case ("sustained",groundedType.IsGrounded):
                 playerMove.SustainMove(inputReader.horizontalMove);
                 
-                
                 break;
             case ("released",groundedType.IsGrounded):
                 playerMove.ReleaseMove();
                 
+                //OnGear
                 break;
             case ("pressed",groundedType.IsOnGear):
                 playerMove.GearPressedMove(inputReader.horizontalMove,jointManager);
@@ -56,6 +57,7 @@ public class InputInterpreter : MonoBehaviour
                 
                 break;
             
+            //Airborne
             case ("pressed",groundedType.Airborn):
                 playerMove.AirPressedMove(inputReader.horizontalMove);
                 break;
