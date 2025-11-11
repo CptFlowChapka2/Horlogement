@@ -63,7 +63,7 @@ public class playerMove : MonoBehaviour
 
     public void PresedJump()
     {
-        rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+        rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
     }
 
     public void SustainJump()

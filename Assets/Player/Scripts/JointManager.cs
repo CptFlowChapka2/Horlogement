@@ -28,7 +28,7 @@ public class JointManager : MonoBehaviour
 
     public void MooveJoint(Vector3 moove)
     {
-        if (currentJoint.autoConfigureConnectedAnchor)
+        if (currentJoint.autoConfigureConnectedAnchor && currentJoint is not null)
         {
             Vector3 cacheAnchor = currentJoint.connectedAnchor;
                     
