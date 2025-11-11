@@ -118,9 +118,10 @@ public class playerMove : MonoBehaviour
     {
         if (rb.linearVelocity.magnitude > minAirMoveSpeed)
         {
-            Debug.Log("hi");
+            
             Vector3 stopVector = rb.linearVelocity.normalized * (airDecel*Time.fixedDeltaTime);
             rb.linearVelocity -= stopVector;
         }
     }
 }
+

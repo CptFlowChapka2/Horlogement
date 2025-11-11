@@ -25,51 +25,51 @@ public class InputInterpreter : MonoBehaviour
     }
         
 
-    public void InterpretMoove(string actionType)
+    public void InterpretMoove(actionState actionType)
     {
         
         switch (actionType,context.groundedType)
         {
             //Grounded
-            case ("pressed",groundedType.IsGrounded):
+            case (actionState.pressed,groundedType.IsGrounded):
                 playerMove.PressedMove(inputReader.horizontalMove);
                 break;
-            case ("sustained",groundedType.IsGrounded):
+            case (actionState.sustained,groundedType.IsGrounded):
                 playerMove.SustainMove(inputReader.horizontalMove);
                 
                 break;
-            case ("released",groundedType.IsGrounded):
+            case (actionState.released,groundedType.IsGrounded):
                 playerMove.ReleaseMove();
                 
                 //OnGear
                 break;
-            case ("pressed",groundedType.IsOnGear):
+            case (actionState.pressed,groundedType.IsOnGear):
                 playerMove.GearPressedMove(inputReader.horizontalMove,jointManager);
                 gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z);
                 
                 break;
-            case ("sustained",groundedType.IsOnGear):
+            case (actionState.sustained,groundedType.IsOnGear):
                 playerMove.GearSustainedMove(inputReader.horizontalMove,jointManager);
                 gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z);
                 break;
-            case ("released",groundedType.IsOnGear):
+            case (actionState.released,groundedType.IsOnGear):
                 
                 
                 break;
             
             //Airborne
-            case ("pressed",groundedType.Airborn):
+            case (actionState.pressed,groundedType.Airborn):
                 playerMove.AirPressedMove(inputReader.horizontalMove);
                 break;
-            case ("sustained",groundedType.Airborn):
+            case (actionState.sustained,groundedType.Airborn):
                 playerMove.AirSustainMove(inputReader.horizontalMove);
                 
                 break;
-            case ("released",groundedType.Airborn):
+            case (actionState.released,groundedType.Airborn):
                 playerMove.AirReleaseMove();
                 
                 break;
-            case ("nothing", groundedType.Airborn):
+            case (actionState.nothing, groundedType.Airborn):
                 playerMove.ApplyAirDecel();
 
                 break;
@@ -80,36 +80,36 @@ public class InputInterpreter : MonoBehaviour
 
 
     
-    public void InterpretJump(string actionType)
+    public void InterpretJump(actionState actionType)
     {
         
         switch (actionType, context.groundedType)
         {
             //OnGround
-            case ("pressed", groundedType.IsGrounded):
+            case (actionState.pressed, groundedType.IsGrounded):
                 
                 playerMove.PresedJump();
                 break;
-            case ("sustained", groundedType.IsGrounded):
+            case (actionState.sustained, groundedType.IsGrounded):
                 playerMove.SustainJump();
 
                 break;
-            case ("released", groundedType.IsGrounded):
+            case (actionState.released, groundedType.IsGrounded):
                 playerMove.ReleaseJump();
 
                 break;
             
            
             //OnGear
-            case ("pressed", groundedType.IsOnGear):
+            case (actionState.pressed, groundedType.IsOnGear):
                 jointManager.DestroyJoint();
                 playerMove.PresedJump();
                 break;
-            case ("sustained", groundedType.IsOnGear):
+            case (actionState.sustained, groundedType.IsOnGear):
                 playerMove.SustainJump();
 
                 break;
-            case ("released", groundedType.IsOnGear):
+            case (actionState.released, groundedType.IsOnGear):
                 playerMove.ReleaseJump();
 
                 break;

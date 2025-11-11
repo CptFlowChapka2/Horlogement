@@ -2,8 +2,18 @@ using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
+public enum actionState
+{
+    pressed,
+    sustained,
+    released,
+    nothing
+    
+}
+
 public class inputReader : MonoBehaviour
 {
+   
      public InputInterpreter interpreter;
 
     private InputAction horizontalMoveAction;
@@ -33,23 +43,23 @@ public class inputReader : MonoBehaviour
         
         if (horizontalMoveAction.WasPressedThisFrame())
         {
-            interpreter.InterpretMoove("pressed");
+            interpreter.InterpretMoove(actionState.pressed);
         }
         else if (horizontalMoveAction.IsInProgress())
         {
            
-            interpreter.InterpretMoove("sustained");
+            interpreter.InterpretMoove(actionState.sustained);
 
         }
         else if (horizontalMoveAction.WasReleasedThisFrame())
         {
             
-            interpreter.InterpretMoove("released");
+            interpreter.InterpretMoove(actionState.released);
 
         }
         else 
         {
-            interpreter.InterpretMoove("nothing");
+            interpreter.InterpretMoove(actionState.nothing);
         }
     }
 
@@ -60,18 +70,18 @@ public class inputReader : MonoBehaviour
         if (jumMoveAction.WasPressedThisFrame())
         {
 
-            interpreter.InterpretJump("pressed");
+            interpreter.InterpretJump(actionState.pressed);
         }
         else if (jumMoveAction.IsInProgress())
         {
            
-            interpreter.InterpretJump("sustained");
+            interpreter.InterpretJump(actionState.sustained);
 
         }
         else if (jumMoveAction.WasReleasedThisFrame())
         {
             
-            interpreter.InterpretJump("released");
+            interpreter.InterpretJump(actionState.released);
 
         }
         
