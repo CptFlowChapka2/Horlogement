@@ -18,10 +18,13 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float minAirMoveSpeed = 2f; //AIrMinSpeed
     [SerializeField] private float airSustainedSpeed = 0.5f;
     [SerializeField] private float airInitialSpeed = 0.5f;
-    [SerializeField] private float jumpForce = 5f;
+    
     [SerializeField] private float airDecel = 1f;
     
     [SerializeField] private float maxAirAngle = 5f;
+    
+    [Header("Jump Parameters")]
+    [SerializeField] private float jumpForce = 5f;
     
 
 
@@ -76,6 +79,7 @@ public class playerMove : MonoBehaviour
     //AirBorne
     public void PresedJump()
     {
+       
         rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
     }
 
