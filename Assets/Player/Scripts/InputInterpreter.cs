@@ -69,6 +69,10 @@ public class InputInterpreter : MonoBehaviour
                 playerMove.AirReleaseMove();
                 
                 break;
+            case ("nothing", groundedType.Airborn):
+                playerMove.ApplyAirDecel();
+
+                break;
             
         }
         
@@ -94,6 +98,7 @@ public class InputInterpreter : MonoBehaviour
                 playerMove.ReleaseJump();
 
                 break;
+            
            
             //OnGear
             case ("pressed", groundedType.IsOnGear):

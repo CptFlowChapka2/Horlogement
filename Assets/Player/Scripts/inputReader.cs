@@ -47,6 +47,10 @@ public class inputReader : MonoBehaviour
             interpreter.InterpretMoove("released");
 
         }
+        else 
+        {
+            interpreter.InterpretMoove("nothing");
+        }
     }
 
     private void CheckJump()
@@ -70,5 +74,6 @@ public class inputReader : MonoBehaviour
             interpreter.InterpretJump("released");
 
         }
+        
     }
 }
