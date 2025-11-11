@@ -5,15 +5,24 @@ using UnityEngine.InputSystem;
 
 public class playerMove : MonoBehaviour
 {
+    [Header("Initialise")]
+    [SerializeField] private Rigidbody rb;
+    [Header("Grounded Parameters")]
     [SerializeField] private float initialSpeed = 5f;
     [SerializeField] private float sustainedSpeed = 2f;
     [SerializeField] private float stopSpeed = 2f;
-    [SerializeField] private float maxMoveSpeed = 10f;
-    [SerializeField] private float jumpForce = 5f;
-    [SerializeField] private Rigidbody rb;
-    [SerializeField] private float maxAirAngle = 5f;
+    [SerializeField] private float maxMoveSpeed = 10f; //MaxSpeed
+    
+    [Header("Airborne Parameters")]
+    [SerializeField] private float maxAirMoveSpeed = 10f; //AirMaxSpeed
+    [SerializeField] private float minAirMoveSpeed = 2f; //AIrMinSpeed
     [SerializeField] private float airSustainedSpeed = 0.5f;
     [SerializeField] private float airInitialSpeed = 0.5f;
+    [SerializeField] private float jumpForce = 5f;
+    [SerializeField] private float airDecel = 1f;
+    
+    [SerializeField] private float maxAirAngle = 5f;
+    
 
 
     private void Start()
@@ -22,6 +31,7 @@ public class playerMove : MonoBehaviour
     }
 
 
+    //Grounded
     public void SustainMove(Vector3 mouvement)
     {
         if (rb.linearVelocity.magnitude < maxMoveSpeed)
@@ -41,6 +51,8 @@ public class playerMove : MonoBehaviour
         rb.AddRelativeForce(mouvement * initialSpeed, ForceMode.Force);
     }
 
+    
+    //Gear
     public void GearPressedMove(Vector3 mouvement, JointManager jointManager)
     {
         if (jointManager.currentJoint is not null)
@@ -61,6 +73,7 @@ public class playerMove : MonoBehaviour
     {
     }
 
+    //AirBorne
     public void PresedJump()
     {
         rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
@@ -76,7 +89,12 @@ public class playerMove : MonoBehaviour
 
     public void AirSustainMove(Vector3 mouvement)
     {
-        if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle)
+        if (rb.linearVelocity.magnitude < minAirMoveSpeed)
+        {
+            rb.linearVelocity=rb.linearVelocity.normalized*minAirMoveSpeed ;
+        }
+        
+        if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle &&rb.linearVelocity.magnitude < maxAirMoveSpeed)
         {
             rb.AddRelativeForce(mouvement * airSustainedSpeed, ForceMode.Force);
         }
@@ -84,8 +102,8 @@ public class playerMove : MonoBehaviour
 
     public void AirReleaseMove()
     {
-        Vector3 stopVector = rb.linearVelocity.normalized * stopSpeed;
-        rb.linearVelocity -= stopVector;
+        // Vector3 stopVector = rb.linearVelocity.normalized * stopSpeed;
+        // rb.linearVelocity -= stopVector;
     }
 
     public void AirPressedMove(Vector3 mouvement)
@@ -93,6 +111,15 @@ public class playerMove : MonoBehaviour
         if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle)
         {
             rb.AddRelativeForce(mouvement * airInitialSpeed, ForceMode.Force);
+        }
+    }
+
+    public void ApplyAirDecel()
+    {
+        if (rb.linearVelocity.magnitude > minAirMoveSpeed)
+        {
+            Vector3 stopVector = rb.linearVelocity.normalized * (airDecel*Time.fixedDeltaTime);
+            rb.linearVelocity -= stopVector;
         }
     }
 }
