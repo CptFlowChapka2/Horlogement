@@ -39,13 +39,13 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2193338003244086607}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c349323cec0509b43afe52f468b072ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 5186948899086234585}
-  offset: {x: 0, y: 2, z: -10}
+  offset: {x: 0, y: 5, z: -15}
   smoothSpeed: 5
 --- !u!1 &5289051645395968450
 GameObject:
@@ -203,15 +203,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a33aa5e552bf50d4386c36574a586f90, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 6170259284749659912}
   initialSpeed: 5
-  sustainedSpeed: 2
+  sustainedSpeed: 6
   stopSpeed: 2
   maxMoveSpeed: 10
-  jumpForce: 10
-  rb: {fileID: 6170259284749659912}
-  maxAirAngle: 5
+  maxAirMoveSpeed: 10
+  minAirMoveSpeed: 2
   airSustainedSpeed: 0.5
   airInitialSpeed: 0.5
+  airDecel: 1
+  maxAirAngle: 5
+  jumpForce: 5
+  gearAxeLiberty: 0
+  gearInitialSpeed: 1
+  gearSustainSpeed: 0.5
 --- !u!114 &7873681039381326591
 MonoBehaviour:
   m_ObjectHideFlags: 0

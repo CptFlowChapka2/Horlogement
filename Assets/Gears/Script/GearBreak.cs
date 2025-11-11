@@ -10,7 +10,7 @@ public class GearBreak : MonoBehaviour
     [Header("Parameters")] [SerializeField]
     private float maxBreakSpeed = 120f;
 
-    [SerializeField] private float minBReakSpeed = 15f;
+    [SerializeField] private float minBreakSpeed = 15f;
 
     //parameter for random mode
     [SerializeField] private float random_RangeMin = 5f;
@@ -141,14 +141,14 @@ public class GearBreak : MonoBehaviour
                 }
 
             }
-            else if (CheckOrignalDirection()&&MathF.Abs(thisRotation.rotationSpeed)>=minBReakSpeed)
+            else if (CheckOrignalDirection()&&MathF.Abs(thisRotation.rotationSpeed)>=minBreakSpeed)
             {
                 
                 thisRotation.rotationSpeed -= speedDecrease * directionModifiyer;
             }
             else
             {
-                thisRotation.rotationSpeed = minBReakSpeed;
+                thisRotation.rotationSpeed = minBreakSpeed;
             }
 
 
