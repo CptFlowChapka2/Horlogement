@@ -109,6 +109,7 @@ public class playerMove : MonoBehaviour
     {
        
         rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
+        rb.angularVelocity = Vector3.zero;
     }
 
     public void SustainJump()
@@ -126,9 +127,10 @@ public class playerMove : MonoBehaviour
             rb.linearVelocity=rb.linearVelocity.normalized*minAirMoveSpeed ;
         }
         
-        if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle &&rb.linearVelocity.magnitude < maxAirMoveSpeed)
+        if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle &&
+            rb.linearVelocity.magnitude < maxAirMoveSpeed)
         {
-            rb.AddRelativeForce(mouvement * airSustainedSpeed, ForceMode.Force);
+            rb.AddRelativeForce(mouvement * airSustainedSpeed, ForceMode.Impulse);
         }
     }
 
