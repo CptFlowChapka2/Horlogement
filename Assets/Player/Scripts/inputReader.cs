@@ -13,7 +13,7 @@ public enum actionState
 
 public class inputReader : MonoBehaviour
 {
-   
+    public bool ignoreX = true;
      public InputInterpreter interpreter;
 
     private InputAction horizontalMoveAction;
@@ -40,6 +40,10 @@ public class inputReader : MonoBehaviour
         
         Vector2 readHorizontalMoove = horizontalMoveAction.ReadValue<Vector2>();
         horizontalMove = new Vector3(readHorizontalMoove.x, 0, readHorizontalMoove.y);
+        if (ignoreX)
+        {
+            horizontalMove.x = 0;
+        }
         
         if (horizontalMoveAction.WasPressedThisFrame())
         {

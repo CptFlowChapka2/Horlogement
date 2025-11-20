@@ -130,7 +130,7 @@ public class playerMove : MonoBehaviour
         if (Mathf.Abs(Vector3.Angle(rb.linearVelocity, transform.InverseTransformVector(mouvement))) >= maxAirAngle &&
             rb.linearVelocity.magnitude < maxAirMoveSpeed)
         {
-            rb.AddRelativeForce(mouvement * airSustainedSpeed, ForceMode.Impulse);
+            rb.AddRelativeForce(mouvement * airSustainedSpeed, ForceMode.Force);
         }
     }
 
@@ -156,6 +156,11 @@ public class playerMove : MonoBehaviour
             Vector3 stopVector = rb.linearVelocity.normalized * (airDecel*Time.fixedDeltaTime);
             rb.linearVelocity -= stopVector;
         }
+    }
+
+    public void OrientPlayer()
+    {
+        transform.forward=rb.angularVelocity;
     }
 }
 
