@@ -14,12 +14,15 @@ public enum actionState
 public class inputReader : MonoBehaviour
 {
     public bool ignoreX = true;
+    public bool ignoreMouseY = true;
      public InputInterpreter interpreter;
 
     private InputAction horizontalMoveAction;
     private InputAction jumMoveAction;
+    private InputAction mouseMoveAction;
 
     public Vector3 horizontalMove;
+    public Vector3 mouseMove;
 
     
 
@@ -28,10 +31,12 @@ public class inputReader : MonoBehaviour
         interpreter = gameObject.GetComponent<InputInterpreter>();
         horizontalMoveAction = InputSystem.actions.FindAction("Move");
         jumMoveAction = InputSystem.actions.FindAction("Jump");
+        mouseMoveAction = InputSystem.actions.FindAction("Look");
     }
 
     private void Update()
     {
+        CheckMouse();
         CheckHorizontal();
         CheckJump();
     }
@@ -89,5 +94,20 @@ public class inputReader : MonoBehaviour
 
         }
         
+    }
+
+    private void CheckMouse()
+    {
+        Vector2 readMouseMoove = mouseMoveAction.ReadValue<Vector2>();
+        mouseMove = new Vector3(readMouseMoove.x, readMouseMoove.y, 0);
+        if (ignoreMouseY)
+        {
+            mouseMove.y = 0;
+        }
+
+        if (mouseMoveAction.triggered)
+        {
+           interpreter.InterpretMouse() ;
+        }
     }
 }

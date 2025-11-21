@@ -8,6 +8,11 @@ public class CameraManager : MonoBehaviour
     private GameObject cinemachineCameraObject;
     private CinemachineCamera cinemachineCamera;
     private CinemachinePositionComposer cinemachinePositionComposer;
+    
+    [Header("Player Rotation")]
+    [SerializeField] private float thirdPersonLookSensitivity = 1.5f;
+
+    public GameObject pivot;
 
     private void Start()
     {
@@ -36,5 +41,10 @@ public class CameraManager : MonoBehaviour
         cinemachinePositionComposer.Lookahead.Time = time;
         cinemachinePositionComposer.Lookahead.Smoothing = smoothing;
 
+    }
+
+    public void ThirdPersonCameraOrient(Vector3 mouse)
+    {
+        pivot.transform.Rotate(new Vector3(mouse.y,mouse.x,0)*thirdPersonLookSensitivity,Space.Self);
     }
 }

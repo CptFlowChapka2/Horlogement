@@ -12,6 +12,7 @@ public class InputInterpreter : MonoBehaviour
     
     private JointManager jointManager;
     private GearAction gearAction;
+    private CameraManager cameraManager;
     
     
 
@@ -22,6 +23,7 @@ public class InputInterpreter : MonoBehaviour
         context = gameObject.GetComponent<ContextReader>();
         jointManager = gameObject.GetComponent<JointManager>();
         gearAction = FindAnyObjectByType<GearAction>();
+        cameraManager = FindAnyObjectByType<CameraManager>();
     }
         
 
@@ -115,5 +117,10 @@ public class InputInterpreter : MonoBehaviour
                 break;
 
         }
+    }
+
+    public void InterpretMouse()
+    {
+        cameraManager.ThirdPersonCameraOrient(inputReader.mouseMove);
     }
 }

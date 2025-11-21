@@ -40,6 +40,8 @@ public class playerMove : MonoBehaviour
 
     private Vector2 gearAxeControlMod=new Vector2(0,0);
 
+    
+    
 
     private void Start()
     {
@@ -158,9 +160,8 @@ public class playerMove : MonoBehaviour
         }
     }
 
-    public void OrientPlayer()
-    {
-        transform.forward=rb.angularVelocity;
-    }
+    
+    
+    
 }
 
