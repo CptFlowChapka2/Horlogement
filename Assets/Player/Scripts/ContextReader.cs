@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class ContextReader : MonoBehaviour
@@ -14,6 +15,7 @@ public class ContextReader : MonoBehaviour
 
     public JointManager jointManager;
 
+   
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground"))
@@ -27,7 +29,9 @@ public class ContextReader : MonoBehaviour
         {
             //isOnGear = true; // Si c'est une collision avec un Gear alors isOnGear = true et currentGear est le gameobject sur lequel on est.
             currentGear = collision.gameObject;
-            jointManager.CreateJoint(currentGear); // todo 
+            jointManager.CreateJoint(currentGear);
+            transform.up = currentGear.transform.up;  
+            transform.forward = currentGear.transform.forward;
             groundedType = groundedType.IsOnGear;
         }
     }
