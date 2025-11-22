@@ -33,17 +33,21 @@ public class InputInterpreter : MonoBehaviour
                 
                 //OnGear
             case (actionState.pressed,groundedType.IsOnGear):
-               
-                gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z,gearAction.transfertInitialSpeed);
+               playerMove.GearPressedMove(inputReader.horizontalMove);
+               gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z,gearAction.transfertInitialSpeed);
                 
                 break;
             case (actionState.sustained,groundedType.IsOnGear):
-               // Todo : Recreate the movement on the platform 
+               playerMove.GearSustainedMove(inputReader.horizontalMove);
+               
                 gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z,gearAction.transfertSustainSpeed);
                 break;
             case (actionState.released,groundedType.IsOnGear):
+                playerMove.GearReleasedMove(inputReader.horizontalMove);
                 
-                
+                break;
+            case (actionState.nothing,groundedType.IsOnGear):
+                playerMove.GearNothingMove();
                 break;
             
             //Airborne
