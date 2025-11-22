@@ -10,7 +10,6 @@ public class InputInterpreter : MonoBehaviour
     private ContextReader context;
     private groundedType contextGround;
     
-    private JointManager jointManager;
     private GearAction gearAction;
     private CameraManager cameraManager;
     
@@ -21,7 +20,6 @@ public class InputInterpreter : MonoBehaviour
         playerMove = gameObject.GetComponent<playerMove>();
         inputReader = gameObject.GetComponent<inputReader>();
         context = gameObject.GetComponent<ContextReader>();
-        jointManager = gameObject.GetComponent<JointManager>();
         gearAction = FindAnyObjectByType<GearAction>();
         cameraManager = FindAnyObjectByType<CameraManager>();
     }
@@ -32,26 +30,15 @@ public class InputInterpreter : MonoBehaviour
         
         switch (actionType,context.groundedType)
         {
-            //Grounded
-            case (actionState.pressed,groundedType.IsGrounded):
-                playerMove.PressedMove(inputReader.horizontalMove);
-                break;
-            case (actionState.sustained,groundedType.IsGrounded):
-                playerMove.SustainMove(inputReader.horizontalMove);
-                
-                break;
-            case (actionState.released,groundedType.IsGrounded):
-                playerMove.ReleaseMove();
                 
                 //OnGear
-                break;
             case (actionState.pressed,groundedType.IsOnGear):
-                playerMove.GearPressedMove(inputReader.horizontalMove,jointManager);
+               
                 gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z,gearAction.transfertInitialSpeed);
                 
                 break;
             case (actionState.sustained,groundedType.IsOnGear):
-                playerMove.GearSustainedMove(inputReader.horizontalMove,jointManager);
+               // Todo : Recreate the movement on the platform 
                 gearAction.TransferRotation(context.currentGear,inputReader.horizontalMove.z,gearAction.transfertSustainSpeed);
                 break;
             case (actionState.released,groundedType.IsOnGear):
@@ -87,24 +74,10 @@ public class InputInterpreter : MonoBehaviour
         
         switch (actionType, context.groundedType)
         {
-            //OnGround
-            case (actionState.pressed, groundedType.IsGrounded):
-                
-                playerMove.PresedJump();
-                break;
-            case (actionState.sustained, groundedType.IsGrounded):
-                playerMove.SustainJump();
-
-                break;
-            case (actionState.released, groundedType.IsGrounded):
-                playerMove.ReleaseJump();
-
-                break;
             
            
             //OnGear
             case (actionState.pressed, groundedType.IsOnGear):
-                jointManager.DestroyJoint();
                 playerMove.PresedJump();
                 break;
             case (actionState.sustained, groundedType.IsOnGear):
@@ -119,8 +92,5 @@ public class InputInterpreter : MonoBehaviour
         }
     }
 
-    public void InterpretMouse()
-    {
-        cameraManager.ThirdPersonCameraOrient(inputReader.mouseMove);
-    }
+  
 }

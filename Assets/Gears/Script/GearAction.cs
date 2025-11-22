@@ -4,7 +4,6 @@ public class GearAction : MonoBehaviour
 {
     [SerializeField] public float transfertInitialSpeed = 1f;
     [SerializeField] public float transfertSustainSpeed = 1f;
-    //method to add a speedChange to an Gear //todo:Verify player direction relative to gear.
     public void TransferRotation(GameObject targetGear,float change,float speedModifier) 
     {
         GearPhysRotation targetRotation;
