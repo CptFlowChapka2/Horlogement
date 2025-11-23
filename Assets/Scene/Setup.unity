@@ -226,7 +226,7 @@ PrefabInstance:
     - target: {fileID: 5392380757623196385, guid: fbdf61aa79e1e7e49893a070dea8f690, type: 3}
       propertyPath: m_Material
       value: 
-      objectReference: {fileID: 13400000, guid: ac1405e4dc633ac4f9af6087ca41e64e, type: 2}
+      objectReference: {fileID: 0}
     - target: {fileID: 7680843332935918298, guid: fbdf61aa79e1e7e49893a070dea8f690, type: 3}
       propertyPath: m_LocalScale.x
       value: 25
@@ -448,6 +448,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2585492855929618367, guid: 40675bfc0656547479820b37ad31acfc, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 2646784438947002444, guid: 40675bfc0656547479820b37ad31acfc, type: 3}
       propertyPath: pressedSpeed
       value: 3

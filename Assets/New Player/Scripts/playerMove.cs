@@ -38,37 +38,22 @@ public class playerMove : MonoBehaviour
     }
 
 
-    private bool stableSpeed(Vector3 mouv,out Vector3 modMouv)
-    {
-        float velocityWithoutGear = rb.linearVelocity.magnitude - (rb.linearVelocity.magnitude -  pressedSpeed);
-        Debug.Log(pressedSpeed-velocityWithoutGear);
-        if (velocityWithoutGear <=pressedSpeed)
-        {
-            modMouv =mouv.normalized* Mathf.Clamp( pressedSpeed-velocityWithoutGear,-sustainedSpeed,sustainedSpeed);
-            
-            return true;
-        }
-        
-        modMouv = mouv;
-        return false;
-        
-    }
+    
     
     //Gear
     public void GearPressedMove(Vector3 mouvement)
     {
         
-        rb.AddForce(mouvement*pressedSpeed,ForceMode.VelocityChange);
+        
     }
 
     public void GearSustainedMove(Vector3 mouvement)
     {
-        Vector3 mouv;
-        if (stableSpeed(mouvement, out mouv))
-        {
-            
-           rb.AddForce(mouv,ForceMode.VelocityChange); 
-        }
+        
+        
+       
+        
+        
         
     }
 
@@ -78,7 +63,7 @@ public class playerMove : MonoBehaviour
     }
     public void GearNothingMove()
     {
-      
+       
 
     }
 
@@ -87,7 +72,7 @@ public class playerMove : MonoBehaviour
     {
        
         rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
-        rb.angularVelocity = Vector3.zero;
+        //rb.angularVelocity = Vector3.zero;
     }
 
     public void SustainJump()
