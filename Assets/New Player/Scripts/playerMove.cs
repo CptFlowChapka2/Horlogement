@@ -8,6 +8,7 @@ public class playerMove : MonoBehaviour
 {
     [Header("Initialise")]
     [SerializeField] private Rigidbody rb;
+    [SerializeField] private JointManager jointManager;
     
     
     [Header("Jump Parameters")]
@@ -17,7 +18,7 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float sustainedSpeed = 1f;
     [SerializeField] private float pressedSpeed = 0.5f;
     [SerializeField] private float realeasedSpeed = 2f;
-    [SerializeField] private float decelSpeed = 2f;
+    [SerializeField] private float decelSpeed = 0.1f;
     [SerializeField] private float maxPlayerSpeed = 15f;
      private float dimReturnPlayerSpeed = 0.9f;//magic number due to curve
 
@@ -31,8 +32,9 @@ public class playerMove : MonoBehaviour
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
+        jointManager = GetComponent<JointManager>();
 
-        
+
 
 
     }
@@ -43,27 +45,31 @@ public class playerMove : MonoBehaviour
     //Gear
     public void GearPressedMove(Vector3 mouvement)
     {
-        
+        if (jointManager.currentJoint is not null)
+        {
+            jointManager.MooveJointOrder(mouvement*pressedSpeed);
+        }
         
     }
 
     public void GearSustainedMove(Vector3 mouvement)
     {
-        
-        
-       
-        
-        
-        
+        if (jointManager.currentJoint is not null)
+        {
+            jointManager.MooveJointOrder(mouvement*sustainedSpeed);
+        }
     }
 
     public void GearReleasedMove(Vector3 mouvement)
-    {
-        
+    { 
+        if (jointManager.currentJoint is not null)
+        {
+            jointManager.DecelMooveJointOrder(decelSpeed);
+        }
     }
     public void GearNothingMove()
     {
-       
+        
 
     }
 

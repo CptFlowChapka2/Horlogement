@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 8823489104372653766}
   - component: {fileID: 2646784438947002444}
   - component: {fileID: 7548193752534531721}
+  - component: {fileID: 8727411836262542303}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -168,7 +169,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 7548193752534531721}
+  jointManager: {fileID: 8727411836262542303}
   jumpForce: 5
+  sustainedSpeed: 1
+  pressedSpeed: 0.5
+  realeasedSpeed: 2
+  decelSpeed: 0.1
+  maxPlayerSpeed: 15
+  airSustainedSpeed: 1
+  airPressedSpeed: 0.5
+  airRealeasedSpeed: 2
+  airDecelWhenTurning: 2
+  airMaxTurnRate: 2
 --- !u!54 &7548193752534531721
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -196,3 +208,18 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &8727411836262542303
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7279685265446002738}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aab5df7554f92aa46871bc5ee6de43da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  currentJoint: {fileID: 0}
+  breakForce: 0
+  speedMod: 1
