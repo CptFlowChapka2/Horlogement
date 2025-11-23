@@ -38,24 +38,38 @@ public class playerMove : MonoBehaviour
     }
 
 
-    private Vector3 DiminishingReturn(Vector3 mouv)
+    private bool stableSpeed(Vector3 mouv,out Vector3 modMouv)
     {
-        float clampedModLog =Mathf.Clamp(Mathf.Log(-rb.linearVelocity.magnitude+maxPlayerSpeed)+dimReturnPlayerSpeed,0,1) ;
-        mouv =mouv.normalized*(mouv.magnitude*clampedModLog);
-        return mouv;
+        float velocityWithoutGear = rb.linearVelocity.magnitude - (rb.linearVelocity.magnitude -  pressedSpeed);
+        Debug.Log(pressedSpeed-velocityWithoutGear);
+        if (velocityWithoutGear <=pressedSpeed)
+        {
+            modMouv =mouv.normalized* Mathf.Clamp( pressedSpeed-velocityWithoutGear,-sustainedSpeed,sustainedSpeed);
+            
+            return true;
+        }
+        
+        modMouv = mouv;
+        return false;
+        
     }
     
     //Gear
     public void GearPressedMove(Vector3 mouvement)
     {
         
-        rb.AddForce(DiminishingReturn(mouvement*pressedSpeed),ForceMode.Impulse);
+        rb.AddForce(mouvement*pressedSpeed,ForceMode.VelocityChange);
     }
 
     public void GearSustainedMove(Vector3 mouvement)
     {
+        Vector3 mouv;
+        if (stableSpeed(mouvement, out mouv))
+        {
+            
+           rb.AddForce(mouv,ForceMode.VelocityChange); 
+        }
         
-        rb.AddForce(DiminishingReturn(mouvement*sustainedSpeed),ForceMode.Force);
     }
 
     public void GearReleasedMove(Vector3 mouvement)
