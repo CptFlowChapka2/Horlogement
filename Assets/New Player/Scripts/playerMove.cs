@@ -18,29 +18,38 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float pressedSpeed = 0.5f;
     [SerializeField] private float realeasedSpeed = 2f;
     [SerializeField] private float decelSpeed = 2f;
-    [SerializeField] private float maxPlayerSpeed = 2f;
+    [SerializeField] private float maxPlayerSpeed = 15f;
+     private float dimReturnPlayerSpeed = 0.9f;//magic number due to curve
 
     
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
-        
+
         
 
 
     }
 
-   
+
+    private Vector3 DiminishingReturn(Vector3 mouv)
+    {
+        float clampedModLog =Mathf.Clamp(Mathf.Log(-rb.linearVelocity.magnitude+maxPlayerSpeed)+dimReturnPlayerSpeed,0,1) ;
+        mouv =mouv.normalized*(mouv.magnitude*clampedModLog);
+        return mouv;
+    }
     
     //Gear
     public void GearPressedMove(Vector3 mouvement)
     {
-        rb.AddForce(mouvement*pressedSpeed,ForceMode.Impulse);
+        
+        rb.AddForce(DiminishingReturn(mouvement*pressedSpeed),ForceMode.Impulse);
     }
 
     public void GearSustainedMove(Vector3 mouvement)
     {
-        rb.AddForce(mouvement*sustainedSpeed,ForceMode.Force);
+        
+        rb.AddForce(DiminishingReturn(mouvement*sustainedSpeed),ForceMode.Force);
     }
 
     public void GearReleasedMove(Vector3 mouvement)
@@ -49,9 +58,8 @@ public class playerMove : MonoBehaviour
     }
     public void GearNothingMove()
     {
-        Vector3 decel = Vector3.ClampMagnitude(new Vector3(-rb.linearVelocity.x, 0, -rb.linearVelocity.z), decelSpeed);
-        
-        rb.AddForce(decel); 
+      
+
     }
 
     //AirBorne
