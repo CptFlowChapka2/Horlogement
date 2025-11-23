@@ -21,7 +21,13 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float maxPlayerSpeed = 15f;
      private float dimReturnPlayerSpeed = 0.9f;//magic number due to curve
 
-    
+     [Header("Airborn Parameters")]
+     [SerializeField] private float airSustainedSpeed = 1f;
+     [SerializeField] private float airPressedSpeed = 0.5f;
+     [SerializeField] private float airRealeasedSpeed = 2f;
+     [SerializeField] private float airDecelWhenTurning = 2f;
+     [SerializeField] private float airMaxTurnRate = 2f;
+     
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -80,7 +86,7 @@ public class playerMove : MonoBehaviour
 
     public void AirSustainMove(Vector3 mouvement)
     {
-        //todo 
+        rb.linearVelocity = Vector3.RotateTowards(rb.linearVelocity,mouvement*airSustainedSpeed,airMaxTurnRate,airDecelWhenTurning);
     }
 
     public void AirReleaseMove()
@@ -90,7 +96,8 @@ public class playerMove : MonoBehaviour
 
     public void AirPressedMove(Vector3 mouvement)
     {
-        //todo 
+        rb.linearVelocity = Vector3.RotateTowards(rb.linearVelocity,mouvement*airPressedSpeed,airMaxTurnRate,airDecelWhenTurning);
+        
     }
 
     public void ApplyAirDecel()
