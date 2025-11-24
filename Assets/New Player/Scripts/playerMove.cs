@@ -76,9 +76,9 @@ public class playerMove : MonoBehaviour
     //AirBorne
     public void PresedJump()
     {
-       
-        rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
-        //rb.angularVelocity = Vector3.zero;
+       jointManager.DestroyJoint();
+       rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
+        
     }
 
     public void SustainJump()
@@ -91,7 +91,9 @@ public class playerMove : MonoBehaviour
 
     public void AirSustainMove(Vector3 mouvement)
     {
-        rb.linearVelocity = Vector3.RotateTowards(rb.linearVelocity,mouvement*airSustainedSpeed,airMaxTurnRate,airDecelWhenTurning);
+        Vector3 cacheLinearVelocityY = new Vector3(0, rb.linearVelocity.y, 0);
+        Vector3 rotatedXZ = Vector3.RotateTowards(new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z),mouvement*airSustainedSpeed,airMaxTurnRate,airDecelWhenTurning);
+        rb.linearVelocity = rotatedXZ+cacheLinearVelocityY;
     }
 
     public void AirReleaseMove()
@@ -101,7 +103,9 @@ public class playerMove : MonoBehaviour
 
     public void AirPressedMove(Vector3 mouvement)
     {
-        rb.linearVelocity = Vector3.RotateTowards(rb.linearVelocity,mouvement*airPressedSpeed,airMaxTurnRate,airDecelWhenTurning);
+        Vector3 cacheLinearVelocityY = new Vector3(0, rb.linearVelocity.y, 0);
+        Vector3 rotatedXZ = Vector3.RotateTowards(new Vector3(rb.linearVelocity.x,0,rb.linearVelocity.z),mouvement*airPressedSpeed,airMaxTurnRate,airDecelWhenTurning);
+        rb.linearVelocity = rotatedXZ+cacheLinearVelocityY;
         
     }
 

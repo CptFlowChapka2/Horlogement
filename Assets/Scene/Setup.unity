@@ -277,7 +277,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8985440313186213998, guid: fbdf61aa79e1e7e49893a070dea8f690, type: 3}
       propertyPath: rotationSpeed
-      value: 50
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -490,7 +490,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8527597238946756526, guid: 40675bfc0656547479820b37ad31acfc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.92
+      value: 2.83
       objectReference: {fileID: 0}
     - target: {fileID: 8527597238946756526, guid: 40675bfc0656547479820b37ad31acfc, type: 3}
       propertyPath: m_LocalPosition.z

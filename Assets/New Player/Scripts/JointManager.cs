@@ -18,7 +18,8 @@ public class JointManager : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (travelling)
+        
+        if (currentJoint is not null&&travelling)
         {
             MooveJoint();
             if (decelerating)
@@ -58,7 +59,9 @@ public class JointManager : MonoBehaviour
                     currentJoint.connectedAnchor = cacheAnchor;
         }
 
-        targetMoove=currentJoint.anchor + moove;
+
+        targetMoove =currentJoint.connectedBody.transform.InverseTransformPoint(
+            currentJoint.connectedBody.ClosestPointOnBounds(transform.position+moove));
         travelling = true;
         speedMod = 1f;
         MooveJoint();
