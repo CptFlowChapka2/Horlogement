@@ -60,8 +60,11 @@ public class JointManager : MonoBehaviour
         }
 
 
-        targetMoove =currentJoint.connectedBody.transform.InverseTransformPoint(
-            currentJoint.connectedBody.ClosestPointOnBounds(transform.position+moove));
+
+
+        
+        targetMoove =currentJoint.anchor+moove;
+        
         travelling = true;
         speedMod = 1f;
         MooveJoint();
@@ -84,8 +87,8 @@ public class JointManager : MonoBehaviour
 
         if (currentJoint is not null)
         {
-            currentJoint.anchor =
-                Vector3.MoveTowards(currentJoint.anchor, targetMoove,  speedMod * Time.fixedDeltaTime);
+            currentJoint.anchor = 
+            Vector3.MoveTowards(currentJoint.anchor, targetMoove,  speedMod * Time.fixedDeltaTime);
         }
 
 
@@ -126,6 +129,7 @@ public class JointManager : MonoBehaviour
         
         if (other.gameObject.CompareTag("Gear"))
         {
+            
             travelling = false;
             DestroyJoint();
         }
