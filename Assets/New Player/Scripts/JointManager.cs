@@ -54,9 +54,9 @@ public class JointManager : MonoBehaviour
         if (currentJoint.autoConfigureConnectedAnchor )
         {
             Vector3 cacheAnchor = currentJoint.connectedAnchor;
-                    
-                    currentJoint.autoConfigureConnectedAnchor = false;
                     currentJoint.connectedAnchor = cacheAnchor;
+                    currentJoint.autoConfigureConnectedAnchor = false;
+                    
         }
 
 
@@ -89,6 +89,7 @@ public class JointManager : MonoBehaviour
         {
             currentJoint.anchor = 
             Vector3.MoveTowards(currentJoint.anchor, targetMoove,  speedMod * Time.fixedDeltaTime);
+            
         }
 
 

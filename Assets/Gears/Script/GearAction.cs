@@ -1,10 +1,26 @@
+using System;
 using UnityEngine;
 
 public class GearAction : MonoBehaviour
 {
     [SerializeField] public float transfertInitialSpeed = 1f;
     [SerializeField] public float transfertSustainSpeed = 1f;
-    [SerializeField] public float AngleOfAcceptance = 45f;
+    [SerializeField] public bool reverseTransfert = false;
+    private float reverseTransfertFloat = 1;
+    
+
+    private void Start()
+    {
+
+        if (reverseTransfert)
+        {
+            reverseTransfertFloat = -1;
+        }
+        else
+        {
+            reverseTransfertFloat = 1;
+        }
+    }
     public void TransferRotation(GameObject targetGear,GameObject player,Vector3 mouv,float speedModifier) 
     {
         GearPhysRotation targetRotation;
@@ -15,11 +31,11 @@ public class GearAction : MonoBehaviour
             float angle =Vector3.Angle(mouv,perpendicularPositive) ;
             if (angle <= 45f)
             {
-                targetRotation.rotationSpeed += -speedModifier;
+                targetRotation.rotationSpeed += reverseTransfertFloat*-speedModifier;
             }
             else if (angle>=90f)
             {
-                targetRotation.rotationSpeed += speedModifier;
+                targetRotation.rotationSpeed += reverseTransfertFloat*speedModifier;
             }
 
 

@@ -19,8 +19,7 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float pressedSpeed = 0.5f;
     [SerializeField] private float realeasedSpeed = 2f;
     [SerializeField] private float decelSpeed = 0.1f;
-    [SerializeField] private float maxPlayerSpeed = 15f;
-     private float dimReturnPlayerSpeed = 0.9f;//magic number due to curve
+    
 
      [Header("Airborn Parameters")]
      [SerializeField] private float airSustainedSpeed = 1f;
