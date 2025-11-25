@@ -15,11 +15,11 @@ public class GearAction : MonoBehaviour
             float angle =Vector3.Angle(mouv,perpendicularPositive) ;
             if (angle <= 45f)
             {
-                targetRotation.rotationSpeed += speedModifier;
+                targetRotation.rotationSpeed += -speedModifier;
             }
             else if (angle>=90f)
             {
-                targetRotation.rotationSpeed += -speedModifier;
+                targetRotation.rotationSpeed += speedModifier;
             }
 
 
