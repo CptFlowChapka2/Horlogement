@@ -38,6 +38,8 @@ public class playerMove : MonoBehaviour
     [SerializeField] private float gearInitialSpeed=1f;
     [SerializeField] private float gearSustainSpeed=0.5f;
 
+    [SerializeField] private float gizmoLength = 1.5f;
+    
     private Vector2 gearAxeControlMod=new Vector2(0,0);
 
     
@@ -160,7 +162,18 @@ public class playerMove : MonoBehaviour
         }
     }
 
-    
+    public void OnDrawGizmos()
+    {
+        Gizmos.color = Color.green;
+        
+        Vector3 start = transform.position + Vector3.up * 0.5f;
+        
+        Vector3 end = start + transform.forward * gizmoLength;
+        
+        Gizmos.DrawLine(start, end);
+        
+        Gizmos.DrawSphere(end, 0.05f);
+    }
     
     
 }
