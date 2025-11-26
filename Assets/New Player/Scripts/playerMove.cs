@@ -28,10 +28,19 @@ public class playerMove : MonoBehaviour
      [SerializeField] private float airDecelWhenTurning = 2f;
      [SerializeField] private float airMaxTurnRate = 2f;
      
+     [Header("Gravity Parameters")]
+     [SerializeField] private float gravity = -9.81f;
+     
+     private void OnValidate()
+     {
+        Physics.gravity = new Vector3(0, gravity, 0);
+     }
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
         jointManager = GetComponent<JointManager>();
+        
+        Physics.gravity = new Vector3(0, gravity, 0);
 
 
 
@@ -112,6 +121,7 @@ public class playerMove : MonoBehaviour
     {
        //todo 
     }
+    
 
     
     
