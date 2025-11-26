@@ -84,7 +84,7 @@ public class playerMove : MonoBehaviour
     //AirBorne
     public void PresedJump()
     {
-       jointManager.DestroyJoint();
+       jointManager.DestroyJoint(jointManager.currentJoint);
        rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.VelocityChange);
         
     }

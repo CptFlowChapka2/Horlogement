@@ -12,6 +12,7 @@ public class JointManager : MonoBehaviour
     private bool decelerating;
     public float speedMod=1f;
     private float decelspeed=0f;
+    private int mooveIteration = 0;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -32,6 +33,7 @@ public class JointManager : MonoBehaviour
 
     public void CreateJoint(GameObject gear)
     {
+        
         currentJoint = gameObject.AddComponent<FixedJoint>();
         currentJoint.connectedBody = gear.GetComponent<Rigidbody>();
         currentJoint.enableCollision = true;
@@ -46,6 +48,16 @@ public class JointManager : MonoBehaviour
 
     public void MooveJointOrder(Vector3 moove)
     {
+        mooveIteration++;
+        if (mooveIteration > 30)
+        {
+             FixedJoint cacheJoint = currentJoint;
+                    CreateJoint(currentJoint.connectedBody.gameObject);
+                    DestroyJoint(cacheJoint);
+                    mooveIteration = 0;
+        }
+        
+       
         moove = -moove;
         if (currentJoint is null)
         {
@@ -105,13 +117,13 @@ public class JointManager : MonoBehaviour
         speedMod = Mathf.Clamp(speedMod-decelspeed,0,1); 
     }
 
-    public void DestroyJoint()
+    public void DestroyJoint(FixedJoint joint)
     {
         
         
         if (currentJoint is not null)
         {
-            Destroy(currentJoint);
+            Destroy(joint);
         }
     }
 
@@ -132,7 +144,7 @@ public class JointManager : MonoBehaviour
         {
             
             travelling = false;
-            DestroyJoint();
+            DestroyJoint(currentJoint);
         }
     }
 }
