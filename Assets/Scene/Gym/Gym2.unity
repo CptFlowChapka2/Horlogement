@@ -1173,6 +1173,14 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: b28abe056e670fe4fb09cfd70e4e2455, type: 2}
+    - target: {fileID: 2646784438947002444, guid: 40675bfc0656547479820b37ad31acfc, type: 3}
+      propertyPath: airMaxTurnRate
+      value: 0.02
+      objectReference: {fileID: 0}
+    - target: {fileID: 2646784438947002444, guid: 40675bfc0656547479820b37ad31acfc, type: 3}
+      propertyPath: airDecelWhenTurning
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7279685265446002738, guid: 40675bfc0656547479820b37ad31acfc, type: 3}
       propertyPath: m_Name
       value: Player
