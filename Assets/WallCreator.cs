@@ -50,7 +50,7 @@ public class WallCreator : MonoBehaviour
         }
 
         Vector3 a = one.transform.position; 
-        Vector3 b = one.transform.position; 
+        Vector3 b = two.transform.position; 
         Vector3 mid = (a + b) / 2f;
         GameObject wall = Instantiate(wallPrefab, mid, Quaternion.identity);
 
@@ -59,7 +59,8 @@ public class WallCreator : MonoBehaviour
 
         float length = diff.magnitude;
         
-        wall.transform.localScale = new Vector3(1f, 5f, length);
+        wall.transform.localScale = new Vector3(0.3f, 5f, length);
         wall.transform.rotation = Quaternion.LookRotation(diff);
+        firstPoint = null;
     }
 }

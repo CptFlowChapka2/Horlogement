@@ -13,7 +13,7 @@ public class EntityScript : MonoBehaviour
     private void Start()
     {
         
-        Oncreation();
+        OnCreation();
     }
 
     private void OnCollisionEnter(Collision other)
@@ -32,12 +32,12 @@ public class EntityScript : MonoBehaviour
             EntityScript newEntityScript = newEntity.GetComponent<EntityScript>();
             newEntityScript.initialDir = (this.initialDir + other.gameObject.GetComponent<EntityScript>().initialDir).normalized;
             Destroy(other.gameObject);
-            newEntityScript.Oncreation();
+            newEntityScript.OnCreation();
             Destroy(gameObject);
         }    
     }
 
-    public void Oncreation()
+    private void OnCreation()
     {
         rb = GetComponent<Rigidbody>();
         rb.linearDamping = 0;
@@ -50,7 +50,7 @@ public class EntityScript : MonoBehaviour
         lastVelocity = rb.linearVelocity;
     }
 
-    public void Bounce(Vector3 surfaceNormal)
+    private void Bounce(Vector3 surfaceNormal)
     {
         rb.linearVelocity = Vector3.Reflect(lastVelocity, surfaceNormal);
 
