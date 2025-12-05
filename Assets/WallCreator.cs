@@ -44,7 +44,7 @@ public class WallCreator : MonoBehaviour
 
      public void CreateWall(Tile one, Tile two)
     {
-        if (one is null || two is null)
+        if (one is null || two is null||two==one)
         {
             return;
         }
