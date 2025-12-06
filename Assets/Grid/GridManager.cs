@@ -43,6 +43,7 @@ public class GridManager : MonoBehaviour
        allUpBorder.ForEach(x=>wallCreator.CreateWall(x,allUpBorder.Find(a=>a.coords.x.Equals(x.coords.x+1))));
        List<Tile> allDownBorder = allTile.FindAll(x => x.coords.y.Equals(0));
        allDownBorder.ForEach(x=>wallCreator.CreateWall(x,allDownBorder.Find(a=>a.coords.x.Equals(x.coords.x+1))));
+       
        List<Tile> allRightBorder = allTile.FindAll(x => x.coords.x.Equals(gridSize.x-1));
        allRightBorder.ForEach(x=>wallCreator.CreateWall(x,allRightBorder.Find(a=>a.coords.y.Equals(x.coords.y+1))));
        List<Tile> allLeftBorder = allTile.FindAll(x => x.coords.x.Equals(0));
