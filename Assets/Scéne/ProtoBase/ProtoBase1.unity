@@ -268,7 +268,7 @@ MonoBehaviour:
   speed: 1
   firstColider: 0
   initialCreated: 1
-  initialDefault: {r: 0.84475964, g: 0.89433956, b: 0.13330711, a: 0}
+  initialDefault: {r: 0.8470589, g: 0.8980393, b: 0.13333334, a: 0}
   justCreated: 0
 --- !u!54 &682535305
 Rigidbody:
@@ -695,7 +695,7 @@ MonoBehaviour:
   speed: 1
   firstColider: 0
   initialCreated: 1
-  initialDefault: {r: 0.6075471, g: 0.08145522, b: 0.07221783, a: 0}
+  initialDefault: {r: 0.60784316, g: 0.08235294, b: 0.07058824, a: 0}
   justCreated: 0
 --- !u!54 &1861396668
 Rigidbody:
