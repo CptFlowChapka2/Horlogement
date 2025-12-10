@@ -196,7 +196,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
   m_PrefabInstance: {fileID: 1295871592}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295871593}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d63a4ef66d031074582cddaeed3ec7dc, type: 3}
@@ -350,53 +350,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
-      propertyPath: tilePrefab
-      value: 
-      objectReference: {fileID: 6731471791928285770, guid: 7907efaefa44268409dedfcbe78ccd79, type: 3}
-    - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
-      propertyPath: tileSize.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
-      propertyPath: tileSize.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: wallCreator
       value: 
       objectReference: {fileID: 246482370}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 1075825818457272167, guid: 5846960c357ae814fa852af9ce799457, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1295871594}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5846960c357ae814fa852af9ce799457, type: 3}
---- !u!1 &1295871593 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1075825818457272167, guid: 5846960c357ae814fa852af9ce799457, type: 3}
-  m_PrefabInstance: {fileID: 1295871592}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1295871594
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1295871593}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6bc4cd3d700b588488bd108dcd49794d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  color0: {r: 0.84705883, g: 0.8980392, b: 0.13333334, a: 0}
-  color1: {r: 0.60784316, g: 0.08235294, b: 0.07058824, a: 0}
-  color2: {r: 0.8037735, g: 0.4354014, b: 0.06521175, a: 0}
-  sound0: {fileID: 0}
-  sound1: {fileID: 0}
-  sound2: {fileID: 0}
-  allColor: []
 --- !u!1 &1428975402
 GameObject:
   m_ObjectHideFlags: 0

@@ -19,13 +19,13 @@ public class WallCreator : MonoBehaviour
             {
                 Tile hitTile = hit.collider.gameObject.GetComponent<Tile>();
                 Debug.Log("Sphère cliquée : " + hit.collider.name);
-                if (firstPoint == null)
+                if (!firstPoint)
                 {
                         firstPoint = hitTile;
                         return;
                 }
 
-                if (Vector3.Distance(firstPoint.transform.position, hit.collider.transform.position) >= (gridManager.tileSize.x*2 )*squareRootof2 )
+                if (Vector3.Distance(firstPoint.transform.position, hit.collider.transform.position) >= (gridManager.tileSize.x*1.2f) *squareRootof2 )
                 {
                     //todo: implement
                     firstPoint = null;
