@@ -15,7 +15,7 @@ public class EntityIdentity
         IdentityKey = tempIdentity;
         Color = (Color)dataHolder.entityIdentity[tempIdentity]["color"];
         DefaultDirection =(Vector3)dataHolder.entityIdentity[tempIdentity]["Vector"];
-        //Sound = (AudioClip)dataHolder.entityIdentity[tempIdentity]["sound"];
+        Sound = (AudioClip)dataHolder.entityIdentity[tempIdentity]["sound"];
     }
     public Vector3 DefaultDirection { get; set; }
 

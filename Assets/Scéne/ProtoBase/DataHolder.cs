@@ -40,7 +40,7 @@ public class DataHolder : MonoBehaviour
             { "color", color0 },
             { "Vector", baseVector }
         };
-        // identity0.Add("sound",sound0);
+        identity0.Add("sound",sound0);
         entityIdentity.Add(identityKeys.color0,identity0);
         
         Dictionary<string, object> identity1 = new Dictionary<string, object>
@@ -49,7 +49,7 @@ public class DataHolder : MonoBehaviour
             //{ "Vector", Quaternion.AngleAxis(51.42f, Vector3.up) * baseVector }
             { "Vector",  -baseVector }
         };
-        //identity0.Add("sound",sound1);
+        identity1.Add("sound",sound1);
         entityIdentity.Add(identityKeys.color1,identity1);
         
         Dictionary<string, object> identity2 = new Dictionary<string, object>
@@ -57,7 +57,7 @@ public class DataHolder : MonoBehaviour
             { "color", color2 },
             { "Vector", (Quaternion.AngleAxis(102.84f, Vector3.up) * baseVector) }
         };
-        //identity0.Add("sound",sound2);
+        identity2.Add("sound",sound2);
         entityIdentity.Add(identityKeys.color2,identity2);
         
         

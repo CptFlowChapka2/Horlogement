@@ -18,6 +18,7 @@ public class EntityScript : MonoBehaviour
     public identityKeys initialDefault;
     private EntityIdentity thisIdentity = new EntityIdentity();
     public bool justCreated;
+    public AudioSource audioSource;
 
     private void Start()
     {
@@ -25,6 +26,7 @@ public class EntityScript : MonoBehaviour
         initialCreated = false;
         dataHolder = FindAnyObjectByType<DataHolder>();
         collisionHandler = FindAnyObjectByType<CollisionHandler>();
+        audioSource=GetComponent<AudioSource>();
 
     }
 
@@ -32,6 +34,7 @@ public class EntityScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall"))
         {
+            audioSource.PlayOneShot(thisIdentity.Sound);
             Vector3 surfaceNormal = other.GetContact(0).normal;
             Bounce(surfaceNormal);
         }
