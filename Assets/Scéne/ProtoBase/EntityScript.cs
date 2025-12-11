@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
@@ -6,10 +7,11 @@ public class EntityScript : MonoBehaviour
     public float speed = 1f;
 
     private DataHolder dataHolder;
+    private CollisionHandler collisionHandler;
     private Rigidbody rb;
     private Vector3 currentDir;
     public bool secondColider;
-    [SerializeField] private bool isDummy=false;
+     public bool isDummy=false;
     private Vector3 lastVelocity;
 
     public bool initialCreated;
@@ -22,6 +24,7 @@ public class EntityScript : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         initialCreated = false;
         dataHolder = FindAnyObjectByType<DataHolder>();
+        collisionHandler = FindAnyObjectByType<CollisionHandler>();
 
     }
 
@@ -33,42 +36,53 @@ public class EntityScript : MonoBehaviour
             Bounce(surfaceNormal);
         }
 
-        if (other.gameObject.CompareTag("Entity") && !other.gameObject.GetComponent<EntityScript>().justCreated && !other.gameObject.GetComponent<EntityScript>().secondColider)
+        if (other.gameObject.CompareTag("Entity") && !other.gameObject.GetComponent<EntityScript>().justCreated)
         {
-            Debug.Log("collision");
-
             EntityScript otherEntityScript = other.gameObject.GetComponent<EntityScript>();
-            secondColider = true;
-            Vector3 otherLastVelocity = otherEntityScript.lastVelocity;
-            identityKeys otherIdentity = otherEntityScript.thisIdentity.IdentityKey;
+            List<object> parameterList = new List<object>();
+
             
+            parameterList.Add(dataHolder);
+            List<Vector3> vector3s = new List<Vector3>();
+            vector3s.Add((transform.position+other.gameObject.transform.position)/2);
             
-           
             Vector3 givenDir = lastVelocity;
-           
-            if (lastVelocity == Vector3.zero)
+
+            if (givenDir == Vector3.zero)
             {
                 givenDir = thisIdentity.DefaultDirection;
             }
+            vector3s.Add(givenDir);
+            
+            Vector3 otherGivenDir = otherEntityScript.lastVelocity;
 
-            //todo: noise
-            GameObject fusedEntity=Instantiate(dataHolder.intantiateDummy, transform.position, Quaternion.identity);
-            EntityScript fusedEntityScript=fusedEntity.GetComponent<EntityScript>();
-            fusedEntityScript.justCreated=true;
+            if (otherGivenDir == Vector3.zero)
+            {
+                otherGivenDir = otherEntityScript.thisIdentity.DefaultDirection;
+            }
+            vector3s.Add(otherGivenDir);
+            
+            parameterList.Add(vector3s);
 
-            fusedEntityScript.isDummy = false;
-            fusedEntityScript.speed = speed;
-            Debug.Log(thisIdentity.IdentityKey);
-            Debug.Log(otherIdentity);
+            float givenSpeed = speed;
+            parameterList.Add(givenSpeed);
 
-            fusedEntityScript.OnCreation( thisIdentity.IdentityKey,otherIdentity, fusedEntityScript.CreateDir(givenDir, otherLastVelocity));
+            List<identityKeys> identityKeysList = new List<identityKeys>();
+            identityKeysList.Add(thisIdentity.IdentityKey);
+            identityKeysList.Add(otherEntityScript.thisIdentity.IdentityKey);
+            
+            parameterList.Add(identityKeysList);
+
+            collisionHandler.AddToProcess(parameterList);
             Destroy(gameObject);
             Destroy(other.gameObject);
+
+
 
         }
     }
 
-    private void OnCreation(identityKeys key, identityKeys key2 = default, Vector3 dir = default)
+    public void OnCreation(identityKeys key, identityKeys key2 = default, Vector3 dir = default)
     {
         
         
@@ -121,7 +135,7 @@ public class EntityScript : MonoBehaviour
 
     }
 
-    private Vector3 CreateDir(Vector3 a, Vector3 b = default)
+    public Vector3 CreateDir(Vector3 a, Vector3 b = default)
     {
         Vector3 newDir;
         if (b == default)
