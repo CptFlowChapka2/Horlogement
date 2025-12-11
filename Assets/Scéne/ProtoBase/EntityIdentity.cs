@@ -13,9 +13,9 @@ public class EntityIdentity
         holder = dataHolder;
         identityKeys tempIdentity = MergeIdentity(key,key2);
         IdentityKey = tempIdentity;
-        Color = (Color)dataHolder.entityIdentity[tempIdentity]["color"];
-        DefaultDirection =(Vector3)dataHolder.entityIdentity[tempIdentity]["Vector"];
-        Sound = (AudioClip)dataHolder.entityIdentity[tempIdentity]["sound"];
+        Color = (Color)holder.entityIdentity[tempIdentity]["color"];
+        DefaultDirection =(Vector3)holder.entityIdentity[tempIdentity]["Vector"];
+        Sound = (AudioClip)holder.entityIdentity[tempIdentity]["sound"];
     }
     public Vector3 DefaultDirection { get; set; }
 

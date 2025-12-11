@@ -38,26 +38,28 @@ public class DataHolder : MonoBehaviour
         Dictionary<string, object> identity0 = new Dictionary<string, object>
         {
             { "color", color0 },
-            { "Vector", baseVector }
+            { "Vector", baseVector },
+            {"sound",sound0}
         };
-        identity0.Add("sound",sound0);
+        
         entityIdentity.Add(identityKeys.color0,identity0);
         
         Dictionary<string, object> identity1 = new Dictionary<string, object>
         {
             { "color", color1 },
-            //{ "Vector", Quaternion.AngleAxis(51.42f, Vector3.up) * baseVector }
-            { "Vector",  -baseVector }
+            { "Vector", Quaternion.AngleAxis(51.42f, Vector3.up) * baseVector },
+            {"sound",sound1}
         };
-        identity1.Add("sound",sound1);
+        
         entityIdentity.Add(identityKeys.color1,identity1);
         
         Dictionary<string, object> identity2 = new Dictionary<string, object>
         {
             { "color", color2 },
-            { "Vector", (Quaternion.AngleAxis(102.84f, Vector3.up) * baseVector) }
+            { "Vector", (Quaternion.AngleAxis(102.84f, Vector3.up) * baseVector) },
+            {"sound",sound2}
         };
-        identity2.Add("sound",sound2);
+        
         entityIdentity.Add(identityKeys.color2,identity2);
         
         
