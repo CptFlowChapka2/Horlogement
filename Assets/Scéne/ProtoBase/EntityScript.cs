@@ -43,39 +43,28 @@ public class EntityScript : MonoBehaviour
             {
                 return;
             }
-            HashSet<object> parameterList = new HashSet<object>();
-
-            
-            parameterList.Add(dataHolder);
-            HashSet<Vector3> vector3s = new HashSet<Vector3>();
-            vector3s.Add((transform.position+other.gameObject.transform.position)/2);
-            
             Vector3 givenDir = lastVelocity;
 
             if (givenDir == Vector3.zero)
             {
                 givenDir = thisIdentity.DefaultDirection;
             }
-            vector3s.Add(givenDir);
-            
             Vector3 otherGivenDir = otherEntityScript.lastVelocity;
-
             if (otherGivenDir == Vector3.zero)
             {
                 otherGivenDir = otherEntityScript.thisIdentity.DefaultDirection;
             }
-            vector3s.Add(otherGivenDir);
-            
-            parameterList.Add(vector3s);
+            HashSet<object> parameterList = new HashSet<object>
+            {
+                dataHolder,
+                (transform.position + other.gameObject.transform.position) / 2,
+                givenDir,
+                otherGivenDir,
+                speed,
+                thisIdentity.IdentityKey,
+                otherEntityScript.thisIdentity.IdentityKey
+            };
 
-            float givenSpeed = speed;
-            parameterList.Add(givenSpeed);
-
-            HashSet<identityKeys> identityKeysList = new HashSet<identityKeys>();
-            identityKeysList.Add(thisIdentity.IdentityKey);
-            identityKeysList.Add(otherEntityScript.thisIdentity.IdentityKey);
-            
-            parameterList.Add(identityKeysList);
 
             collisionHandler.AddToProcess(parameterList);
             Destroy(gameObject);
