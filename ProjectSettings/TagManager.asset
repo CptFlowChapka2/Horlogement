@@ -9,6 +9,7 @@ TagManager:
   - Anchor
   - Wall
   - Entity
+  - Dummy
   layers:
   - Default
   - TransparentFX

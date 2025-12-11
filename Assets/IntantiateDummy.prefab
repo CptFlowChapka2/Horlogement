@@ -16,8 +16,8 @@ GameObject:
   - component: {fileID: 4075873952441820338}
   - component: {fileID: 5794302861004919285}
   m_Layer: 0
-  m_Name: Sphere
-  m_TagString: Entity
+  m_Name: IntantiateDummy
+  m_TagString: Dummy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -257,8 +257,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea4dedc0f5ee5384e872e156259a7f80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 0
   secondColider: 0
+  isDummy: 1
   initialCreated: 1
   initialDefault: {r: 0.60784316, g: 0.08235294, b: 0.07058824, a: 0}
   justCreated: 0
