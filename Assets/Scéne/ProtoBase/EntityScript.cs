@@ -10,8 +10,8 @@ public class EntityScript : MonoBehaviour
     private CollisionHandler collisionHandler;
     private Rigidbody rb;
     private Vector3 currentDir;
-    public bool secondColider;
-     public bool isDummy=false;
+    
+     
     private Vector3 lastVelocity;
 
     public bool initialCreated;
@@ -36,14 +36,18 @@ public class EntityScript : MonoBehaviour
             Bounce(surfaceNormal);
         }
 
-        if (other.gameObject.CompareTag("Entity") && !other.gameObject.GetComponent<EntityScript>().justCreated)
+        if (other.gameObject.CompareTag("Entity") && other.gameObject.TryGetComponent<EntityScript>(out EntityScript otherEntityScript)&&!otherEntityScript.justCreated)
         {
-            EntityScript otherEntityScript = other.gameObject.GetComponent<EntityScript>();
-            List<object> parameterList = new List<object>();
+
+            if (thisIdentity.IdentityKey == default || otherEntityScript.thisIdentity.IdentityKey == default)
+            {
+                return;
+            }
+            HashSet<object> parameterList = new HashSet<object>();
 
             
             parameterList.Add(dataHolder);
-            List<Vector3> vector3s = new List<Vector3>();
+            HashSet<Vector3> vector3s = new HashSet<Vector3>();
             vector3s.Add((transform.position+other.gameObject.transform.position)/2);
             
             Vector3 givenDir = lastVelocity;
@@ -67,7 +71,7 @@ public class EntityScript : MonoBehaviour
             float givenSpeed = speed;
             parameterList.Add(givenSpeed);
 
-            List<identityKeys> identityKeysList = new List<identityKeys>();
+            HashSet<identityKeys> identityKeysList = new HashSet<identityKeys>();
             identityKeysList.Add(thisIdentity.IdentityKey);
             identityKeysList.Add(otherEntityScript.thisIdentity.IdentityKey);
             
@@ -92,7 +96,7 @@ public class EntityScript : MonoBehaviour
         thisIdentity.Create(dataHolder,key, key2);
         rb = GetComponent<Rigidbody>();
         rb.linearVelocity = Vector3.zero;
-        secondColider = false;
+        
 
         
         rb.maxLinearVelocity = speed;
@@ -104,7 +108,7 @@ public class EntityScript : MonoBehaviour
 
         initialDefault = thisIdentity.IdentityKey;
 
-        if (!isDummy)
+        if (gameObject.tag.Equals("Entity"))
         {
             if (dir == default || dir == Vector3.zero)
             {

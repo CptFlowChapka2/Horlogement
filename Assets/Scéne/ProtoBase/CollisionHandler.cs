@@ -5,10 +5,10 @@ using UnityEngine;
 
 public class CollisionHandler : MonoBehaviour
 {
-    public HashSet<List<object>> toProcess = new HashSet<List<object>>();
+    public HashSet<HashSet<object>> toProcess = new HashSet<HashSet<object>>();
     private bool readyToProcess = false;
 
-    public void AddToProcess(List<object> list)
+    public void AddToProcess(HashSet<object> list)
     {
         toProcess.Add(list);
         readyToProcess = true;
@@ -19,28 +19,32 @@ public class CollisionHandler : MonoBehaviour
     {
         if (readyToProcess)
         {
+           
             CreateFusedEntity(toProcess);
         }
     }
-    private void CreateFusedEntity(HashSet<List<object>> input)
+    private void CreateFusedEntity(HashSet<HashSet<object>> input)
     {
         
-        foreach (List<object> elements in input)
+        foreach (HashSet<object> elements in input)
         {
-            List<object> list = elements;
-            DataHolder dataHolder = (DataHolder)list.Find(x=>x is DataHolder);
-            List<Vector3> vector3s =(List<Vector3>)list.Find(x=>x is List<Vector3>) ;
-            float speed =(float)list.Find(x=>x is float) ;
-            List<identityKeys> identityList =(List<identityKeys>)list.Find(x=>x is List<identityKeys>) ;
-        
+            HashSet<object> list = elements;
+            DataHolder dataHolder= list.OfType<DataHolder>().First();
+            HashSet<Vector3> vector3Hash= list.OfType<HashSet<Vector3>>().First();
+            HashSet<identityKeys> identityHash= list.OfType<HashSet<identityKeys>>().First();
+            float speed= list.OfType<float>().First();
+
+            List<Vector3> vector3s = vector3Hash.ToList();
+            List<identityKeys> identityKeysList = identityHash.ToList();
             GameObject fusedEntity=Instantiate(dataHolder.intantiateDummy, vector3s[0], Quaternion.identity);
             EntityScript fusedEntityScript=fusedEntity.GetComponent<EntityScript>();
             fusedEntityScript.justCreated=true;
 
-            fusedEntityScript.isDummy = false;
+            fusedEntityScript.gameObject.tag = "Entity";
+            
             fusedEntityScript.speed =speed ;
         
-            fusedEntityScript.OnCreation( identityList[0],identityList[1], fusedEntityScript.CreateDir(vector3s[1], vector3s[2]));
+            fusedEntityScript.OnCreation( identityKeysList[0],identityKeysList[1], fusedEntityScript.CreateDir(vector3s[1], vector3s[2]));
 
             
         }
