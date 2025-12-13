@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -158,6 +159,16 @@ public class EntityScript : MonoBehaviour
     {
         justCreated = false;
     }
+
     
+    private void OnMouseUp()
+    {
+        initialCreated = true;
+    }
+
+    private void OnMouseDrag()
+    {
+        transform.position +=new Vector3(Input.mousePositionDelta.x,0,Input.mousePositionDelta.y)*0.1f;
+    }
 
 }
