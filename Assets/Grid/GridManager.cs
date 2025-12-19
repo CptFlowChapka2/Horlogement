@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
@@ -11,10 +12,25 @@ public class GridManager : MonoBehaviour
     public List<Tile> allTile = new List<Tile>();
     private Tile[,] grid;
     public WallCreator wallCreator;
+    private GameObject camObject;
+    private Camera camScript;
+    public int voidSize = 5;
+
+    private GameObject playSpace;
+    private GameObject theVoid;
+
+    private Vector3 gridCenter;
 
     private void Start()
     {
+        camObject = GameObject.FindGameObjectWithTag("MainCamera");
+        camScript = camObject.GetComponent<Camera>();
+
+        playSpace = GameObject.FindGameObjectWithTag("PlaySpace");
+        theVoid = GameObject.FindGameObjectWithTag("Void");
         CreateGrid();
+        PositionCam();
+        PositionPlanes();
     }
 
     void CreateGrid()
@@ -36,7 +52,22 @@ public class GridManager : MonoBehaviour
         CreateStartWall();
     }
 
+    void PositionCam()
+    {
+        Debug.Assert(grid is not null);
+        gridCenter= (allAnchor.Last().transform.position-allAnchor.First().transform.position)*0.5f;
+        camObject.transform.position =gridCenter+(Vector3.up*gridCenter.magnitude );
+        camScript.orthographicSize = gridSize.x+voidSize*2;
+    }
 
+    void PositionPlanes()
+    {
+        playSpace.transform.position = new Vector3(gridCenter.x,-0.5f,gridCenter.z);
+        playSpace.transform.localScale = new Vector3(gridSize.x/5.15f,1,gridSize.y/5.15f);
+        
+        theVoid.transform.position = new Vector3(gridCenter.x,-0.75f,gridCenter.z);
+        theVoid.transform.localScale = new Vector3((gridSize.x/2f)+voidSize/2f,1,(gridSize.y/4f)+voidSize/2f);
+    }
     private void CreateStartWall()
     { 
         List<Tile> allUpBorder = allTile.FindAll(x => x.coords.y.Equals(gridSize.y-1));
