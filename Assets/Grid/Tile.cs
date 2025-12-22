@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -14,10 +15,16 @@ public class Tile : MonoBehaviour
       this.coords = coords;
       this.gridManager = gridManager;
    }
-   
-  
 
-   
+   private void Update()
+   {
+      if (currentWallPointScript == null)
+      {
+         currentWallPointScript = null;
+      }
+   }
+
+
    private void OnMouseDown()
    {
       Debug.Log("Clicked on " + gridManager.WorldToGridPos(transform.position));

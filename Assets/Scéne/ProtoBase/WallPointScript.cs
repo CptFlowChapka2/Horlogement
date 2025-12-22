@@ -11,60 +11,102 @@ public class WallPointScript : MonoBehaviour
     public Tile linkedTile;
     [SerializeField] private float mouseSpeed = 2f;
     [SerializeField] private float anchorCheckRange = 2f;
-     private float maxMouvment = 2f;
+    public float maxMouvment = 2f;
+    private WallCreator wallCreator;
     private SphereCollider thisCollider;
     public GridManager gridManager;
-    
+    public List<WallScript> walls;
+    [SerializeField] private float wallCreationCounterMax =2f;
+    [SerializeField] private float wallCreationCounter =0;
+    private float squareRootof2 =(float)Math.Sqrt(2f) ;
 
+    private Sculptor sculptor;
+
+    public bool isSelected = false;
+
+
+
+    private void Update()
+    {
+        if( walls.TrueForAll(x => x is null)) DestroyImmediate(gameObject);
+    }
 
     private void Start()
     {
+        sculptor = FindAnyObjectByType<Sculptor>();
+        gridManager = FindAnyObjectByType<GridManager>();
+        maxMouvment = (gridManager.tileSize.magnitude*1f) *squareRootof2;
+        wallCreator = FindAnyObjectByType<WallCreator>();
         mouse = InputSystem.actions.FindAction("Look");
         thisCollider = GetComponent<SphereCollider>();
     }
-    public void Create(Tile tile,GridManager gridManagerIn)
+    public void Create(Tile tile)
     {
-        gridManager = gridManagerIn;
-        maxMouvment = gridManager.tileSize.magnitude;
         linkedTile = tile;
         tile.currentWallPointScript = this;
         gameObject.transform.position = linkedTile.transform.position;
     }
 
     
-    private void OnMouseDrag()
+
+    
+    public void EndMouvement()
     {
-        
-        Vector2 mouseMoove = mouse.ReadValue<Vector2>();
-        Vector3 resultMouvment = new Vector3(mouseMoove.x, 0, mouseMoove.y) * Time.deltaTime * mouseSpeed;
-        if ((transform.position - (transform.position + resultMouvment)).magnitude <= maxMouvment)
-        { 
-            transform.position += resultMouvment;
-        }
-       
-    }
 
-    private void OnMouseUp()
-    {
-        
-        Collider[] results = new Collider[] { };
-        Physics.OverlapSphereNonAlloc(transform.position, anchorCheckRange, results, 0, QueryTriggerInteraction.Collide);
+        if (ProximityCheck(out var results)) return;
 
-       
 
-        if (results.Length==0)
+        if (!results.First().TryGetComponent(out Tile foundTile)) return;
+
+        if (foundTile.currentWallPointScript is null)
         {
-            transform.position = linkedTile.transform.position;
-            return;
+           
+            
+                linkedTile.currentWallPointScript = null;
+            
+            foundTile.currentWallPointScript = this;
+            linkedTile = foundTile;
+            transform.position = foundTile.transform.position;
+            walls.ForEach(x=>x.Moove());
+            walls.FindAll(x => x.length > (gridManager.tileSize.x * 1.2f) * squareRootof2).ForEach(x=>x.Break());
+
+
         }
+        else if (linkedTile.currentWallPointScript is  null||linkedTile.currentWallPointScript.Equals(this))
+        {
+            
+            transform.position = linkedTile.transform.position;
+            walls.ForEach(x=>x.Moove());
+            walls.FindAll(x => x.length > (gridManager.tileSize.x * 1.2f) * squareRootof2).ForEach(x=>x.Break());
+        }
+        else
+        {
+            sculptor.currentSelection = null;
+            walls.ForEach(x=>x.Break());
+            Destroy(gameObject);
+        }
+    }
+    private bool ProximityCheck(out Collider[] results)
+    {
 
-       results= results.OrderBy((d) => (d.transform.position - transform.position).sqrMagnitude).ToArray();
+        results = new Collider[8];
+        Physics.OverlapSphereNonAlloc(transform.position, anchorCheckRange,results, Physics.AllLayers, QueryTriggerInteraction.Collide);
 
-       if (results.First().Equals(thisCollider)){ transform.position = linkedTile.transform.position;return;}
-       if (!results.First().gameObject.CompareTag("Anchor") || !results.First().TryGetComponent<Tile>(out Tile foundTile)) return;
-       
-       linkedTile = foundTile;
-       transform.position = foundTile.transform.position;
 
+        var resultsList = results.ToList();
+
+        
+
+        resultsList.RemoveAll(x => x is null||!x.gameObject.CompareTag("Anchor"));
+        if (resultsList.Count.Equals(0))
+        {
+            
+            transform.position = linkedTile.transform.position;
+            walls.ForEach(x=>x.Moove());
+            return true;
+        }
+        results = resultsList.ToArray();
+        
+        return false;
     }
 }

@@ -12,7 +12,7 @@ public class WallCreator : MonoBehaviour
 
     void Update()
     {
-        DebugClicToWall();
+        //DebugClicToWall();
     }
     private void DebugClicToWall()
     {
@@ -59,27 +59,38 @@ public class WallCreator : MonoBehaviour
         {
             CreateWallPoint(two);
         }
-
-        Vector3 a = one.currentWallPointScript.transform.position; 
-        Vector3 b = two.currentWallPointScript.transform.position; 
-        Vector3 mid = (a + b) / 2f;
-        GameObject wall = Instantiate(wallPrefab, mid, Quaternion.identity);
-
-        Vector3 diff = b - a;
-        diff.y = 0;
-
-        float length = diff.magnitude;
         
-        wall.transform.localScale = new Vector3(0.3f, 5f, length);
-        wall.transform.rotation = Quaternion.LookRotation(diff);
+        GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
+        WallScript wallScript = wall.GetComponent<WallScript>();
+        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager);
+        
         firstPoint = null;
     }
+    
+    
+    
 
     
 
     public void CreateWallPoint(Tile tile)
     {
         GameObject newWallPoint= Instantiate(wallPointPrefab, tile.transform.position, Quaternion.identity);
-        newWallPoint.GetComponent<WallPointScript>().Create(tile,gridManager);
+        newWallPoint.GetComponent<WallPointScript>().Create(tile);
     }
+    
+    public WallPointScript ExtendWallPoint(Vector3 origine)
+    {
+        GameObject newWallPoint= Instantiate(wallPointPrefab, origine, Quaternion.identity);
+        return newWallPoint.GetComponent<WallPointScript>();
+    }
+
+    public void ExtendWall(WallPointScript one ,WallPointScript two)
+    {
+        GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
+        WallScript wallScript = wall.GetComponent<WallScript>();
+        wallScript.Create(one,two,gridManager);
+    }
+    
+    
+    
 }

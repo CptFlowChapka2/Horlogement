@@ -123,3 +123,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedTile: {fileID: 0}
   mouseSpeed: 5
+  anchorCheckRange: 1
+  maxMouvment: 2
+  gridManager: {fileID: 0}
+  walls: []
+  wallCreationCounterMax: 2
+  wallCreationCounter: 0
+  isSelected: 0
