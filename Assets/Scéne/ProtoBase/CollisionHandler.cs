@@ -21,17 +21,17 @@ public class CollisionHandler : MonoBehaviour
         {
             if (toProcess.Count>1)
             {
-               HashSet<object> lastElement=null;
                List<HashSet<object>> toRemove = new List<HashSet<object>>();
                 foreach (var elements in toProcess)
                 {
-                    
-                    if (lastElement is not null&&elements.Overlaps(lastElement))
+                    foreach (var check in toProcess)
                     {
-                        toRemove.Add(elements);
+                        if (check is not null&&elements.Overlaps(check))
+                        {
+                            toRemove.Add(elements);
+                        }
                     }
-
-                    lastElement = elements;
+                    
                 }
 
                 foreach (var remove in toRemove)
