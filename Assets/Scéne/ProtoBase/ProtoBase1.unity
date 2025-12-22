@@ -160,6 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wallPrefab: {fileID: 159847252217830659, guid: efacc3e9ff353c04ca3e7f54a229462e, type: 3}
+  wallPointPrefab: {fileID: 6806604708571825848, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
   gridManager: {fileID: 227723128}
 --- !u!4 &246482371
 Transform:
@@ -871,6 +872,63 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 7c3262be6257a9f43914a53a1b520602, type: 3}
+--- !u!1001 &5998718419099129241
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 16.099998
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -3.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 7.299999
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5343921116473715952, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6806604708571825848, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+      propertyPath: m_Name
+      value: WallPoint
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
 --- !u!1001 &8532591424171406615
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -947,3 +1005,4 @@ SceneRoots:
   - {fileID: 1383566475}
   - {fileID: 2126266504}
   - {fileID: 1624847630}
+  - {fileID: 5998718419099129241}
