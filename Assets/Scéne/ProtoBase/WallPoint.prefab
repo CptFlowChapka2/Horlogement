@@ -122,3 +122,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedTile: {fileID: 0}
+  mouseSpeed: 5

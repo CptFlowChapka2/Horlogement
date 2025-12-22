@@ -80,6 +80,6 @@ public class WallCreator : MonoBehaviour
     public void CreateWallPoint(Tile tile)
     {
         GameObject newWallPoint= Instantiate(wallPointPrefab, tile.transform.position, Quaternion.identity);
-        newWallPoint.GetComponent<WallPointScript>().Create(tile);
+        newWallPoint.GetComponent<WallPointScript>().Create(tile,gridManager);
     }
 }
