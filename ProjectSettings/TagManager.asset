@@ -12,6 +12,7 @@ TagManager:
   - Dummy
   - PlaySpace
   - Void
+  - WallPoint
   layers:
   - Default
   - TransparentFX

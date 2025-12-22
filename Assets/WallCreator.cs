@@ -12,6 +12,11 @@ public class WallCreator : MonoBehaviour
 
     void Update()
     {
+        DebugClicToWall();
+    }
+    private void DebugClicToWall()
+    {
+
         if (!Input.GetMouseButtonDown(0)) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
 
@@ -38,7 +43,7 @@ public class WallCreator : MonoBehaviour
         firstPoint = null;
     }
 
-     public void CreateWall(Tile one, Tile two)
+    public void CreateWall(Tile one, Tile two)
     {
         if (one is null || two is null||two==one)
         {
@@ -69,6 +74,8 @@ public class WallCreator : MonoBehaviour
         wall.transform.rotation = Quaternion.LookRotation(diff);
         firstPoint = null;
     }
+
+    
 
     public void CreateWallPoint(Tile tile)
     {
