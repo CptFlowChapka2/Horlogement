@@ -17,7 +17,7 @@ public class EntityScript : MonoBehaviour
 
     public bool initialCreated;
     public identityKeys initialDefault;
-    private EntityIdentity thisIdentity = new EntityIdentity();
+    public EntityIdentity thisIdentity = new EntityIdentity();
     public bool justCreated;
     public AudioSource audioSource;
 

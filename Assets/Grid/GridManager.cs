@@ -20,9 +20,11 @@ public class GridManager : MonoBehaviour
     private GameObject theVoid;
 
     private Vector3 gridCenter;
+    private DataHolder dataHolder;
 
     private void Start()
     {
+        dataHolder = FindAnyObjectByType<DataHolder>();
         camObject = GameObject.FindGameObjectWithTag("MainCamera");
         camScript = camObject.GetComponent<Camera>();
 
@@ -31,6 +33,7 @@ public class GridManager : MonoBehaviour
         CreateGrid();
         PositionCam();
         PositionPlanes();
+        
     }
 
     void CreateGrid()
@@ -43,7 +46,7 @@ public class GridManager : MonoBehaviour
                 Vector2Int coords = new Vector2Int(x, y);
                 GameObject tileGO = Instantiate(tilePrefab, GridToWorldPos(coords), Quaternion.identity);
                 tileGO.transform.SetParent(transform);
-                tileGO.GetComponent<Tile>().Initialize(coords, this);
+                tileGO.GetComponent<Tile>().Initialize(coords, this,dataHolder);
                 allAnchor.Add(tileGO);
                 
             }

@@ -193,6 +193,7 @@ MonoBehaviour:
   wallCreationCounterMax: 2
   wallCreationCounter: 0
   mouseSpeed: 2
+  currentSelection: {fileID: 0}
 --- !u!1 &803906456
 GameObject:
   m_ObjectHideFlags: 0
@@ -425,7 +426,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6124852060918923499, guid: 7c3262be6257a9f43914a53a1b520602, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.06
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6124852060918923499, guid: 7c3262be6257a9f43914a53a1b520602, type: 3}
       propertyPath: m_LocalPosition.z
@@ -692,7 +693,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6124852060918923499, guid: 7c3262be6257a9f43914a53a1b520602, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.06
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6124852060918923499, guid: 7c3262be6257a9f43914a53a1b520602, type: 3}
       propertyPath: m_LocalPosition.z
@@ -845,7 +846,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6124852060918923499, guid: 7c3262be6257a9f43914a53a1b520602, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.06
+      value: -1
       objectReference: {fileID: 0}
     - target: {fileID: 6124852060918923499, guid: 7c3262be6257a9f43914a53a1b520602, type: 3}
       propertyPath: m_LocalPosition.z

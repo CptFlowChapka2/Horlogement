@@ -21,6 +21,8 @@ public class DataHolder : MonoBehaviour
     [SerializeField] private AudioClip sound0 ;
     [SerializeField] private AudioClip sound1 ;
     [SerializeField] private AudioClip sound2 ;
+    
+    public float speed =1;
 
     public List<Color> allColor = new List<Color>();
     public Dictionary<identityKeys, Dictionary<string,object>> entityIdentity = new Dictionary<identityKeys, Dictionary<string,object>>();
