@@ -14,7 +14,7 @@ public class Sculptor : MonoBehaviour
     private InputAction mouse;
     private InputAction clic;
 
-    public List<GameObject> toDestroy = new List<GameObject>();
+    
 
     private Vector3 mooveTry;
 

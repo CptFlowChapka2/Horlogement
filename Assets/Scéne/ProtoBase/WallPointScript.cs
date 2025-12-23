@@ -9,15 +9,14 @@ public class WallPointScript : MonoBehaviour
 
     private InputAction mouse;
     public Tile linkedTile;
-    [SerializeField] private float mouseSpeed = 2f;
+    
     [SerializeField] private float anchorCheckRange = 2f;
     public float maxMouvment = 2f;
     private WallCreator wallCreator;
     private SphereCollider thisCollider;
     public GridManager gridManager;
     public List<WallScript> walls;
-    [SerializeField] private float wallCreationCounterMax =2f;
-    [SerializeField] private float wallCreationCounter =0;
+    
     private float squareRootof2 =(float)Math.Sqrt(2f) ;
 
     private Sculptor sculptor;
