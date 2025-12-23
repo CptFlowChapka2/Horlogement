@@ -42,16 +42,46 @@ public class WallScript : MonoBehaviour
         diff.y = 0;
         
         length = diff.magnitude;
+        if (length == 0)
+        {
+            Break();
+            return;
+        }
         
         transform.localScale = new Vector3(0.3f, 5f, length);
         transform.rotation = Quaternion.LookRotation(diff);
     }
 
+    public void MergeWalls(WallPointScript newOne,WallPointScript origine,GridManager gridManager)
+    {
+        if (one == newOne || two == newOne )
+        {
+            Break();
+            return;
+        }
+
+        if (origine == one)
+        {
+            Create(newOne,two,gridManager);
+            return;
+        }
+
+        if (origine == two)
+        {
+            Create(one,origine,gridManager);
+            return;
+        }
+    }
+
     public void Break()
+    {
+        Destroy(gameObject);
+    }
+
+    private void OnDestroy()
     {
         one.walls.Remove(this);
         two.walls.Remove(this);
-        DestroyImmediate(gameObject);
     }
-    
+
 }

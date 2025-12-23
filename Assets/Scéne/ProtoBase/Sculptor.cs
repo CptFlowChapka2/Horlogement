@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +13,8 @@ public class Sculptor : MonoBehaviour
     [SerializeField] private float mouseSpeed = 2f;
     private InputAction mouse;
     private InputAction clic;
+
+    public List<GameObject> toDestroy = new List<GameObject>();
 
     private Vector3 mooveTry;
 
@@ -93,6 +97,8 @@ public class Sculptor : MonoBehaviour
         }
     }
 
+    
+
     private void FinishMouvement()
     {
         
@@ -104,5 +110,7 @@ public class Sculptor : MonoBehaviour
         currentSelection = null;
 
     }
+
+    
 
 }

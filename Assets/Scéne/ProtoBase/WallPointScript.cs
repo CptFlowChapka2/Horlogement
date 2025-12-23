@@ -22,6 +22,8 @@ public class WallPointScript : MonoBehaviour
 
     private Sculptor sculptor;
 
+    private Tile foundTile;
+
     public bool isSelected = false;
 
 
@@ -56,7 +58,7 @@ public class WallPointScript : MonoBehaviour
         if (ProximityCheck(out var results)) return;
 
 
-        if (!results.First().TryGetComponent(out Tile foundTile)) return;
+        if (!results.First().TryGetComponent(out  foundTile)) return;
 
         if (foundTile.currentWallPointScript is null)
         {
@@ -74,17 +76,19 @@ public class WallPointScript : MonoBehaviour
         }
         else if (linkedTile.currentWallPointScript is  null||linkedTile.currentWallPointScript.Equals(this))
         {
-            
+            Debug.Log("hi");
             transform.position = linkedTile.transform.position;
             walls.ForEach(x=>x.Moove());
             walls.FindAll(x => x.length > (gridManager.tileSize.x * 1.2f) * squareRootof2).ForEach(x=>x.Break());
         }
         else
         {
-            sculptor.currentSelection = null;
-            walls.ForEach(x=>x.Break());
+            walls.FindAll(x=>x!=null).ForEach(x=>x.MergeWalls(foundTile.currentWallPointScript,this,gridManager));
+
             Destroy(gameObject);
         }
+
+        foundTile = null;
     }
     private bool ProximityCheck(out Collider[] results)
     {
@@ -108,5 +112,10 @@ public class WallPointScript : MonoBehaviour
         results = resultsList.ToArray();
         
         return false;
+    }
+
+    private void OnDestroy()
+    {
+        sculptor.currentSelection = null;
     }
 }
