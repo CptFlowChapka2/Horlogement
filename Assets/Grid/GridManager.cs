@@ -19,7 +19,7 @@ public class GridManager : MonoBehaviour
     private GameObject playSpace;
     private GameObject theVoid;
 
-    private Vector3 gridCenter;
+    public Vector3 gridCenter;
     private DataHolder dataHolder;
 
     private void Start()
