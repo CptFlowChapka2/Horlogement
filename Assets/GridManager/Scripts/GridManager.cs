@@ -22,6 +22,8 @@ public class GridManager : MonoBehaviour
     public Vector3 gridCenter;
     private DataHolder dataHolder;
 
+    private Vector2 screensize;
+
     private void Start()
     {
         dataHolder = FindAnyObjectByType<DataHolder>();
@@ -36,7 +38,7 @@ public class GridManager : MonoBehaviour
         
     }
 
-    void CreateGrid()
+    private void CreateGrid()
     {
         grid = new Tile[gridSize.x, gridSize.y];
         for (var x = 0; x < gridSize.x; x++)
@@ -55,21 +57,37 @@ public class GridManager : MonoBehaviour
         CreateStartWall();
     }
 
-    void PositionCam()
+    private void PositionCam()
     {
         Debug.Assert(grid is not null);
         gridCenter= (allAnchor.Last().transform.position-allAnchor.First().transform.position)*0.5f;
         camObject.transform.position =gridCenter+(Vector3.up*gridCenter.magnitude );
-        camScript.orthographicSize = gridSize.x+voidSize*2;
+        
+        camScript.orthographicSize =  gridSize.magnitude;
     }
 
-    void PositionPlanes()
+    private void PositionPlanes()
     {
         playSpace.transform.position = new Vector3(gridCenter.x,-0.5f,gridCenter.z);
         playSpace.transform.localScale = new Vector3(gridSize.x/5.15f,1,gridSize.y/5.15f);
         
+        screensize = new Vector2(Screen.width,Screen.height);
+        
+        float planeHeighScale = 2f*camScript.orthographicSize/10f;
+        float planeWidthScale = planeHeighScale*camScript.aspect;
+        
         theVoid.transform.position = new Vector3(gridCenter.x,-0.75f,gridCenter.z);
-        theVoid.transform.localScale = new Vector3((gridSize.x/2f)+voidSize/2f,1,(gridSize.y/4f)+voidSize/2f);
+        theVoid.transform.localScale = new Vector3(planeWidthScale,1,planeHeighScale);
+
+        
+    }
+
+    private void Update()
+    {
+        if (screensize.x != Screen.width || screensize.y != Screen.height)
+        {
+            PositionPlanes();
+        }
     }
     private void CreateStartWall()
     { 

@@ -21,6 +21,9 @@ public class EntityScript : MonoBehaviour
     public bool justCreated;
     public AudioSource audioSource;
 
+    public bool inPLay = false;
+    public bool inVoid = false;
+
     private void Start()
     {
         rb = GetComponent<Rigidbody>();
@@ -33,7 +36,7 @@ public class EntityScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Wall"))
+        if (other.gameObject.CompareTag("Wall")&&inPLay)
         {
             audioSource.PlayOneShot(thisIdentity.Sound);
             Vector3 surfaceNormal = other.GetContact(0).normal;
@@ -126,6 +129,11 @@ public class EntityScript : MonoBehaviour
         {
 
             OnCreation(initialDefault);
+        }
+
+        if (!inVoid)
+        {
+            Destroy(gameObject);
         }
 
         lastVelocity = rb.linearVelocity;

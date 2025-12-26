@@ -129,15 +129,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2494176522604939818, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 16.1
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 2494176522604939818, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2494176522604939818, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 7.3
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2494176522604939818, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
       propertyPath: m_LocalRotation.w
@@ -765,6 +765,18 @@ PrefabInstance:
     - target: {fileID: 4748139777306146256, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: gridSize.x
+      value: 25
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: gridSize.y
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: tileSize.x
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8999060012789456971, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: wallCreator
