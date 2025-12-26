@@ -698,6 +698,34 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridManager
       objectReference: {fileID: 0}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color0
+      value: 
+      objectReference: {fileID: 2100000, guid: 32a76832b79e84347ad9df08b12709c3, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color1
+      value: 
+      objectReference: {fileID: 2100000, guid: 1298434fa64657845b6d68550da469d9, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color2
+      value: 
+      objectReference: {fileID: 2100000, guid: 62d5d2a9b0597a248ac93aadadc1c161, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color3
+      value: 
+      objectReference: {fileID: 2100000, guid: 2a66abdbab435b34285b4ca1f420f29c, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color4
+      value: 
+      objectReference: {fileID: 2100000, guid: 1f76aca1994a0ae4ba955448c62fa33f, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color5
+      value: 
+      objectReference: {fileID: 2100000, guid: d73f8bee3933df64f87719b6ac8562b1, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color6
+      value: 
+      objectReference: {fileID: 2100000, guid: f8bfd6b2fdaea8b4bbcaab27da350bf7, type: 2}
     - target: {fileID: 4748139777306146256, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

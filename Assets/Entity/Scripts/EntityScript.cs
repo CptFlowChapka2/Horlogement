@@ -100,6 +100,9 @@ public class EntityScript : MonoBehaviour
         
 
         initialDefault = thisIdentity.IdentityKey;
+        Debug.Log(thisIdentity.Color);
+        gameObject.GetComponent<MeshRenderer>().material=thisIdentity.Color;
+        gameObject.GetComponent<TrailRenderer>().material=thisIdentity.Color;
 
         if (gameObject.tag.Equals("Entity"))
         {
@@ -113,7 +116,7 @@ public class EntityScript : MonoBehaviour
             rb.AddForce(dir * speed, ForceMode.VelocityChange);
         }
 
-        gameObject.GetComponent<MeshRenderer>().material.color = thisIdentity.Color;
+        
     }
 
     private void FixedUpdate()

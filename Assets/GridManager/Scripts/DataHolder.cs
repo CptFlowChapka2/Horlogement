@@ -18,13 +18,13 @@ public class DataHolder : MonoBehaviour
 {
     public GameObject intantiateDummy;
 
-    [SerializeField] private Color color0 ;
-    [SerializeField] private Color color1 ;
-    [SerializeField] private Color color2 ;
-    [SerializeField] private Color color3 ;
-    [SerializeField] private Color color4 ;
-    [SerializeField] private Color color5;
-    [SerializeField] private Color color6;
+    [SerializeField] private Material color0 ;
+    [SerializeField] private Material color1 ;
+    [SerializeField] private Material color2 ;
+    [SerializeField] private Material color3 ;
+    [SerializeField] private Material color4 ;
+    [SerializeField] private Material color5;
+    [SerializeField] private Material color6;
     
     [SerializeField] private AudioClip sound0 ;
     [SerializeField] private AudioClip sound1 ;
@@ -37,7 +37,7 @@ public class DataHolder : MonoBehaviour
     public float speed =1;
     public float addedAngle =51.42f;
 
-    public List<Color> allColor = new List<Color>();
+    public List<Material> allColor = new List<Material>();
     public Dictionary<identityKeys, Dictionary<string,object>> entityIdentity = new Dictionary<identityKeys, Dictionary<string,object>>();
 
     private void Start()

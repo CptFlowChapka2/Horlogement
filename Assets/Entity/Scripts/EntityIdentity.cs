@@ -13,7 +13,7 @@ public class EntityIdentity
         holder = dataHolder;
         identityKeys tempIdentity = MergeIdentity(key,key2);
         IdentityKey = tempIdentity;
-        Color = (Color)holder.entityIdentity[tempIdentity]["color"];
+        Color = (Material)holder.entityIdentity[tempIdentity]["color"];
         DefaultDirection =(Vector3)holder.entityIdentity[tempIdentity]["Vector"];
         Sound = (AudioClip)holder.entityIdentity[tempIdentity]["sound"];
     }
@@ -21,7 +21,7 @@ public class EntityIdentity
 
     public identityKeys IdentityKey { get; set; }
 
-    public Color Color { get; set; }
+    public Material Color { get; set; }
 
     public AudioClip Sound { get; set; }
 
