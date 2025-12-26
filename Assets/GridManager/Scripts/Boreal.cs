@@ -21,8 +21,12 @@ public class Boreal : MonoBehaviour
     private void Check()
     { 
         FindObjectsByType<EntityScript>(FindObjectsInactive.Exclude,FindObjectsSortMode.None).ToList().ForEach(x=>allEntity.Add(x.gameObject));
-        
-        if(!(allEntity.Count<minEntity)) return;
+
+        if (!(allEntity.Count < minEntity))
+        {
+            allBorder.ForEach(x=>x.SetUnSpawnable());
+            return;
+        }
         allBorder.ForEach(x=>x.SetSpawnable());
         
         

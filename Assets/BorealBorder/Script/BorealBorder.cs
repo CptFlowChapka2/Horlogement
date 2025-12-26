@@ -65,4 +65,11 @@ public class BorealBorder : MonoBehaviour
 
     }
     
+    public void SetUnSpawnable()
+    {
+        onOff = false;
+        meshRenderer.material = offMatt;
+
+    }
+    
 }
