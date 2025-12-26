@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 4748139777306146256}
   - component: {fileID: 8999060012789456971}
   - component: {fileID: 3487034385044876700}
+  - component: {fileID: 1515161670020583064}
+  - component: {fileID: 1309636436071739521}
   m_Layer: 0
   m_Name: GridManager
   m_TagString: Untagged
@@ -45,12 +47,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a4ef66d031074582cddaeed3ec7dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 10, y: 10}
+  gridSize: {x: 11, y: 11}
   tileSize: {x: 2, y: 2}
   tilePrefab: {fileID: 6731471791928285770, guid: 7907efaefa44268409dedfcbe78ccd79, type: 3}
   allAnchor: []
   allTile: []
   wallCreator: {fileID: 0}
+  voidSize: 5
+  gridCenter: {x: 0, y: 0, z: 0}
 --- !u!114 &3487034385044876700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -63,10 +67,48 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc4cd3d700b588488bd108dcd49794d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  color0: {r: 0.84705883, g: 0.8980392, b: 0.13333334, a: 0}
-  color1: {r: 0.60784316, g: 0.08235294, b: 0.07058824, a: 0}
-  color2: {r: 0.8037735, g: 0.4354014, b: 0.06521175, a: 0}
-  sound0: {fileID: 0}
-  sound1: {fileID: 0}
-  sound2: {fileID: 0}
+  intantiateDummy: {fileID: 8640734319900639471, guid: a6c595872fefade49b04e0bb40d259f4, type: 3}
+  color0: {r: 0.7735849, g: 0.2110615, b: 0.15617657, a: 0}
+  color1: {r: 0.7433963, g: 0.4206355, b: 0.13325019, a: 0}
+  color2: {r: 0.8415094, g: 0.7861391, b: 0.18259154, a: 0}
+  color3: {r: 0.2035072, g: 0.4867924, b: 0.135016, a: 0}
+  color4: {r: 0.12450689, g: 0.7584905, b: 0.7420299, a: 0}
+  color5: {r: 0.08298323, g: 0.15117617, b: 0.6981132, a: 0}
+  color6: {r: 0.461143, g: 0.07221783, b: 0.6075471, a: 0}
+  sound0: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
+  sound1: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
+  sound2: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
+  sound3: {fileID: 0}
+  sound4: {fileID: 0}
+  sound5: {fileID: 0}
+  sound6: {fileID: 0}
+  speed: 1
+  addedAngle: 51.42
   allColor: []
+--- !u!114 &1515161670020583064
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075825818457272167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 431c42c50c53ce6419909cddb02ea212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1309636436071739521
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1075825818457272167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f710edcba6c81cc49918d4e44a9d99ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  allEntity: []
+  checkFrequency: 2.5
+  minEntity: 2

@@ -58,7 +58,7 @@ public class Tile : MonoBehaviour
 
    private void SpawnEntity()
    {
-      GameObject spawnedEntity=Instantiate(dataHolder.intantiateDummy, transform.position, Quaternion.identity);
+      GameObject spawnedEntity=Instantiate(dataHolder.intantiateDummy, transform.position+Vector3.up, Quaternion.identity);
       EntityScript spawnedEntityScript=spawnedEntity.GetComponent<EntityScript>();
       
       spawnedEntityScript.justCreated=true;

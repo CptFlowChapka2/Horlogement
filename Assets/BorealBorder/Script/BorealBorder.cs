@@ -29,13 +29,13 @@ public class BorealBorder : MonoBehaviour
     {
         Vector3 dir = (Vector3)dataHolder.entityIdentity[thisIdentityKeys]["Vector"];
         spawnDir = -dir;
-        transform.position = gridManager.gridCenter+((dir*((gridManager.gridSize.x)+gridManager.voidSize))*1f);
+        transform.position = gridManager.gridCenter+((-dir*((gridManager.gridSize.x)+gridManager.voidSize))*1f);
 
     }
 
     public void SpawnEntity()
     {
-        GameObject spawnedEntity=Instantiate(dataHolder.intantiateDummy, transform.position, Quaternion.identity);
+        GameObject spawnedEntity=Instantiate(dataHolder.intantiateDummy, transform.position+Vector3.up, Quaternion.identity);
         EntityScript spawnedEntityScript=spawnedEntity.GetComponent<EntityScript>();
       
         spawnedEntityScript.justCreated=true;

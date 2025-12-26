@@ -168,9 +168,9 @@ public class EntityScript : MonoBehaviour
         initialCreated = true;
     }
 
-    private void OnMouseDrag()
-    {
-        transform.position +=new Vector3(Input.mousePositionDelta.x,0,Input.mousePositionDelta.y)*0.1f;
-    }
+    // private void OnMouseDrag()
+    // {
+    //     transform.position += new Vector3(Input.mousePositionDelta.x, 0, Input.mousePositionDelta.y) * 0.1f;
+    // }
 
 }
