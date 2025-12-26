@@ -112,6 +112,8 @@ public class EntityScript : MonoBehaviour
 
             rb.AddForce(dir * speed, ForceMode.VelocityChange);
         }
+
+        gameObject.GetComponent<MeshRenderer>().material.color = thisIdentity.Color;
     }
 
     private void FixedUpdate()

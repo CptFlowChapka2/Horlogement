@@ -47,14 +47,28 @@ public class EntityIdentity
             
             case (identityKeys.color2,identityKeys.color2) or(identityKeys.color1,identityKeys.color1)or(identityKeys.color0,identityKeys.color0) :
                 return a;
-            case (identityKeys.color1,identityKeys.color0)or (identityKeys.color0,identityKeys.color1):
-                return identityKeys.color2;
-            
-            case (identityKeys.color2,identityKeys.color1)or (identityKeys.color1,identityKeys.color2):
+            //A=B+C 
+            case (identityKeys.color1,identityKeys.color2)or (identityKeys.color2,identityKeys.color1):
                 return identityKeys.color0;
-            case (identityKeys.color2,identityKeys.color0)or(identityKeys.color0,identityKeys.color2) :
+            //B=C+D
+            case (identityKeys.color2,identityKeys.color3)or (identityKeys.color3,identityKeys.color2):
                 return identityKeys.color1;
-            //todo : pour 7 identity c'est chiant
+            //C=D+E
+            case (identityKeys.color3,identityKeys.color4)or(identityKeys.color4,identityKeys.color3) :
+                return identityKeys.color2;
+            //D=E+F
+            case (identityKeys.color4,identityKeys.color5)or(identityKeys.color5,identityKeys.color4) :
+                return identityKeys.color3;
+            //E=F+G
+            case (identityKeys.color5,identityKeys.color6)or(identityKeys.color6,identityKeys.color5) :
+                return identityKeys.color4;
+            //F=G+A
+            case (identityKeys.color6,identityKeys.color0)or(identityKeys.color0,identityKeys.color6) :
+                return identityKeys.color5;
+            //G=A+B
+            case (identityKeys.color1,identityKeys.color0)or(identityKeys.color0,identityKeys.color1) :
+                return identityKeys.color6;
+            
         }
         
 
