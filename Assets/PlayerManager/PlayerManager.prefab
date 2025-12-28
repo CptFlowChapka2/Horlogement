@@ -63,4 +63,5 @@ MonoBehaviour:
   wallCreationCounterMax: 2
   wallCreationCounter: 0
   mouseSpeed: 2
+  checkSize: 1.5
   currentSelection: {fileID: 0}

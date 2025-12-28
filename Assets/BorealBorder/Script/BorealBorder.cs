@@ -27,7 +27,7 @@ public class BorealBorder : MonoBehaviour
         meshRenderer.material = offMatt;
         onOff = false;
         
-        
+
     }
 
     
@@ -36,19 +36,7 @@ public class BorealBorder : MonoBehaviour
     {
         Vector3 dir = (Vector3)dataHolder.entityIdentity[thisIdentityKeys]["Vector"];
         spawnDir = -dir;
-
-        Vector3 setupDir = -dir.normalized*gridManager.testVec.magnitude;
-        Ray ray = new Ray(new Vector3(gridManager.gridCenter.x,gridManager.theVoid.transform.position.y-0.75f,gridManager.gridCenter.z),-dir);
-        
-        RaycastHit[] hits =Physics.RaycastAll(ray,Mathf.Infinity,-1);
-        if (hits.Length<1) return;
-        List<RaycastHit> hitsList = hits.ToList();
-        
-        RaycastHit hit= hitsList.Find(x =>x.collider.gameObject.CompareTag("VoidWall"));
-        Debug.Log(hit.collider);
-        Vector3 targetPos = new Vector3(hit.point.x,0,hit.point.z);
-        transform.position = targetPos;
-
+        transform.localPosition = spawnDir*5;
 
     }   
 

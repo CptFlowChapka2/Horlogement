@@ -36,7 +36,7 @@ public class WallPointScript : MonoBehaviour
     {
         sculptor = FindAnyObjectByType<Sculptor>();
         gridManager = FindAnyObjectByType<GridManager>();
-        maxMouvment = (gridManager.tileSize.magnitude*1f) *squareRootof2;
+        maxMouvment = (gridManager.tileSize.magnitude*1.5f) *squareRootof2;
         wallCreator = FindAnyObjectByType<WallCreator>();
         mouse = InputSystem.actions.FindAction("Look");
         thisCollider = GetComponent<SphereCollider>();

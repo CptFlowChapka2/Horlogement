@@ -22,7 +22,7 @@ public class EntityScript : MonoBehaviour
     public AudioSource audioSource;
 
     public bool inPLay = false;
-    public bool inVoid = false;
+   
 
     private void Start()
     {
@@ -131,10 +131,7 @@ public class EntityScript : MonoBehaviour
             OnCreation(initialDefault);
         }
 
-        if (!inVoid)
-        {
-            Destroy(gameObject);
-        }
+        
 
         lastVelocity = rb.linearVelocity;
     }
@@ -177,6 +174,12 @@ public class EntityScript : MonoBehaviour
     private void OnMouseUp()
     {
         initialCreated = true;
+    }
+
+    private void OnBecameInvisible()
+    {
+        Debug.Log("Killed By outside the cam");
+        Destroy(gameObject);
     }
 
     // private void OnMouseDrag()

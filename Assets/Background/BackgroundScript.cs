@@ -17,10 +17,7 @@ public class BackgroundScript : MonoBehaviour
       {
          otherScript.inPLay = true;
       }
-      else
-      {
-         otherScript.inVoid = true;
-      }
+     
    }
    private void OnTriggerExit(Collider other)
    {
@@ -29,10 +26,7 @@ public class BackgroundScript : MonoBehaviour
       {
          otherScript.inPLay = false;
       }
-      else
-      {
-         otherScript.inVoid = false;
-      }
+      
    }
 }
 

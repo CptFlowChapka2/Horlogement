@@ -51,7 +51,10 @@ public class Sculptor : MonoBehaviour
         if (hits.Length<1) return;
         List<RaycastHit> hitsList = hits.ToList();
 
-       if( !hitsList.Find(x =>x.collider.gameObject.CompareTag("WallPoint")).collider.gameObject.TryGetComponent(out WallPointScript hitWallPoint ))return;
+        hitsList.RemoveAll(x => !x.collider.gameObject.CompareTag("WallPoint"));
+        if (hitsList.Count<1) return;
+
+        if( !hitsList.First().collider.gameObject.TryGetComponent(out WallPointScript hitWallPoint ))return;
         currentSelection = hitWallPoint;
         currentSelection.isSelected = true;
         mooveTry = currentSelection.transform.position;

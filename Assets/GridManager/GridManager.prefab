@@ -47,14 +47,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d63a4ef66d031074582cddaeed3ec7dc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gridSize: {x: 11, y: 11}
+  gridSize: {x: 25, y: 20}
   tileSize: {x: 2, y: 2}
   tilePrefab: {fileID: 6731471791928285770, guid: 7907efaefa44268409dedfcbe78ccd79, type: 3}
   allAnchor: []
   allTile: []
   wallCreator: {fileID: 0}
   voidSize: 5
+  theVoid: {fileID: 0}
   gridCenter: {x: 0, y: 0, z: 0}
+  screensize: {x: 0, y: 0}
+  testVec: {x: 0, y: 0, z: 0}
 --- !u!114 &3487034385044876700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -68,13 +71,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   intantiateDummy: {fileID: 8640734319900639471, guid: a6c595872fefade49b04e0bb40d259f4, type: 3}
-  color0: {r: 0.7735849, g: 0.2110615, b: 0.15617657, a: 0}
-  color1: {r: 0.7433963, g: 0.4206355, b: 0.13325019, a: 0}
-  color2: {r: 0.8415094, g: 0.7861391, b: 0.18259154, a: 0}
-  color3: {r: 0.2035072, g: 0.4867924, b: 0.135016, a: 0}
-  color4: {r: 0.12450689, g: 0.7584905, b: 0.7420299, a: 0}
-  color5: {r: 0.08298323, g: 0.15117617, b: 0.6981132, a: 0}
-  color6: {r: 0.461143, g: 0.07221783, b: 0.6075471, a: 0}
+  color0: {fileID: 2100000, guid: 32a76832b79e84347ad9df08b12709c3, type: 2}
+  color1: {fileID: 2100000, guid: 1298434fa64657845b6d68550da469d9, type: 2}
+  color2: {fileID: 2100000, guid: 62d5d2a9b0597a248ac93aadadc1c161, type: 2}
+  color3: {fileID: 2100000, guid: 2a66abdbab435b34285b4ca1f420f29c, type: 2}
+  color4: {fileID: 2100000, guid: 1f76aca1994a0ae4ba955448c62fa33f, type: 2}
+  color5: {fileID: 2100000, guid: d73f8bee3933df64f87719b6ac8562b1, type: 2}
+  color6: {fileID: 2100000, guid: f8bfd6b2fdaea8b4bbcaab27da350bf7, type: 2}
   sound0: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
   sound1: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
   sound2: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}

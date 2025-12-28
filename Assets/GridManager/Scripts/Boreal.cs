@@ -38,11 +38,8 @@ public class Boreal : MonoBehaviour
 
     public void MooveBorder()
     {
-        theVoid.transform.DetachChildren();
-        
         
         allBorder.ForEach(x=>x.Position());
-        
-        allVoidWall.ForEach(x=>x.transform.SetParent(theVoid.transform));
+       
     }
 }
