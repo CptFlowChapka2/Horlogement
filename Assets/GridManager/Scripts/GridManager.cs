@@ -17,12 +17,13 @@ public class GridManager : MonoBehaviour
     public int voidSize = 5;
 
     private GameObject playSpace;
-    private GameObject theVoid;
+    public GameObject theVoid;
 
     public Vector3 gridCenter;
     private DataHolder dataHolder;
 
-    private Vector2 screensize;
+    public Vector2 screensize;
+    public Vector3 testVec;
 
     private void Start()
     {
@@ -75,6 +76,7 @@ public class GridManager : MonoBehaviour
         
         float planeHeighScale = 2f*camScript.orthographicSize/10f;
         float planeWidthScale = planeHeighScale*camScript.aspect;
+        testVec = new Vector3(planeWidthScale, 0, planeHeighScale);
         
         theVoid.transform.position = new Vector3(gridCenter.x,-0.75f,gridCenter.z);
         theVoid.transform.localScale = new Vector3(planeWidthScale,1,planeHeighScale);

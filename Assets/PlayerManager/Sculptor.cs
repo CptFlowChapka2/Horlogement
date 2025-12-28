@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -11,6 +12,7 @@ public class Sculptor : MonoBehaviour
     [SerializeField] private float wallCreationCounterMax = 2f;
     [SerializeField] private float wallCreationCounter;
     [SerializeField] private float mouseSpeed = 2f;
+    [SerializeField] private float checkSize = 1.5f;
     private InputAction mouse;
     private InputAction clic;
 
@@ -44,10 +46,12 @@ public class Sculptor : MonoBehaviour
         if (!clic.WasPressedThisFrame()) return;
         if (currentSelection is not null) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits =Physics.RaycastAll(ray);
+        
+        if (hits.Length<1) return;
+        List<RaycastHit> hitsList = hits.ToList();
 
-        if (!Physics.Raycast(ray, out RaycastHit hit) || !hit.collider.CompareTag("WallPoint")) return;
-        WallPointScript hitWallPoint = hit.collider.gameObject.GetComponent<WallPointScript>();
-
+       if( !hitsList.Find(x =>x.collider.gameObject.CompareTag("WallPoint")).collider.gameObject.TryGetComponent(out WallPointScript hitWallPoint ))return;
         currentSelection = hitWallPoint;
         currentSelection.isSelected = true;
         mooveTry = currentSelection.transform.position;

@@ -103,7 +103,7 @@ BoxCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -123,6 +123,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offMatt: {fileID: 2100000, guid: 3e6e53d7b97da1346b880b4221645fd0, type: 2}
   onMatt: {fileID: 2100000, guid: b9986000a848ff943997ddae98718459, type: 2}
-  thisIdentityKeys: 2
+  thisIdentityKeys: 1
   onOff: 0
   meshRenderer: {fileID: 8801812324257614781}
