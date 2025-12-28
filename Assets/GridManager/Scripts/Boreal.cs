@@ -7,6 +7,8 @@ public class Boreal : MonoBehaviour
 {
     public List<GameObject> allEntity = new List<GameObject>();
     private List<BorealBorder> allBorder = new List<BorealBorder>();
+    private List<GameObject> allVoidWall = new List<GameObject>();
+    private GameObject theVoid;
     
     public float checkFrequency = 2.5f;
     public int minEntity = 2;
@@ -15,6 +17,8 @@ public class Boreal : MonoBehaviour
     private void Start()
     {
         FindObjectsByType<BorealBorder>(FindObjectsInactive.Exclude,FindObjectsSortMode.None).ToList().ForEach(x=>allBorder.Add(x));
+        allVoidWall = GameObject.FindGameObjectsWithTag("VoidWall").ToList();
+        theVoid = GameObject.FindGameObjectsWithTag("Void").First();
         InvokeRepeating(nameof(Check),checkFrequency,checkFrequency);
     }
 
@@ -30,5 +34,15 @@ public class Boreal : MonoBehaviour
         allBorder.ForEach(x=>x.SetSpawnable());
         
         
+    }
+
+    public void MooveBorder()
+    {
+        theVoid.transform.DetachChildren();
+        
+        
+        allBorder.ForEach(x=>x.Position());
+        
+        allVoidWall.ForEach(x=>x.transform.SetParent(theVoid.transform));
     }
 }

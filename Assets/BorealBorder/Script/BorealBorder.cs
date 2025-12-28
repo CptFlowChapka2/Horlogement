@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
@@ -16,7 +17,7 @@ public class BorealBorder : MonoBehaviour
     public MeshRenderer meshRenderer;
 
     private Vector3 spawnDir;
-    private BoxCollider voidCollider;
+    
 
     private void Start()
     {
@@ -25,25 +26,28 @@ public class BorealBorder : MonoBehaviour
         gridManager = FindAnyObjectByType<GridManager>();
         meshRenderer.material = offMatt;
         onOff = false;
-        voidCollider = gridManager.theVoid.GetComponent<BoxCollider>();
-        Position();
+        
+        
     }
 
     
 
-    private void Position()
+    public void Position()
     {
         Vector3 dir = (Vector3)dataHolder.entityIdentity[thisIdentityKeys]["Vector"];
         spawnDir = -dir;
 
         Vector3 setupDir = -dir.normalized*gridManager.testVec.magnitude;
         Ray ray = new Ray(new Vector3(gridManager.gridCenter.x,gridManager.theVoid.transform.position.y-0.75f,gridManager.gridCenter.z),-dir);
-        RaycastHit[] raycastHits={};
         
-        Debug.Log(Physics.RaycastNonAlloc(ray,raycastHits,Mathf.Infinity,Physics.AllLayers));
-        Physics.RaycastNonAlloc(ray, raycastHits, Mathf.Infinity, Physics.AllLayers);
-        //Vector3 targetPos = new Vector3(raycastHits.First().point.x,0,raycastHits.First().point.z);
-        //transform.position = targetPos;
+        RaycastHit[] hits =Physics.RaycastAll(ray,Mathf.Infinity,-1);
+        if (hits.Length<1) return;
+        List<RaycastHit> hitsList = hits.ToList();
+        
+        RaycastHit hit= hitsList.Find(x =>x.collider.gameObject.CompareTag("VoidWall"));
+        Debug.Log(hit.collider);
+        Vector3 targetPos = new Vector3(hit.point.x,0,hit.point.z);
+        transform.position = targetPos;
 
 
     }   

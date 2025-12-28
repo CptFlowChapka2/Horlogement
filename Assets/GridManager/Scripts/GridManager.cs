@@ -25,9 +25,12 @@ public class GridManager : MonoBehaviour
     public Vector2 screensize;
     public Vector3 testVec;
 
+    private Boreal boreal;
+
     private void Start()
     {
         dataHolder = FindAnyObjectByType<DataHolder>();
+        boreal = FindAnyObjectByType<Boreal>();
         camObject = GameObject.FindGameObjectWithTag("MainCamera");
         camScript = camObject.GetComponent<Camera>();
 
@@ -36,6 +39,7 @@ public class GridManager : MonoBehaviour
         CreateGrid();
         PositionCam();
         PositionPlanes();
+        PositionBoreal();
         
     }
 
@@ -84,11 +88,17 @@ public class GridManager : MonoBehaviour
         
     }
 
+    private void PositionBoreal()
+    {
+        boreal.MooveBorder();
+    }
+
     private void Update()
     {
         if (screensize.x != Screen.width || screensize.y != Screen.height)
         {
             PositionPlanes();
+            PositionBoreal();
         }
     }
     private void CreateStartWall()
