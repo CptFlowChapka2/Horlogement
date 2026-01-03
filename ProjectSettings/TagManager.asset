@@ -15,6 +15,7 @@ TagManager:
   - WallPoint
   - VoidWall
   - EntityColor
+  - MooveTry
   layers:
   - Default
   - TransparentFX

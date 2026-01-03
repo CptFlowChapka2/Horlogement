@@ -20,13 +20,14 @@ public class Sculptor : MonoBehaviour
     
 
     private Vector3 mooveTry;
+    private SphereCollider mooveTryOrigine;
 
     public WallPointScript currentSelection;
 
     private void Start()
     {
         wallCreator = FindAnyObjectByType<WallCreator>();
-
+        mooveTryOrigine = GameObject.FindGameObjectWithTag("MooveTry").GetComponent<SphereCollider>();
         mouse = InputSystem.actions.FindAction("Look");
         clic = InputSystem.actions.FindAction("Clic");
     }
@@ -63,24 +64,34 @@ public class Sculptor : MonoBehaviour
         currentSelection = hitWallPoint;
         currentSelection.isSelected = true;
         mooveTry = currentSelection.transform.position;
+        mooveTryOrigine.transform.position = currentSelection.linkedTile.transform.position;
+        mooveTryOrigine.radius = currentSelection.maxMouvment/2;
 
     }
-
+    private void OnDrawGizmos()
+    {
+        Gizmos.DrawCube(mooveTry,Vector3.one);
+    }
     private void MooveSelected()
     {
        
         Vector2 mouseMoove = mouse.ReadValue<Vector2>();
         Vector3 resultMouvment = new Vector3(mouseMoove.x, 0, mouseMoove.y) * (Time.deltaTime * mouseSpeed);
-        if (Vector3.Distance(mooveTry + resultMouvment, currentSelection.linkedTile.transform.position) <= currentSelection.maxMouvment)
+        resultMouvment = Vector3.ClampMagnitude(resultMouvment,10);
+        if ((Vector3.Distance(mooveTry + resultMouvment, currentSelection.linkedTile.transform.position) <=
+              currentSelection.maxMouvment))
         {
             mooveTry += resultMouvment;
+            
         }
-
+        
+        mooveTry += resultMouvment;
         if (Vector3.Distance(mooveTry, currentSelection.linkedTile.transform.position) <= currentSelection.maxMouvment)
         {
             wallCreationCounter = 0;
             mooveTry += resultMouvment;
-            currentSelection.transform.position += resultMouvment;
+            currentSelection.transform.position = mooveTryOrigine.ClosestPoint(mooveTry);
+            
             if (unCollideWallOnMouv)
             {
                 currentSelection.walls.ForEach(x=>x.ToggleColision(true));
@@ -111,10 +122,16 @@ public class Sculptor : MonoBehaviour
         }
         else
         {
+            currentSelection.transform.position = mooveTryOrigine.ClosestPoint(mooveTry);
+            if (unCollideWallOnMouv)
+            {
+                currentSelection.walls.ForEach(x=>x.ToggleColision(true));
+            }
+            currentSelection.walls.ForEach(x => x.Moove());
 
             wallCreationCounter += Time.deltaTime;
-
         }
+
     }
 
     
@@ -132,6 +149,7 @@ public class Sculptor : MonoBehaviour
 
     }
 
+    
     
 
 }
