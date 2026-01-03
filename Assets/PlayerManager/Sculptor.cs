@@ -13,6 +13,7 @@ public class Sculptor : MonoBehaviour
     [SerializeField] private float wallCreationCounter;
     [SerializeField] private float mouseSpeed = 2f;
     [SerializeField] private float checkSize = 1.5f;
+    [SerializeField] private bool unCollideWallOnMouv = true;
     private InputAction mouse;
     private InputAction clic;
 
@@ -47,12 +48,16 @@ public class Sculptor : MonoBehaviour
         if (currentSelection is not null) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits =Physics.RaycastAll(ray);
+        Debug.DrawRay(ray.origin,ray.direction*300f,Color.magenta,200f);
         
         if (hits.Length<1) return;
         List<RaycastHit> hitsList = hits.ToList();
 
         hitsList.RemoveAll(x => !x.collider.gameObject.CompareTag("WallPoint"));
         if (hitsList.Count<1) return;
+        hitsList = hitsList.OrderBy(
+            x => Vector3.Distance(new Vector3(ray.origin.x,x.transform.position.y,ray.origin.z),x.transform.position)
+        ).ToList();
 
         if( !hitsList.First().collider.gameObject.TryGetComponent(out WallPointScript hitWallPoint ))return;
         currentSelection = hitWallPoint;
@@ -76,6 +81,10 @@ public class Sculptor : MonoBehaviour
             wallCreationCounter = 0;
             mooveTry += resultMouvment;
             currentSelection.transform.position += resultMouvment;
+            if (unCollideWallOnMouv)
+            {
+                currentSelection.walls.ForEach(x=>x.ToggleColision(true));
+            }
             currentSelection.walls.ForEach(x => x.Moove());
         }
         else if (wallCreationCounter >= wallCreationCounterMax)
@@ -85,6 +94,10 @@ public class Sculptor : MonoBehaviour
             Vector3 cachePos = currentSelection.transform.position;
             WallPointScript cache = currentSelection;
             currentSelection.transform.position = currentSelection.linkedTile.transform.position;
+            if (unCollideWallOnMouv)
+            {
+                currentSelection.walls.ForEach(x=>x.ToggleColision(false));
+            }
             currentSelection.walls.ForEach(x => x.Moove());
             ;
             currentSelection.isSelected = false;
@@ -113,6 +126,7 @@ public class Sculptor : MonoBehaviour
 
         currentSelection.isSelected = false;
         currentSelection.EndMouvement();
+        currentSelection.walls.ForEach(x=>x.ToggleColision(false));
 
         currentSelection = null;
 

@@ -36,7 +36,7 @@ public class WallPointScript : MonoBehaviour
     {
         sculptor = FindAnyObjectByType<Sculptor>();
         gridManager = FindAnyObjectByType<GridManager>();
-        maxMouvment = (gridManager.tileSize.magnitude*1.5f) *squareRootof2;
+        maxMouvment = (gridManager.tileSize.magnitude*1.2f) *squareRootof2;
         wallCreator = FindAnyObjectByType<WallCreator>();
         mouse = InputSystem.actions.FindAction("Look");
         thisCollider = GetComponent<SphereCollider>();
@@ -56,18 +56,15 @@ public class WallPointScript : MonoBehaviour
 
         if (ProximityCheck(out var results)) return;
 
-
-        if (!results.First().TryGetComponent(out  foundTile)) return;
-
-        if (foundTile.currentWallPointScript is null)
+        if (results.currentWallPointScript is null)
         {
            
             
                 linkedTile.currentWallPointScript = null;
             
-            foundTile.currentWallPointScript = this;
-            linkedTile = foundTile;
-            transform.position = foundTile.transform.position;
+            results.currentWallPointScript = this;
+            linkedTile = results;
+            transform.position = results.transform.position;
             walls.ForEach(x=>x.Moove());
             walls.FindAll(x => x.length > (gridManager.tileSize.x * 1.2f) * squareRootof2).ForEach(x=>x.Break());
 
@@ -82,34 +79,28 @@ public class WallPointScript : MonoBehaviour
         }
         else
         {
-            walls.FindAll(x=>x!=null).ForEach(x=>x.MergeWalls(foundTile.currentWallPointScript,this,gridManager));
+            walls.FindAll(x=>x!=null).ForEach(x=>x.MergeWalls(results.currentWallPointScript,this,gridManager));
 
             Destroy(gameObject);
         }
 
-        foundTile = null;
+        results = null;
     }
-    private bool ProximityCheck(out Collider[] results)
+    private bool ProximityCheck(out Tile results)
     {
+        var resultsList =gridManager.allTile.OrderBy(
+            x => Vector3.Distance(this.transform.position,x.transform.position)
+        ).ToArray();
 
-        results = new Collider[8];
-        Physics.OverlapSphereNonAlloc(transform.position, anchorCheckRange,results, Physics.AllLayers, QueryTriggerInteraction.Collide);
-
-
-        var resultsList = results.ToList();
-
-        
-
-        resultsList.RemoveAll(x => x is null||!x.gameObject.CompareTag("Anchor"));
-        if (resultsList.Count.Equals(0))
+        if ((Vector3.Distance(this.transform.position, resultsList.First().transform.position) > anchorCheckRange))
         {
-            
             transform.position = linkedTile.transform.position;
             walls.ForEach(x=>x.Moove());
+            results = null;
             return true;
         }
-        results = resultsList.ToArray();
-        
+
+        results = resultsList.First();
         return false;
     }
 

@@ -4,20 +4,19 @@ using UnityEngine;
 
 public class WallScript : MonoBehaviour
 {
+    private Collider thisCollider;
     public WallPointScript one;
     public WallPointScript two;
     public float length;
     private float tileSize;
 
-    private void Update()
-    {
-        
-    }
+    
     public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager)
     {
         one = inOne;
         two = inTwo;
         tileSize = inGridManager.tileSize.x;
+        thisCollider = GetComponent<BoxCollider>();
         
         one.walls.Add(this);
         two.walls.Add(this);
@@ -82,6 +81,11 @@ public class WallScript : MonoBehaviour
     {
         one.walls.Remove(this);
         two.walls.Remove(this);
+    }
+
+    public void ToggleColision(bool maybe)
+    {
+        thisCollider.isTrigger = maybe;
     }
 
 }
