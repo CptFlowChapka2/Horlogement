@@ -19,7 +19,11 @@ public class Boreal : MonoBehaviour
         FindObjectsByType<BorealBorder>(FindObjectsInactive.Exclude,FindObjectsSortMode.None).ToList().ForEach(x=>allBorder.Add(x));
         allVoidWall = GameObject.FindGameObjectsWithTag("VoidWall").ToList();
         theVoid = GameObject.FindGameObjectsWithTag("Void").First();
-        InvokeRepeating(nameof(Check),checkFrequency,checkFrequency);
+        
+    }
+    private void Update()
+    {
+        Check();
     }
 
     private void Check()

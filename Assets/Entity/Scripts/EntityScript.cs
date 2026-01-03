@@ -36,9 +36,12 @@ public class EntityScript : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.gameObject.CompareTag("Wall")&&inPLay)
+        if (other.gameObject.CompareTag("Wall"))
         {
-            audioSource.PlayOneShot(thisIdentity.Sound);
+            if (inPLay)
+            {
+                audioSource.PlayOneShot(thisIdentity.Sound);
+            }
             Vector3 surfaceNormal = other.GetContact(0).normal;
             Bounce(surfaceNormal);
         }
@@ -104,8 +107,10 @@ public class EntityScript : MonoBehaviour
 
         initialDefault = thisIdentity.IdentityKey;
         Debug.Log(thisIdentity.Color);
-        gameObject.GetComponent<MeshRenderer>().material=thisIdentity.Color;
-        gameObject.GetComponent<TrailRenderer>().material=thisIdentity.Color;
+            GameObject child =transform.GetChild(0).Find("Color").gameObject ;
+        
+        child.GetComponent<MeshRenderer>().material=thisIdentity.Color;
+        child.GetComponent<TrailRenderer>().material=thisIdentity.Color;
 
         if (gameObject.tag.Equals("Entity"))
         {
@@ -117,6 +122,7 @@ public class EntityScript : MonoBehaviour
             }
 
             rb.AddForce(dir * speed, ForceMode.VelocityChange);
+            
         }
 
         
@@ -131,14 +137,16 @@ public class EntityScript : MonoBehaviour
             OnCreation(initialDefault);
         }
 
-        
+        transform.forward = -(transform.position- (transform.position+rb.linearVelocity.normalized));
 
         lastVelocity = rb.linearVelocity;
     }
 
     private void Bounce(Vector3 surfaceNormal)
     {
+        Debug.Log(gameObject.name+" just bounced ");
         rb.linearVelocity = Vector3.Reflect(lastVelocity, surfaceNormal);
+        
 
     }
 
@@ -181,6 +189,20 @@ public class EntityScript : MonoBehaviour
         Debug.Log("Killed By outside the cam");
         Destroy(gameObject);
     }
+    
+    private GameObject FindChildWithTag(GameObject parent, string tag) {
+        GameObject child = null;
+
+        foreach(Transform transform in parent.transform) {
+            if(transform.CompareTag(tag)) {
+                child = transform.gameObject;
+                break;
+            }
+        }
+
+        return child;
+    }
+
 
     // private void OnMouseDrag()
     // {

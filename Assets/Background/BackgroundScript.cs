@@ -12,11 +12,12 @@ public class BackgroundScript : MonoBehaviour
 
    private void OnTriggerStay(Collider other)
    {
-      if (!other.gameObject.CompareTag("Entity") || !other.gameObject.TryGetComponent(out EntityScript otherScript)) return;
-      if (playVoid)
+      if (other.gameObject.CompareTag("Entity") && other.gameObject.TryGetComponent(out EntityScript otherScript)&&playVoid)
       {
          otherScript.inPLay = true;
       }
+      
+      
      
    }
    private void OnTriggerExit(Collider other)

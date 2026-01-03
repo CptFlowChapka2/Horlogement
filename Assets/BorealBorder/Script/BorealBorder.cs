@@ -36,7 +36,12 @@ public class BorealBorder : MonoBehaviour
     {
         Vector3 dir = (Vector3)dataHolder.entityIdentity[thisIdentityKeys]["Vector"];
         spawnDir = -dir;
-        transform.localPosition = spawnDir*5;
+        transform.localPosition = spawnDir.normalized*4.8f;
+
+        Transform parent = transform.parent;
+        transform.parent = null;
+        transform.localScale=Vector3.one;
+        transform.parent = parent;
 
     }   
 
