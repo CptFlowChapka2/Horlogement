@@ -36,7 +36,6 @@ public class WallPointScript : MonoBehaviour
     {
         sculptor = FindAnyObjectByType<Sculptor>();
         gridManager = FindAnyObjectByType<GridManager>();
-        maxMouvment = (gridManager.tileSize.magnitude*1.2f) *squareRootof2;
         wallCreator = FindAnyObjectByType<WallCreator>();
         mouse = InputSystem.actions.FindAction("Look");
         thisCollider = GetComponent<SphereCollider>();
@@ -75,7 +74,7 @@ public class WallPointScript : MonoBehaviour
             Debug.Log("hi");
             transform.position = linkedTile.transform.position;
             walls.ForEach(x=>x.Moove());
-            walls.FindAll(x => x.length > (gridManager.tileSize.x * 1.2f) * squareRootof2).ForEach(x=>x.Break());
+            walls.FindAll(x => x.length > maxMouvment * 1.1f).ForEach(x=>x.Break());
         }
         else
         {

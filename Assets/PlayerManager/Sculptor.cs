@@ -16,10 +16,12 @@ public class Sculptor : MonoBehaviour
     [SerializeField] private bool unCollideWallOnMouv = true;
     private InputAction mouse;
     private InputAction clic;
+    [SerializeField] private Color colorBase = Color.white;
+    [SerializeField] private Color colorBreak = Color.red;
 
-    
 
-    private Vector3 mooveTry;
+
+private Vector3 mooveTry;
     private SphereCollider mooveTryOrigine;
 
     public WallPointScript currentSelection;
@@ -97,6 +99,8 @@ public class Sculptor : MonoBehaviour
                 currentSelection.walls.ForEach(x=>x.ToggleColision(true));
             }
             currentSelection.walls.ForEach(x => x.Moove());
+            currentSelection.walls.ForEach(x=>x.SoonToBreak(colorBase));
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SoonToBreak(colorBreak));
         }
         else if (wallCreationCounter >= wallCreationCounterMax)
         {
@@ -110,6 +114,7 @@ public class Sculptor : MonoBehaviour
                 currentSelection.walls.ForEach(x=>x.ToggleColision(false));
             }
             currentSelection.walls.ForEach(x => x.Moove());
+            currentSelection.walls.ForEach(x=>x.SoonToBreak(colorBase));
             ;
             currentSelection.isSelected = false;
 
@@ -128,6 +133,8 @@ public class Sculptor : MonoBehaviour
                 currentSelection.walls.ForEach(x=>x.ToggleColision(true));
             }
             currentSelection.walls.ForEach(x => x.Moove());
+            currentSelection.walls.ForEach(x=>x.SoonToBreak(colorBase));
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SoonToBreak(colorBreak));
 
             wallCreationCounter += Time.deltaTime;
         }

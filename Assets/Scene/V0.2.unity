@@ -453,6 +453,10 @@ PrefabInstance:
       propertyPath: mouseSpeed
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 855399662892286117, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
+      propertyPath: wallCreationCounterMax
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4937975755028435810, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
       propertyPath: gridManager
       value: 

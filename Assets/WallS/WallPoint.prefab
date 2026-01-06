@@ -123,7 +123,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   linkedTile: {fileID: 0}
   anchorCheckRange: 1
-  maxMouvment: 1
+  maxMouvment: 50
   gridManager: {fileID: 0}
   walls: []
   isSelected: 0
