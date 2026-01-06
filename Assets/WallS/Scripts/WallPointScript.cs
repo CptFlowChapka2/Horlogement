@@ -66,7 +66,7 @@ public class WallPointScript : MonoBehaviour
             linkedTile = results;
             transform.position = results.transform.position;
             walls.ForEach(x=>x.Moove());
-            walls.FindAll(x => x.length > (gridManager.tileSize.x * 1.2f) * squareRootof2).ForEach(x=>x.Break());
+            walls.FindAll(x => x.length > maxMouvment * 1.1f).ForEach(x=>x.Break());
 
 
         }
@@ -107,5 +107,6 @@ public class WallPointScript : MonoBehaviour
     private void OnDestroy()
     {
         sculptor.currentSelection = null;
+        linkedTile.currentWallPointScript = null;
     }
 }

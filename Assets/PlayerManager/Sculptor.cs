@@ -65,7 +65,7 @@ public class Sculptor : MonoBehaviour
         currentSelection.isSelected = true;
         mooveTry = currentSelection.transform.position;
         mooveTryOrigine.transform.position = currentSelection.linkedTile.transform.position;
-        mooveTryOrigine.radius = currentSelection.maxMouvment/2;
+        mooveTryOrigine.radius = currentSelection.maxMouvment;
 
     }
     private void OnDrawGizmos()
