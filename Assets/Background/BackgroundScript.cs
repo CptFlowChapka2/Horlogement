@@ -27,6 +27,10 @@ public class BackgroundScript : MonoBehaviour
       {
          otherScript.inPLay = false;
       }
+      if (!playVoid)
+      {
+         Destroy(otherScript.gameObject);
+      }
       
    }
 }
