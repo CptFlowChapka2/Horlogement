@@ -71,6 +71,8 @@ public class Tile : MonoBehaviour
 
       spawnedEntityScript.speed = dataHolder.speed;
       spawnedEntityScript.OnCreation(most);
+      identityKeysList.Clear();
+      
       
       Invoke(nameof(ReActivate),cooldDown);
    }
