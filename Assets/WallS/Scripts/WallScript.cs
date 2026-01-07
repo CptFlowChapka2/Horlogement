@@ -91,7 +91,7 @@ public class WallScript : MonoBehaviour
         thisCollider.isTrigger = maybe;
     }
 
-    public void SoonToBreak(Color color)
+    public void SetFeedBackColor(Color color)
     {
         meshRenderer.material.color = color;
     }

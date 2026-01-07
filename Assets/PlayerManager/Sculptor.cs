@@ -18,6 +18,7 @@ public class Sculptor : MonoBehaviour
     private InputAction clic;
     [SerializeField] private Color colorBase = Color.white;
     [SerializeField] private Color colorBreak = Color.red;
+    [SerializeField] private Color colorBuild = Color.blue;
 
 
 
@@ -99,8 +100,8 @@ private Vector3 mooveTry;
                 currentSelection.walls.ForEach(x=>x.ToggleColision(true));
             }
             currentSelection.walls.ForEach(x => x.Moove());
-            currentSelection.walls.ForEach(x=>x.SoonToBreak(colorBase));
-            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SoonToBreak(colorBreak));
+            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(colorBreak));
         }
         else if (wallCreationCounter >= wallCreationCounterMax)
         {
@@ -114,7 +115,7 @@ private Vector3 mooveTry;
                 currentSelection.walls.ForEach(x=>x.ToggleColision(false));
             }
             currentSelection.walls.ForEach(x => x.Moove());
-            currentSelection.walls.ForEach(x=>x.SoonToBreak(colorBase));
+            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
             ;
             currentSelection.isSelected = false;
 
@@ -133,8 +134,13 @@ private Vector3 mooveTry;
                 currentSelection.walls.ForEach(x=>x.ToggleColision(true));
             }
             currentSelection.walls.ForEach(x => x.Moove());
-            currentSelection.walls.ForEach(x=>x.SoonToBreak(colorBase));
-            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SoonToBreak(colorBreak));
+            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
+
+            float step = wallCreationCounter/wallCreationCounterMax;
+            float dist = Vector4.Distance(colorBreak, colorBuild);
+            Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
+            
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(newColor));
 
             wallCreationCounter += Time.deltaTime;
         }
