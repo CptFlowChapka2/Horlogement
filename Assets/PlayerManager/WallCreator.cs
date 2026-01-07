@@ -5,6 +5,7 @@ using UnityEngine;
 
 public class WallCreator : MonoBehaviour
 {
+    public bool activateNewMode = true;
     public GameObject wallPrefab;
     public GameObject wallPointPrefab;
 
@@ -15,7 +16,12 @@ public class WallCreator : MonoBehaviour
 
     void Update()
     {
-        DebugClicToWall();
+        if (activateNewMode)
+        {
+            DestoryWallOnClic();
+            DebugClicToWall(); 
+        }
+        
     }
     private void DebugClicToWall()
     {
@@ -43,7 +49,7 @@ public class WallCreator : MonoBehaviour
         {
             hitTile = hitWallPoint.linkedTile;
         }
-        Debug.Log(hitTile.coords);
+        
         
         if (!firstPoint)
         {
@@ -51,10 +57,15 @@ public class WallCreator : MonoBehaviour
             return;
         }
 
+        Ray checkRay = new Ray(firstPoint.transform.position,hitTile.transform.position-firstPoint.transform.position);
+
         if (Vector3.Distance(firstPoint.transform.position, hitTile.transform.position) >= maxWallSize *squareRootof2 ||
-            Vector3.Distance(firstPoint.transform.position, hitTile.transform.position)<=1 )
+            Vector3.Distance(firstPoint.transform.position, hitTile.transform.position)<=1||
+            Physics.RaycastAll(checkRay,Vector3.Distance(firstPoint.transform.position, hitTile.transform.position))
+                .Any(x=>x.collider.gameObject.CompareTag("Wall")))
+            
         {
-            Debug.Log("hi");
+            Debug.Log("illegal wall");
             //todo: implement
             firstPoint = null;
             return;
@@ -65,6 +76,29 @@ public class WallCreator : MonoBehaviour
 
         CreateWall(firstPoint, hitTile); 
         firstPoint = null;
+    }
+
+    private void DestoryWallOnClic()
+    {
+        if (!Input.GetMouseButtonDown(1)) return;
+        
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits =Physics.RaycastAll(ray);
+        Debug.DrawRay(ray.origin,ray.direction*300f,Color.red,200f);
+        
+        if (hits.Length<1) return;
+        List<RaycastHit> hitsList = hits.ToList();
+
+        hitsList.RemoveAll(x => !x.collider.gameObject.CompareTag("Wall"));
+        if (hitsList.Count<1) return;
+        hitsList = hitsList.OrderBy(
+            x => Vector3.Distance(new Vector3(ray.origin.x,x.transform.position.y,ray.origin.z),x.transform.position)
+        ).ToList();
+        
+        if (hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWallPoint))
+        {
+            hitWallPoint.Break();
+        }
     }
 
     public void CreateWall(Tile one, Tile two)
