@@ -156,6 +156,13 @@ private Vector3 mooveTry;
 
         currentSelection.isSelected = false;
         currentSelection.EndMouvement();
+        currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
+
+        float step = wallCreationCounter/wallCreationCounterMax;
+        float dist = Vector4.Distance(colorBreak, colorBuild);
+        Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
+            
+        currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(newColor));
         currentSelection.walls.ForEach(x=>x.ToggleColision(false));
 
         currentSelection = null;
