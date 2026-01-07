@@ -13,6 +13,7 @@ public class EntityScript : MonoBehaviour
     private CollisionHandler collisionHandler;
     private Rigidbody rb;
     private Vector3 currentDir;
+    private GameObject child;
     
      
     private Vector3 lastVelocity;
@@ -109,7 +110,7 @@ public class EntityScript : MonoBehaviour
 
         initialDefault = thisIdentity.IdentityKey;
         Debug.Log(thisIdentity.Color);
-            GameObject child =transform.GetChild(0).Find("Color").gameObject ;
+        child =transform.GetChild(0).Find("Color").gameObject ;
         
         child.GetComponent<MeshRenderer>().material=thisIdentity.Color;
         child.GetComponent<TrailRenderer>().material=thisIdentity.Color;
@@ -133,7 +134,18 @@ public class EntityScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        child.TryGetComponent(out SphereCollider sphereCollider);
+        if (justCreated  )
+        {
+            sphereCollider.isTrigger = true;
+        }
+        else
+        {
+            sphereCollider.isTrigger = false;
+        }
 
+        
+        
         if (initialCreated)
         {
 
