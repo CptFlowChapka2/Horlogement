@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4277278137365707014}
   - component: {fileID: 3130992287954257633}
   - component: {fileID: 5382117620619017516}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Color
   m_TagString: EntityColor
   m_Icon: {fileID: 0}
@@ -907,6 +907,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 1
+  voidSpeed: 2
+  invulTime: 2
   initialCreated: 0
   initialDefault: 0
   justCreated: 0

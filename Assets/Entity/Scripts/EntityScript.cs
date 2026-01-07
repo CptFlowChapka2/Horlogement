@@ -14,6 +14,7 @@ public class EntityScript : MonoBehaviour
     private Rigidbody rb;
     private Vector3 currentDir;
     private GameObject child;
+    private SphereCollider childCollider;
     
      
     private Vector3 lastVelocity;
@@ -49,7 +50,11 @@ public class EntityScript : MonoBehaviour
             Bounce(surfaceNormal);
         }
 
-        if (!justCreated&&other.gameObject.CompareTag("Entity") && other.gameObject.TryGetComponent<EntityScript>(out EntityScript otherEntityScript)&&!otherEntityScript.justCreated)
+       if( !other.gameObject.TryGetComponent<EntityScript>(out EntityScript otherEntityScript)) return;
+
+       
+
+        if (!justCreated&&other.gameObject.CompareTag("Entity") && otherEntityScript is not null&&!otherEntityScript.justCreated)
         {
 
             if (thisIdentity.IdentityKey == default || otherEntityScript.thisIdentity.IdentityKey == default)
@@ -106,7 +111,7 @@ public class EntityScript : MonoBehaviour
         
         rb.linearDamping = 0;
 
-        
+        Physics.IgnoreLayerCollision(7, 8, true);
 
         initialDefault = thisIdentity.IdentityKey;
         Debug.Log(thisIdentity.Color);
@@ -135,17 +140,14 @@ public class EntityScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        child.TryGetComponent(out SphereCollider sphereCollider);
-        if (justCreated  )
+        if (justCreated)
         {
-            sphereCollider.isTrigger = true;
+            child.layer = 8;
         }
         else
         {
-            sphereCollider.isTrigger = false;
+            child.layer = 7;
         }
-
-        
         
         if (initialCreated)
         {
