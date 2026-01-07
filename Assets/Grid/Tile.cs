@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour
    public WallPointScript currentWallPointScript;
 
    [SerializeField]private float maxToCharge = 6;
-   private float currentCharge = 0;
+   public float currentCharge = 0;
    [SerializeField] private float chargeSpeed = 1f;
    [SerializeField] private float deChargeSpeed = 0.5f;
    [SerializeField] private float cooldDown = 1f;
