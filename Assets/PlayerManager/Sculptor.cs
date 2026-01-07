@@ -16,10 +16,13 @@ public class Sculptor : MonoBehaviour
     [SerializeField] private bool unCollideWallOnMouv = true;
     private InputAction mouse;
     private InputAction clic;
+    [SerializeField] private Color colorBase = Color.white;
+    [SerializeField] private Color colorBreak = Color.red;
+    [SerializeField] private Color colorBuild = Color.blue;
 
-    
 
-    private Vector3 mooveTry;
+
+private Vector3 mooveTry;
     private SphereCollider mooveTryOrigine;
 
     public WallPointScript currentSelection;
@@ -97,6 +100,8 @@ public class Sculptor : MonoBehaviour
                 currentSelection.walls.ForEach(x=>x.ToggleColision(true));
             }
             currentSelection.walls.ForEach(x => x.Moove());
+            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(colorBreak));
         }
         else if (wallCreationCounter >= wallCreationCounterMax)
         {
@@ -110,6 +115,7 @@ public class Sculptor : MonoBehaviour
                 currentSelection.walls.ForEach(x=>x.ToggleColision(false));
             }
             currentSelection.walls.ForEach(x => x.Moove());
+            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
             ;
             currentSelection.isSelected = false;
 
@@ -128,6 +134,13 @@ public class Sculptor : MonoBehaviour
                 currentSelection.walls.ForEach(x=>x.ToggleColision(true));
             }
             currentSelection.walls.ForEach(x => x.Moove());
+            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
+
+            float step = wallCreationCounter/wallCreationCounterMax;
+            float dist = Vector4.Distance(colorBreak, colorBuild);
+            Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
+            
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(newColor));
 
             wallCreationCounter += Time.deltaTime;
         }
@@ -143,6 +156,13 @@ public class Sculptor : MonoBehaviour
 
         currentSelection.isSelected = false;
         currentSelection.EndMouvement();
+        currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
+
+        float step = wallCreationCounter/wallCreationCounterMax;
+        float dist = Vector4.Distance(colorBreak, colorBuild);
+        Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
+            
+        currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(newColor));
         currentSelection.walls.ForEach(x=>x.ToggleColision(false));
 
         currentSelection = null;

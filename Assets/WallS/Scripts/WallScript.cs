@@ -9,6 +9,7 @@ public class WallScript : MonoBehaviour
     public WallPointScript two;
     public float length;
     private float tileSize;
+    private MeshRenderer meshRenderer;
 
     
     public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager)
@@ -17,9 +18,11 @@ public class WallScript : MonoBehaviour
         two = inTwo;
         tileSize = inGridManager.tileSize.x;
         thisCollider = GetComponent<BoxCollider>();
+        meshRenderer = GetComponent<MeshRenderer>();
         
         one.walls.Add(this);
         two.walls.Add(this);
+        
         
         Moove();
         
@@ -86,6 +89,11 @@ public class WallScript : MonoBehaviour
     public void ToggleColision(bool maybe)
     {
         thisCollider.isTrigger = maybe;
+    }
+
+    public void SetFeedBackColor(Color color)
+    {
+        meshRenderer.material.color = color;
     }
 
 }

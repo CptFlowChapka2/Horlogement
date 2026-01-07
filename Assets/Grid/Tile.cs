@@ -12,7 +12,7 @@ public class Tile : MonoBehaviour
    public WallPointScript currentWallPointScript;
 
    [SerializeField]private float maxToCharge = 6;
-   private float currentCharge = 0;
+   public float currentCharge = 0;
    [SerializeField] private float chargeSpeed = 1f;
    [SerializeField] private float deChargeSpeed = 0.5f;
    [SerializeField] private float cooldDown = 1f;
@@ -39,6 +39,7 @@ public class Tile : MonoBehaviour
          SpawnEntity();
       }
       currentCharge -= deChargeSpeed*Time.deltaTime;
+      currentCharge = Mathf.Clamp(currentCharge, 0, currentCharge);
    }
 
 
@@ -70,6 +71,8 @@ public class Tile : MonoBehaviour
 
       spawnedEntityScript.speed = dataHolder.speed;
       spawnedEntityScript.OnCreation(most);
+      identityKeysList.Clear();
+      
       
       Invoke(nameof(ReActivate),cooldDown);
    }
