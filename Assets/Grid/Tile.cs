@@ -39,6 +39,7 @@ public class Tile : MonoBehaviour
          SpawnEntity();
       }
       currentCharge -= deChargeSpeed*Time.deltaTime;
+      currentCharge = Mathf.Clamp(currentCharge, 0, currentCharge);
    }
 
 
