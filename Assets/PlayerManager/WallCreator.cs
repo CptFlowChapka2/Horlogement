@@ -51,7 +51,8 @@ public class WallCreator : MonoBehaviour
             return;
         }
 
-        if (Vector3.Distance(firstPoint.transform.position, hitTile.transform.position) >= maxWallSize *squareRootof2 )
+        if (Vector3.Distance(firstPoint.transform.position, hitTile.transform.position) >= maxWallSize *squareRootof2 ||
+            Vector3.Distance(firstPoint.transform.position, hitTile.transform.position)<=1 )
         {
             Debug.Log("hi");
             //todo: implement
