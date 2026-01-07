@@ -114,6 +114,7 @@ public class EntityScript : MonoBehaviour
         
         child.GetComponent<MeshRenderer>().material=thisIdentity.Color;
         child.GetComponent<TrailRenderer>().material=thisIdentity.Color;
+        Invoke(nameof(FalseJustCreated), invulTime);
 
         if (gameObject.tag.Equals("Entity"))
         {
@@ -127,7 +128,7 @@ public class EntityScript : MonoBehaviour
             rb.AddForce(dir * speed, ForceMode.VelocityChange);
             
         }
-        Invoke(nameof(FalseJustCreated), invulTime*Time.fixedDeltaTime);
+      
 
         
     }
@@ -199,6 +200,7 @@ public class EntityScript : MonoBehaviour
     }
     private void FalseJustCreated()
     {
+        Debug.Log("oi");
         justCreated = false;
     }
 
