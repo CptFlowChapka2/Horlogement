@@ -7,6 +7,7 @@ public class EntityScript : MonoBehaviour
 {
     public float speed = 1f;
     public float voidSpeed = 2f;
+    public float invulTime = 1.5f;
 
     private DataHolder dataHolder;
     private CollisionHandler collisionHandler;
@@ -47,7 +48,7 @@ public class EntityScript : MonoBehaviour
             Bounce(surfaceNormal);
         }
 
-        if (other.gameObject.CompareTag("Entity") && other.gameObject.TryGetComponent<EntityScript>(out EntityScript otherEntityScript)&&!otherEntityScript.justCreated)
+        if (!justCreated&&other.gameObject.CompareTag("Entity") && other.gameObject.TryGetComponent<EntityScript>(out EntityScript otherEntityScript)&&!otherEntityScript.justCreated)
         {
 
             if (thisIdentity.IdentityKey == default || otherEntityScript.thisIdentity.IdentityKey == default)
@@ -101,7 +102,7 @@ public class EntityScript : MonoBehaviour
         
         rb.maxLinearVelocity = speed;
 
-        Invoke(nameof(FalseJustCreated), Time.fixedDeltaTime);
+        
         rb.linearDamping = 0;
 
         
@@ -125,6 +126,7 @@ public class EntityScript : MonoBehaviour
             rb.AddForce(dir * speed, ForceMode.VelocityChange);
             
         }
+        Invoke(nameof(FalseJustCreated), invulTime*Time.fixedDeltaTime);
 
         
     }
