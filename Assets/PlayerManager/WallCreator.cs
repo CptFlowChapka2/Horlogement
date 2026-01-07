@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class WallCreator : MonoBehaviour
@@ -9,28 +11,49 @@ public class WallCreator : MonoBehaviour
     private Tile firstPoint = null;
     public GridManager gridManager;
     private float squareRootof2 =(float)Math.Sqrt(2f) ;
+    public float maxWallSize = 1;
 
     void Update()
     {
-        //DebugClicToWall();
+        DebugClicToWall();
     }
     private void DebugClicToWall()
     {
 
         if (!Input.GetMouseButtonDown(0)) return;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits =Physics.RaycastAll(ray);
+        Debug.DrawRay(ray.origin,ray.direction*300f,Color.magenta,200f);
+        
+        if (hits.Length<1) return;
+        List<RaycastHit> hitsList = hits.ToList();
 
-        if (!Physics.Raycast(ray, out RaycastHit hit) || !hit.collider.CompareTag("Anchor")) return;
-        Tile hitTile = hit.collider.gameObject.GetComponent<Tile>();
-        Debug.Log("Sphère cliquée : " + hit.collider.name);
+        hitsList.RemoveAll(x => !(x.collider.gameObject.CompareTag("WallPoint")||x.collider.gameObject.CompareTag("Anchor")));
+        if (hitsList.Count<1) return;
+        hitsList = hitsList.OrderBy(
+            x => Vector3.Distance(new Vector3(ray.origin.x,x.transform.position.y,ray.origin.z),x.transform.position)
+        ).ToList();
+
+        Tile hitTile = null;
+        if( !hitsList.First().collider.gameObject.TryGetComponent(out WallPointScript hitWallPoint )&&
+            !hitsList.First().collider.gameObject.TryGetComponent(out  hitTile ))return;
+
+
+        if (hitWallPoint is not null)
+        {
+            hitTile = hitWallPoint.linkedTile;
+        }
+        Debug.Log(hitTile.coords);
+        
         if (!firstPoint)
         {
             firstPoint = hitTile;
             return;
         }
 
-        if (Vector3.Distance(firstPoint.transform.position, hit.collider.transform.position) >= (gridManager.tileSize.x*1.2f) *squareRootof2 )
+        if (Vector3.Distance(firstPoint.transform.position, hitTile.transform.position) >= maxWallSize *squareRootof2 )
         {
+            Debug.Log("hi");
             //todo: implement
             firstPoint = null;
             return;
@@ -45,6 +68,7 @@ public class WallCreator : MonoBehaviour
 
     public void CreateWall(Tile one, Tile two)
     {
+       
         if (one is null || two is null||two==one)
         {
             return;
