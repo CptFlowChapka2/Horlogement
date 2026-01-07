@@ -49,8 +49,9 @@ MonoBehaviour:
   coords: {x: 0, y: 0}
   isWall: 0
   currentWallPointScript: {fileID: 0}
-  maxToCharge: 6
-  chargeSpeed: 1
+  maxToCharge: 2
+  currentCharge: 0
+  chargeSpeed: 1.2
   deChargeSpeed: 0.5
   cooldDown: 1
 --- !u!135 &5328014848791114670
@@ -72,7 +73,7 @@ SphereCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Radius: 1
+  m_Radius: 1.2
   m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &9054749339514726638
 GameObject:

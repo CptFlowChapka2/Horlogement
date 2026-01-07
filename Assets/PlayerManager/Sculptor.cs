@@ -101,7 +101,7 @@ private Vector3 mooveTry;
             }
             currentSelection.walls.ForEach(x => x.Moove());
             currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
-            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(colorBreak));
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.2f).ForEach(x=>x.SetFeedBackColor(colorBreak));
         }
         else if (wallCreationCounter >= wallCreationCounterMax)
         {
@@ -140,7 +140,7 @@ private Vector3 mooveTry;
             float dist = Vector4.Distance(colorBreak, colorBuild);
             Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
             
-            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(newColor));
+            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.2f).ForEach(x=>x.SetFeedBackColor(newColor));
 
             wallCreationCounter += Time.deltaTime;
         }
@@ -162,7 +162,7 @@ private Vector3 mooveTry;
         float dist = Vector4.Distance(colorBreak, colorBuild);
         Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
             
-        currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.1f).ForEach(x=>x.SetFeedBackColor(newColor));
+        currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.2f).ForEach(x=>x.SetFeedBackColor(newColor));
         currentSelection.walls.ForEach(x=>x.ToggleColision(false));
 
         currentSelection = null;

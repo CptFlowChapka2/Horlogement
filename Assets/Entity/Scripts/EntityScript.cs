@@ -6,6 +6,7 @@ using UnityEngine;
 public class EntityScript : MonoBehaviour
 {
     public float speed = 1f;
+    public float voidSpeed = 2f;
 
     private DataHolder dataHolder;
     private CollisionHandler collisionHandler;
@@ -135,6 +136,15 @@ public class EntityScript : MonoBehaviour
         {
 
             OnCreation(initialDefault);
+        }
+
+        if (inPLay&& !Mathf.Approximately(rb.linearVelocity.magnitude, speed))
+        {
+            rb.linearVelocity =rb.linearVelocity.normalized * speed;
+        }
+        else if (Mathf.Approximately(rb.linearVelocity.magnitude, voidSpeed))
+        {
+            rb.linearVelocity =rb.linearVelocity.normalized * voidSpeed;
         }
 
         transform.forward = -(transform.position- (transform.position+rb.linearVelocity.normalized));
