@@ -32,6 +32,16 @@ public class Sculptor : MonoBehaviour
     {
         if (!Input.GetMouseButtonDown(1)) return;
 
+        if (secondTilePoint is not null)
+        {
+            Destroy(secondTilePoint.gameObject);
+            secondTilePoint = null;
+            firstTile = null;
+            Destroy(firstTilePoint.gameObject);
+            firstTilePoint = null;
+            return;
+        }
+
         if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;
         
 
@@ -72,6 +82,7 @@ public class Sculptor : MonoBehaviour
             secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
             return;
         }
+        if(secondTilePoint is null) return;
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.white));
         secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
         secondTilePoint.EndMouvement();

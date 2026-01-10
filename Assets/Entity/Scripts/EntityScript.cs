@@ -44,7 +44,7 @@ public class EntityScript : MonoBehaviour
         {
             if (inPLay)
             {
-                audioSource.PlayOneShot(thisIdentity.Sound);
+                audioSource.PlayOneShot(thisIdentity.SoundBounce);
             }
             Vector3 surfaceNormal = other.GetContact(0).normal;
             Bounce(surfaceNormal);

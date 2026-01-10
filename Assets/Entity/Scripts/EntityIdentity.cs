@@ -15,7 +15,8 @@ public class EntityIdentity
         IdentityKey = tempIdentity;
         Color = (Material)holder.entityIdentity[tempIdentity]["color"];
         DefaultDirection =(Vector3)holder.entityIdentity[tempIdentity]["Vector"];
-        Sound = (AudioClip)holder.entityIdentity[tempIdentity]["sound"];
+        SoundBounce = ((Dictionary<string,AudioClip>)holder.entityIdentity[tempIdentity]["sound"])["bounce"];
+        SoundFuse = ((Dictionary<string,AudioClip>)holder.entityIdentity[tempIdentity]["sound"])["fuse"];
     }
     public Vector3 DefaultDirection { get; set; }
 
@@ -23,7 +24,8 @@ public class EntityIdentity
 
     public Material Color { get; set; }
 
-    public AudioClip Sound { get; set; }
+    public AudioClip SoundBounce { get; set; }
+    public AudioClip SoundFuse { get; set; }
 
     public identityKeys MergeIdentity(identityKeys a,identityKeys b=default)
     {

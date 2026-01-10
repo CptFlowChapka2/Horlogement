@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using UnityEngine;
 
 public enum identityKeys
@@ -26,19 +27,52 @@ public class DataHolder : MonoBehaviour
     [SerializeField] private Material color5;
     [SerializeField] private Material color6;
     
-    [SerializeField] private AudioClip sound0 ;
-    [SerializeField] private AudioClip sound1 ;
-    [SerializeField] private AudioClip sound2 ;
-    [SerializeField] private AudioClip sound3 ;
-    [SerializeField] private AudioClip sound4 ;
-    [SerializeField] private AudioClip sound5 ;
-    [SerializeField] private AudioClip sound6 ;
+    
+    [Space][Header("identity 0")][Space]
+    [SerializeField] private AudioClip sound_0_bounce ;
+    [SerializeField] private AudioClip sound_0_fuse ;
+    
+    [Space][Header("identity 1")][Space]
+    
+    [SerializeField] private AudioClip sound_1_bounce ;
+    [SerializeField] private AudioClip sound_1_fuse ;
+   
+    [Space][Header("identity 2")][Space]
+    
+    [SerializeField] private AudioClip sound_2_bounce ;
+    [SerializeField] private AudioClip sound_2_fuse ;
+    [Space][Header("identity 3")][Space]
+
+    [SerializeField] private AudioClip sound_3_bounce ;
+    [SerializeField] private AudioClip sound_3_fuse ;
+    
+    
+    [Space][Header("identity 4")][Space]
+
+    [SerializeField] private AudioClip sound_4_bounce ;
+    [SerializeField] private AudioClip sound_4_fuse ;
+    
+    
+    [Space][Header("identity 5")][Space]
+
+    [SerializeField] private AudioClip sound_5_bounce ;
+    [SerializeField] private AudioClip sound_5_fuse ;
+    
+    
+    [Space][Header("identity 6")][Space]
+
+    [SerializeField] private AudioClip sound_6_bounce ;
+    [SerializeField] private AudioClip sound_6_fuse ;
+
+    
     
     public float speed =1;
     public float addedAngle =51.42f;
 
     public List<Material> allColor = new List<Material>();
+    
     public Dictionary<identityKeys, Dictionary<string,object>> entityIdentity = new Dictionary<identityKeys, Dictionary<string,object>>();
+    
 
     private void Start()
     {
@@ -54,7 +88,8 @@ public class DataHolder : MonoBehaviour
         {
             { "color", color0 },
             { "Vector", baseVector },
-            {"sound",sound0}
+            {"sound",CreateSoundDico(identityKeys.color0)}
+
         };
         
         entityIdentity.Add(identityKeys.color0,identity0);
@@ -63,7 +98,8 @@ public class DataHolder : MonoBehaviour
         {
             { "color", color1 },
             { "Vector", Quaternion.AngleAxis(addedAngle, Vector3.up) * baseVector },
-            {"sound",sound1}
+            {"sound",CreateSoundDico(identityKeys.color1)}
+            
         };
         
         entityIdentity.Add(identityKeys.color1,identity1);
@@ -72,7 +108,8 @@ public class DataHolder : MonoBehaviour
         {
             { "color", color2 },
             { "Vector", (Quaternion.AngleAxis(addedAngle*2, Vector3.up) * baseVector) },
-            {"sound",sound2}
+            {"sound",CreateSoundDico(identityKeys.color2)}
+
         };
         
         entityIdentity.Add(identityKeys.color2,identity2);
@@ -80,7 +117,8 @@ public class DataHolder : MonoBehaviour
         {
             { "color", color3 },
             { "Vector", (Quaternion.AngleAxis(addedAngle*3, Vector3.up) * baseVector) },
-            {"sound",sound3}
+            {"sound",CreateSoundDico(identityKeys.color3)}
+
         };
         
         entityIdentity.Add(identityKeys.color3,identity3);
@@ -88,7 +126,8 @@ public class DataHolder : MonoBehaviour
         {
             { "color", color4 },
             { "Vector", (Quaternion.AngleAxis(addedAngle*4, Vector3.up) * baseVector) },
-            {"sound",sound4}
+            {"sound",CreateSoundDico(identityKeys.color4)}
+
         };
         
         entityIdentity.Add(identityKeys.color4,identity4);
@@ -96,7 +135,8 @@ public class DataHolder : MonoBehaviour
         {
             { "color", color5 },
             { "Vector", (Quaternion.AngleAxis(addedAngle*5, Vector3.up) * baseVector) },
-            {"sound",sound5}
+            {"sound",CreateSoundDico(identityKeys.color5)}
+
         };
         
         entityIdentity.Add(identityKeys.color5,identity5);
@@ -105,7 +145,7 @@ public class DataHolder : MonoBehaviour
         {
             { "color", color6 },
             { "Vector", (Quaternion.AngleAxis(addedAngle*6, Vector3.up) * baseVector) },
-            {"sound",sound6}
+            {"sound",CreateSoundDico(identityKeys.color6)}
         };
         
         entityIdentity.Add(identityKeys.color6,identity6);
@@ -121,5 +161,49 @@ public class DataHolder : MonoBehaviour
         allColor.Add(color4);
         allColor.Add(color5);
         allColor.Add(color6);
+    }
+
+    private Dictionary<string,AudioClip> CreateSoundDico(identityKeys identityKeys)
+    {
+        Dictionary<string, AudioClip> toReturn = new Dictionary<string, AudioClip>();
+        switch (identityKeys)
+        {
+
+            case identityKeys.notAsignated:
+                throw new InvalidDataException();
+                break;
+            case identityKeys.color0:
+                toReturn.Add("bounce",sound_0_bounce);
+                toReturn.Add("fuse",sound_0_fuse);
+                break;
+            case identityKeys.color1:
+                toReturn.Add("bounce",sound_1_bounce);
+                toReturn.Add("fuse",sound_1_fuse);
+                break;
+            case identityKeys.color2:
+                toReturn.Add("bounce",sound_2_bounce);
+                toReturn.Add("fuse",sound_2_fuse);
+                break;
+            case identityKeys.color3:
+                toReturn.Add("bounce",sound_3_bounce);
+                toReturn.Add("fuse",sound_3_fuse);
+                break;
+            case identityKeys.color4:
+                toReturn.Add("bounce",sound_4_bounce);
+                toReturn.Add("fuse",sound_4_fuse);
+                break;
+            case identityKeys.color5:
+                toReturn.Add("bounce",sound_5_bounce);
+                toReturn.Add("fuse",sound_5_fuse);
+                break;
+            case identityKeys.color6:
+                toReturn.Add("bounce",sound_6_bounce);
+                toReturn.Add("fuse",sound_6_fuse);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException(nameof(identityKeys), identityKeys, null);
+        }
+
+        return toReturn;
     }
 }
