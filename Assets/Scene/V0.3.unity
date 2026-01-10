@@ -430,6 +430,34 @@ PrefabInstance:
       value: GridManager
       objectReference: {fileID: 0}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: sound1
+      value: 
+      objectReference: {fileID: 8300000, guid: aa55f8bf2e34138489bc6520a547a3a8, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: sound2
+      value: 
+      objectReference: {fileID: 8300000, guid: 090fd938ec2c320449c9b22c3819952f, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: sound3
+      value: 
+      objectReference: {fileID: 8300000, guid: 7a69597f70c3cc1409a60e381cc468f3, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: sound4
+      value: 
+      objectReference: {fileID: 8300000, guid: d4add4a605ed9384eb6dc66ddbe2a9ad, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: sound5
+      value: 
+      objectReference: {fileID: 8300000, guid: c760ea48e89f0c746be04de4b2c73406, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: sound6
+      value: 
+      objectReference: {fileID: 8300000, guid: f642c14e815a31c4eb8f416bac2c0fb6, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: intantiateDummy
       value: 
       objectReference: {fileID: 6798610620599150608, guid: 78b27e681ac2bbf4bb9fe7555f5d43a3, type: 3}
