@@ -29,7 +29,7 @@ public class WallPointScript : MonoBehaviour
 
     private void Update()
     {
-        if( walls.TrueForAll(x => x is null)) DestroyImmediate(gameObject);
+        if (walls.TrueForAll(x => x is null))  DestroyImmediate(gameObject);
     }
 
     private void Start()
@@ -57,9 +57,12 @@ public class WallPointScript : MonoBehaviour
 
         if (results.currentWallPointScript is null)
         {
-           
-            
+
+
+            if (linkedTile is not null)
+            {
                 linkedTile.currentWallPointScript = null;
+            }
             
             results.currentWallPointScript = this;
             linkedTile = results;
@@ -78,7 +81,8 @@ public class WallPointScript : MonoBehaviour
         }
         else
         {
-            walls.FindAll(x=>x!=null).ForEach(x=>x.MergeWalls(results.currentWallPointScript,this,gridManager));
+            walls.FindAll(x=>x is not null).ForEach(x=>x.MergeWalls(results.currentWallPointScript,this,gridManager));
+           
 
             Destroy(gameObject);
         }
@@ -93,8 +97,8 @@ public class WallPointScript : MonoBehaviour
 
         if ((Vector3.Distance(this.transform.position, resultsList.First().transform.position) > anchorCheckRange))
         {
-            transform.position = linkedTile.transform.position;
-            walls.ForEach(x=>x.Moove());
+            Debug.Log("destroy cuz range");
+            Destroy(gameObject);
             results = null;
             return true;
         }
@@ -105,7 +109,11 @@ public class WallPointScript : MonoBehaviour
 
     private void OnDestroy()
     {
-        sculptor.currentSelection = null;
-        linkedTile.currentWallPointScript = null;
+        walls.ForEach(x=>x.Break());
+        if (linkedTile is not null)
+        {
+            linkedTile.currentWallPointScript = null;
+        }
+        
     }
 }

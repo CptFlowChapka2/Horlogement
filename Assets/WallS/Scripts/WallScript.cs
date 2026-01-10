@@ -28,7 +28,7 @@ public class WallScript : MonoBehaviour
         
     }
 
-    public void Moove()
+    public void Moove(bool check=true)
     {
         
         
@@ -44,8 +44,9 @@ public class WallScript : MonoBehaviour
         diff.y = 0;
         
         length = diff.magnitude;
-        if (length == 0)
+        if (!check&&length == 0)
         {
+            Debug.Log("lenth is 0");
             Break();
             return;
         }

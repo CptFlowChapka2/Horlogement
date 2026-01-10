@@ -8,168 +8,117 @@ using UnityEngine.InputSystem;
 public class Sculptor : MonoBehaviour
 {
     private WallCreator wallCreator;
-    
-    [SerializeField] private float wallCreationCounterMax = 2f;
-    [SerializeField] private float wallCreationCounter;
-    [SerializeField] private float mouseSpeed = 2f;
-    [SerializeField] private float checkSize = 1.5f;
-    [SerializeField] private bool unCollideWallOnMouv = true;
-    private InputAction mouse;
-    private InputAction clic;
-    [SerializeField] private Color colorBase = Color.white;
-    [SerializeField] private Color colorBreak = Color.red;
-    [SerializeField] private Color colorBuild = Color.blue;
+    private Tile firstTile;
+    private WallPointScript firstTilePoint;
+    private WallPointScript secondTilePoint;
 
-
-
-private Vector3 mooveTry;
-    private SphereCollider mooveTryOrigine;
-
-    public WallPointScript currentSelection;
 
     private void Start()
     {
-        wallCreator = FindAnyObjectByType<WallCreator>();
-        mooveTryOrigine = GameObject.FindGameObjectWithTag("MooveTry").GetComponent<SphereCollider>();
-        mouse = InputSystem.actions.FindAction("Look");
-        clic = InputSystem.actions.FindAction("Clic");
+        wallCreator = GetComponent<WallCreator>();
     }
     private void Update()
     {
-        SelectWallPointScript();
-        if (currentSelection is null) return;
-        MooveSelected();
-        FinishMouvement();
-
+        DestoryWallOnClic();
+        if (secondTilePoint is not null)
+        {
+            MoovePhantom();
+        }
+        Clic();
     }
 
 
-    private void SelectWallPointScript()
+    private void DestoryWallOnClic()
     {
+        if (!Input.GetMouseButtonDown(1)) return;
 
-
-        if (!clic.WasPressedThisFrame()) return;
-        if (currentSelection is not null) return;
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit[] hits =Physics.RaycastAll(ray);
-        Debug.DrawRay(ray.origin,ray.direction*300f,Color.magenta,200f);
+        if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;
         
-        if (hits.Length<1) return;
-        List<RaycastHit> hitsList = hits.ToList();
 
-        hitsList.RemoveAll(x => !x.collider.gameObject.CompareTag("WallPoint"));
-        if (hitsList.Count<1) return;
-        hitsList = hitsList.OrderBy(
-            x => Vector3.Distance(new Vector3(ray.origin.x,x.transform.position.y,ray.origin.z),x.transform.position)
+        if (hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))
+        {
+            hitWall.Break();
+        }
+
+    }
+
+    private void Clic()
+    {
+        if (!Input.GetMouseButtonDown(0)) return;
+        if(!SelectObjectByCursor(new []{"WallPoint","Anchor"},out List<RaycastHit> hitList))return;
+        
+
+        Tile hitTile = null;
+        if( !hitList.First().collider.gameObject.TryGetComponent(out WallPointScript hitPoint )&&
+            !hitList.First().collider.gameObject.TryGetComponent(out hitTile ))return;
+
+        if (firstTile is null)
+        {
+            
+            if (hitPoint is not null)
+            {
+                firstTilePoint = hitPoint;
+                firstTile = firstTilePoint.linkedTile;
+            }
+            else if (hitTile is not null)
+            {
+                firstTile = hitTile;
+                firstTilePoint=wallCreator.CreateWallPoint(firstTile);
+            }
+
+            secondTilePoint = wallCreator.ExtendWallPoint(firstTilePoint.transform.position+Vector3.up);
+            wallCreator.ExtendWall(firstTilePoint,secondTilePoint);
+            secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.black));
+            secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
+            return;
+        }
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.white));
+        secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
+        secondTilePoint.EndMouvement();
+        firstTile = null;
+        secondTilePoint = null;
+        firstTilePoint = null;
+
+    }
+
+    private void MoovePhantom()
+    {
+        Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
+        
+        secondTilePoint.walls.ForEach(x=>x.Moove(false));
+
+    }
+
+    private static bool SelectObjectByCursor(string[] tagToSelect, out List<RaycastHit> toReturn)
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit[] hits = Physics.RaycastAll(ray);
+       List<RaycastHit> hitList = new List<RaycastHit>();
+       toReturn = new List<RaycastHit>();
+
+        if (hits.Length < 1) return false;
+        Debug.Log("hit something");
+        hitList = hits.ToList();
+        
+       
+
+        List<string> tagToSelectList = tagToSelect.ToList();
+        FilterCondition(hitList, tagToSelectList, out hitList);
+        
+        if (hitList.Count < 1) return false;
+        Debug.Log("hit a valid thing");
+        toReturn = hitList.OrderBy(x =>
+            Vector3.Distance(new Vector3(ray.origin.x, x.transform.position.y, ray.origin.z), x.transform.position)
         ).ToList();
 
-        if( !hitsList.First().collider.gameObject.TryGetComponent(out WallPointScript hitWallPoint ))return;
-        currentSelection = hitWallPoint;
-        currentSelection.isSelected = true;
-        mooveTry = currentSelection.transform.position;
-        mooveTryOrigine.transform.position = currentSelection.linkedTile.transform.position;
-        mooveTryOrigine.radius = currentSelection.maxMouvment;
+        return true;
 
     }
-    private void OnDrawGizmos()
-    {
-        Gizmos.DrawCube(mooveTry,Vector3.one);
-    }
-    private void MooveSelected()
+
+    private static void FilterCondition(List<RaycastHit> aList,List<string> yList,out List<RaycastHit> returnList)
     {
        
-        Vector2 mouseMoove = mouse.ReadValue<Vector2>();
-        Vector3 resultMouvment = new Vector3(mouseMoove.x, 0, mouseMoove.y) * (Time.deltaTime * mouseSpeed);
-        resultMouvment = Vector3.ClampMagnitude(resultMouvment,10);
-        if ((Vector3.Distance(mooveTry + resultMouvment, currentSelection.linkedTile.transform.position) <=
-              currentSelection.maxMouvment))
-        {
-            mooveTry += resultMouvment;
-            
-        }
-        
-        mooveTry += resultMouvment;
-        if (Vector3.Distance(mooveTry, currentSelection.linkedTile.transform.position) <= currentSelection.maxMouvment)
-        {
-            wallCreationCounter = 0;
-            mooveTry += resultMouvment;
-            currentSelection.transform.position = mooveTryOrigine.ClosestPoint(mooveTry);
-            
-            if (unCollideWallOnMouv)
-            {
-                currentSelection.walls.ForEach(x=>x.ToggleColision(true));
-            }
-            currentSelection.walls.ForEach(x => x.Moove());
-            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
-            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.2f).ForEach(x=>x.SetFeedBackColor(colorBreak));
-        }
-        else if (wallCreationCounter >= wallCreationCounterMax)
-        {
-
-            wallCreationCounter = 0;
-            Vector3 cachePos = currentSelection.transform.position;
-            WallPointScript cache = currentSelection;
-            currentSelection.transform.position = currentSelection.linkedTile.transform.position;
-            if (unCollideWallOnMouv)
-            {
-                currentSelection.walls.ForEach(x=>x.ToggleColision(false));
-            }
-            currentSelection.walls.ForEach(x => x.Moove());
-            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
-            ;
-            currentSelection.isSelected = false;
-
-            currentSelection = wallCreator.ExtendWallPoint(cachePos);
-            currentSelection.isSelected = true;
-            currentSelection.linkedTile = cache.linkedTile;
-            wallCreator.ExtendWall(currentSelection, cache);
-
-
-        }
-        else
-        {
-            currentSelection.transform.position = mooveTryOrigine.ClosestPoint(mooveTry);
-            if (unCollideWallOnMouv)
-            {
-                currentSelection.walls.ForEach(x=>x.ToggleColision(true));
-            }
-            currentSelection.walls.ForEach(x => x.Moove());
-            currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
-
-            float step = wallCreationCounter/wallCreationCounterMax;
-            float dist = Vector4.Distance(colorBreak, colorBuild);
-            Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
-            
-            currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.2f).ForEach(x=>x.SetFeedBackColor(newColor));
-
-            wallCreationCounter += Time.deltaTime;
-        }
-
+        returnList = aList.Where(a => yList.Any(y => a.collider.gameObject.CompareTag(y))).ToList();
     }
-
-    
-
-    private void FinishMouvement()
-    {
-        
-        if (clic.IsPressed()) return;
-
-        currentSelection.isSelected = false;
-        currentSelection.EndMouvement();
-        currentSelection.walls.ForEach(x=>x.SetFeedBackColor(colorBase));
-
-        float step = wallCreationCounter/wallCreationCounterMax;
-        float dist = Vector4.Distance(colorBreak, colorBuild);
-        Color newColor = Vector4.MoveTowards(colorBreak,colorBuild,step*dist);
-            
-        currentSelection.walls.FindAll(x => x.length > currentSelection.maxMouvment * 1.2f).ForEach(x=>x.SetFeedBackColor(newColor));
-        currentSelection.walls.ForEach(x=>x.ToggleColision(false));
-
-        currentSelection = null;
-
-    }
-
-    
-    
-
 }

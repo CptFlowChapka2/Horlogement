@@ -18,7 +18,7 @@ public class WallCreator : MonoBehaviour
     {
         if (activateNewMode)
         {
-            DestoryWallOnClic();
+            
             DebugClicToWall(); 
         }
         
@@ -78,28 +78,7 @@ public class WallCreator : MonoBehaviour
         firstPoint = null;
     }
 
-    private void DestoryWallOnClic()
-    {
-        if (!Input.GetMouseButtonDown(1)) return;
-        
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit[] hits =Physics.RaycastAll(ray);
-        Debug.DrawRay(ray.origin,ray.direction*300f,Color.red,200f);
-        
-        if (hits.Length<1) return;
-        List<RaycastHit> hitsList = hits.ToList();
-
-        hitsList.RemoveAll(x => !x.collider.gameObject.CompareTag("Wall"));
-        if (hitsList.Count<1) return;
-        hitsList = hitsList.OrderBy(
-            x => Vector3.Distance(new Vector3(ray.origin.x,x.transform.position.y,ray.origin.z),x.transform.position)
-        ).ToList();
-        
-        if (hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWallPoint))
-        {
-            hitWallPoint.Break();
-        }
-    }
+   
 
     public void CreateWall(Tile one, Tile two)
     {
@@ -131,10 +110,13 @@ public class WallCreator : MonoBehaviour
 
     
 
-    public void CreateWallPoint(Tile tile)
+    public WallPointScript CreateWallPoint(Tile tile)
     {
+        
         GameObject newWallPoint= Instantiate(wallPointPrefab, tile.transform.position, Quaternion.identity);
-        newWallPoint.GetComponent<WallPointScript>().Create(tile);
+        WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
+        toReturn.Create(tile);
+        return toReturn;
     }
     
     public WallPointScript ExtendWallPoint(Vector3 origine)
