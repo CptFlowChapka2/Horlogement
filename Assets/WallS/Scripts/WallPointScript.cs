@@ -86,6 +86,7 @@ public class WallPointScript : MonoBehaviour
 
             Destroy(gameObject);
         }
+        walls.ForEach(x=>x.ToggleColision(false));
 
         results = null;
     }

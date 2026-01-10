@@ -79,12 +79,12 @@ public class Sculptor : MonoBehaviour
             secondTilePoint = wallCreator.ExtendWallPoint(firstTilePoint.transform.position+Vector3.up);
             wallCreator.ExtendWall(firstTilePoint,secondTilePoint);
             secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.black));
-            secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
+            secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
             return;
         }
         if(secondTilePoint is null) return;
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.white));
-        secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
+        secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
         secondTilePoint.EndMouvement();
         firstTile = null;
         secondTilePoint = null;
@@ -98,6 +98,8 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
+
+        
 
     }
 

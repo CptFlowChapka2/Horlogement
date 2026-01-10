@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WallScript : MonoBehaviour
 {
-    private Collider thisCollider;
+    public Collider thisCollider;
     public WallPointScript one;
     public WallPointScript two;
     public float length;
