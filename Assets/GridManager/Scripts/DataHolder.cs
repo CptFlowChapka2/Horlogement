@@ -19,35 +19,36 @@ public class DataHolder : MonoBehaviour
 {
     public GameObject intantiateDummy;
 
-    [SerializeField] private Material color0 ;
-    [SerializeField] private Material color1 ;
-    [SerializeField] private Material color2 ;
-    [SerializeField] private Material color3 ;
-    [SerializeField] private Material color4 ;
-    [SerializeField] private Material color5;
-    [SerializeField] private Material color6;
+    
     
     
     [Space][Header("identity 0")][Space]
+    [SerializeField] private Material color0 ;
     [SerializeField] private AudioClip sound_0_bounce ;
     [SerializeField] private AudioClip sound_0_fuse ;
     
     [Space][Header("identity 1")][Space]
+    [SerializeField] private Material color1 ;
     
     [SerializeField] private AudioClip sound_1_bounce ;
     [SerializeField] private AudioClip sound_1_fuse ;
    
     [Space][Header("identity 2")][Space]
+    [SerializeField] private Material color2 ;
+    
     
     [SerializeField] private AudioClip sound_2_bounce ;
     [SerializeField] private AudioClip sound_2_fuse ;
     [Space][Header("identity 3")][Space]
+    [SerializeField] private Material color3 ;
 
     [SerializeField] private AudioClip sound_3_bounce ;
     [SerializeField] private AudioClip sound_3_fuse ;
     
     
     [Space][Header("identity 4")][Space]
+    [SerializeField] private Material color4 ;
+    
 
     [SerializeField] private AudioClip sound_4_bounce ;
     [SerializeField] private AudioClip sound_4_fuse ;
@@ -55,11 +56,14 @@ public class DataHolder : MonoBehaviour
     
     [Space][Header("identity 5")][Space]
 
+    [SerializeField] private Material color5;
+    
     [SerializeField] private AudioClip sound_5_bounce ;
     [SerializeField] private AudioClip sound_5_fuse ;
     
     
     [Space][Header("identity 6")][Space]
+    [SerializeField] private Material color6;
 
     [SerializeField] private AudioClip sound_6_bounce ;
     [SerializeField] private AudioClip sound_6_fuse ;
