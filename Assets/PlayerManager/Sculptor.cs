@@ -83,6 +83,17 @@ public class Sculptor : MonoBehaviour
             return;
         }
         if(secondTilePoint is null) return;
+
+        if (secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).Count >= 1)
+        {
+            Destroy(secondTilePoint.gameObject);
+            secondTilePoint = null;
+            firstTile = null;
+            Destroy(firstTilePoint.gameObject);
+            firstTilePoint = null;
+            return;
+        }
+        
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.white));
         secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
         secondTilePoint.EndMouvement();
@@ -98,6 +109,10 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
+        
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.black));
+        
+        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(Color.red));
 
         
 
@@ -133,5 +148,15 @@ public class Sculptor : MonoBehaviour
     {
        
         returnList = aList.Where(a => yList.Any(y => a.collider.gameObject.CompareTag(y))).ToList();
+    }
+
+    private bool CheckForIntersection(WallScript wallToCheck)
+    {
+        
+        Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,(wallToCheck.length/2)*0.8f);
+        List<Collider> boxCastList = Physics.OverlapBox(wallToCheck.transform.position,dimensionToCheck,wallToCheck.transform.rotation).ToList();
+        boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!x.gameObject.CompareTag("Wall"));
+        return boxCastList.Count > 0;
+
     }
 }

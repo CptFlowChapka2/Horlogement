@@ -175,7 +175,7 @@ public class DataHolder : MonoBehaviour
 
             case identityKeys.notAsignated:
                 throw new InvalidDataException();
-                break;
+                
             case identityKeys.color0:
                 toReturn.Add("bounce",sound_0_bounce);
                 toReturn.Add("fuse",sound_0_fuse);

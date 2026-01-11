@@ -17,11 +17,15 @@ public class WallScript : MonoBehaviour
         one = inOne;
         two = inTwo;
         tileSize = inGridManager.tileSize.x;
-        thisCollider = GetComponent<BoxCollider>();
-        meshRenderer = GetComponent<MeshRenderer>();
+        if (!(thisCollider && meshRenderer))
+        {
+            thisCollider = GetComponent<BoxCollider>();
+            meshRenderer = GetComponent<MeshRenderer>(); 
+        }
         
         one.walls.Add(this);
         two.walls.Add(this);
+        
         
         
         Moove();
@@ -46,12 +50,11 @@ public class WallScript : MonoBehaviour
         length = diff.magnitude;
         if (!check&&length == 0)
         {
-            Debug.Log("lenth is 0");
             Break();
             return;
         }
         
-        transform.localScale = new Vector3(0.3f, 5f, length);
+        transform.localScale = new Vector3(0.2f, 5f, length);
         transform.rotation = Quaternion.LookRotation(diff);
     }
 
@@ -65,19 +68,24 @@ public class WallScript : MonoBehaviour
 
         if (origine == one)
         {
-            Create(newOne,two,gridManager);
+            //Create(newOne,two,gridManager);
+            Create(one,origine,gridManager);
+            
             return;
         }
 
         if (origine == two)
         {
-            Create(one,origine,gridManager);
-            return;
+           // Create(one,origine,gridManager);
+            Create(newOne,two,gridManager);
+            
+            return; 
         }
     }
 
-    public void Break()
+    public void Break() 
     {
+        if(gameObject is null) return;
         Destroy(gameObject);
     }
 

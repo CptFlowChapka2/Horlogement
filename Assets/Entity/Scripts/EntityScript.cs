@@ -114,7 +114,7 @@ public class EntityScript : MonoBehaviour
         Physics.IgnoreLayerCollision(7, 8, true);
 
         initialDefault = thisIdentity.IdentityKey;
-        Debug.Log(thisIdentity.Color);
+        
         child =transform.GetChild(0).Find("Color").gameObject ;
         
         child.GetComponent<MeshRenderer>().material=thisIdentity.Color;
@@ -171,7 +171,7 @@ public class EntityScript : MonoBehaviour
 
     private void Bounce(Vector3 surfaceNormal)
     {
-        Debug.Log(gameObject.name+" just bounced ");
+       
         rb.linearVelocity = Vector3.Reflect(lastVelocity, surfaceNormal);
         
 
@@ -202,7 +202,7 @@ public class EntityScript : MonoBehaviour
     }
     private void FalseJustCreated()
     {
-        Debug.Log("oi");
+      
         justCreated = false;
     }
 
@@ -214,7 +214,7 @@ public class EntityScript : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Killed By outside the cam");
+        
         Destroy(gameObject);
     }
     

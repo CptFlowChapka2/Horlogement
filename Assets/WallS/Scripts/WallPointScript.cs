@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -72,20 +73,17 @@ public class WallPointScript : MonoBehaviour
 
 
         }
-        else if (linkedTile.currentWallPointScript is  null||linkedTile.currentWallPointScript.Equals(this))
+        else if(results.currentWallPointScript)
         {
-            Debug.Log("hi");
-            transform.position = linkedTile.transform.position;
-            walls.ForEach(x=>x.Moove());
-            walls.FindAll(x => x.length > maxMouvment * 1.1f).ForEach(x=>x.Break());
-        }
-        else
-        {
-            walls.FindAll(x=>x is not null).ForEach(x=>x.MergeWalls(results.currentWallPointScript,this,gridManager));
-           
 
+            walls.FindAll(x => x is not null || !ReferenceEquals(x, Type.Missing))
+                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager));
+            walls.ForEach(x=>x.Moove());
+            walls.Clear();
             Destroy(gameObject);
         }
+        
+        
         walls.ForEach(x=>x.ToggleColision(false));
 
         results = null;
@@ -98,7 +96,7 @@ public class WallPointScript : MonoBehaviour
 
         if ((Vector3.Distance(this.transform.position, resultsList.First().transform.position) > anchorCheckRange))
         {
-            Debug.Log("destroy cuz range");
+            
             Destroy(gameObject);
             results = null;
             return true;

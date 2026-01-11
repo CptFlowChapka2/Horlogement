@@ -45,7 +45,7 @@ public class Tile : MonoBehaviour
 
    private void OnMouseDown()
    {
-      Debug.Log("Clicked on " + gridManager.WorldToGridPos(transform.position));
+      
    }
 
    private void OnTriggerStay(Collider other)
