@@ -40,7 +40,7 @@ public class BorealBorder : MonoBehaviour
 
         Transform parent = transform.parent;
         transform.parent = null;
-        transform.localScale=Vector3.one;
+        transform.localScale=Vector3.one;//ici la taille du truc
         transform.parent = parent;
 
     }   
