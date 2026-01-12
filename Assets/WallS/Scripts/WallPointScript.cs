@@ -38,7 +38,7 @@ public class WallPointScript : MonoBehaviour
         mouse = InputSystem.actions.FindAction("Look");
         thisCollider = GetComponent<SphereCollider>();
         
-        InvokeRepeating(nameof(CheckWalls),0,5);
+        InvokeRepeating(nameof(CheckWalls),0,0.2f);
     }
     public void Create(Tile tile)
     {
