@@ -68,18 +68,39 @@ public class WallPointScript : MonoBehaviour
             linkedTile = results;
             transform.position = results.transform.position;
             walls.ForEach(x=>x.Moove());
-            walls.FindAll(x => x.length > maxMouvment * 1.1f).ForEach(x=>x.Break());
+           List<WallScript> toBreak = walls.FindAll(x => x.length > maxMouvment * 1.1f);
+           foreach (var el in toBreak)
+           {
+               WallPointScript one = el.one;   
+               WallPointScript two = el.two;   
+               el.Break();
+               one.CheckWalls();
+               two.CheckWalls();
+           }
+           
 
 
         }
         else if(results.currentWallPointScript)
         {
 
-            walls.FindAll(x => x is not null || !ReferenceEquals(x, Type.Missing))
+            walls.FindAll(x => x!=null)
                 .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager));
             walls.ForEach(x=>x.Moove());
             walls.Clear();
             Destroy(gameObject);
+        }
+        else
+        {
+            
+            foreach (var el in walls)
+            {
+                WallPointScript one = el.one;   
+                WallPointScript two = el.two;   
+                el.Break();
+                one.CheckWalls();
+                two.CheckWalls();
+            }
         }
         
        CheckWalls();
@@ -117,6 +138,10 @@ public class WallPointScript : MonoBehaviour
 
     public void CheckWalls()
     {
-        if (walls.TrueForAll(x => x ==null))  Destroy(gameObject);
+        if (walls.TrueForAll(x => x == null))
+        {
+            walls.Clear();
+            Destroy(gameObject);
+        }
     }
 }

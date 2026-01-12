@@ -22,7 +22,12 @@ public class WallScript : MonoBehaviour
             thisCollider = GetComponent<BoxCollider>();
             meshRenderer = GetComponent<MeshRenderer>(); 
         }
-        
+
+        if (one == two)
+        {
+            Break();
+            return;
+        }
         one.walls.Add(this);
         two.walls.Add(this);
         
@@ -34,7 +39,14 @@ public class WallScript : MonoBehaviour
 
     public void Moove(bool check=true)
     {
-        
+        if (one == two)
+        {
+           
+            
+            Break();
+            
+            return;
+        }
         
         Vector3 a = one.transform.position; 
         Vector3 b = two.transform.position;
@@ -62,6 +74,7 @@ public class WallScript : MonoBehaviour
     {
         if (one == newOne || two == newOne )
         {
+            Debug.Log("oi");
             Break();
             return;
         }
@@ -86,29 +99,23 @@ public class WallScript : MonoBehaviour
     public void Break() 
     {
         if(gameObject is null) return;
-
-        if (one != null)
-        {
-            one.walls.Remove(this);
-            one.Invoke(nameof(one.CheckWalls),Time.deltaTime);
-            
-        }
-        
-        if (two != null)
-        {
-            two.walls.Remove(this);
-            two.Invoke(nameof(one.CheckWalls),Time.deltaTime);
-            
-            
-        }
         
         Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
-        one.walls.Remove(this);
-        two.walls.Remove(this);
+        if (one != null)
+        { one.walls.Remove(this);
+            one.CheckWalls();
+            two.CheckWalls();
+        }
+        
+        if (two != null)
+        { two.walls.Remove(this);
+            one.CheckWalls();
+            two.CheckWalls();
+        }
     }
 
     public void ToggleColision(bool maybe)

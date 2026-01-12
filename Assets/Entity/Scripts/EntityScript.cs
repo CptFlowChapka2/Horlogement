@@ -210,7 +210,7 @@ public class EntityScript : MonoBehaviour
     
     private void OnMouseUp()
     {
-        initialCreated = true;
+        //initialCreated = true;
     }
 
     private void OnBecameInvisible()
