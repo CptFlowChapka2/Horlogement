@@ -121,8 +121,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4ff89445920c5e849a8c80b0feef321a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offMatt: {fileID: 2100000, guid: 3e6e53d7b97da1346b880b4221645fd0, type: 2}
-  onMatt: {fileID: 2100000, guid: b9986000a848ff943997ddae98718459, type: 2}
+  lowFeedBackMatt: {fileID: 2100000, guid: 3e6e53d7b97da1346b880b4221645fd0, type: 2}
+  highFeedBackMatt: {fileID: 2100000, guid: b9986000a848ff943997ddae98718459, type: 2}
   thisIdentityKeys: 1
   onOff: 0
   meshRenderer: {fileID: 8801812324257614781}

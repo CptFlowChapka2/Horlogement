@@ -47,9 +47,12 @@ public class WallPointScript : MonoBehaviour
         gameObject.transform.position = linkedTile.transform.position;
     }
 
-    
+    private void Update()
+    {
+        CheckWalls();
+    }
 
-    
+
     public void EndMouvement()
     {
 
@@ -83,7 +86,6 @@ public class WallPointScript : MonoBehaviour
         }
         else if(results.currentWallPointScript)
         {
-
             walls.FindAll(x => x!=null)
                 .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager));
             walls.ForEach(x=>x.Moove());

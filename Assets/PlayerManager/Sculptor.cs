@@ -134,7 +134,7 @@ public class Sculptor : MonoBehaviour
        toReturn = new List<RaycastHit>();
 
         if (hits.Length < 1) return false;
-        Debug.Log("hit something");
+        
         hitList = hits.ToList();
         
        
@@ -143,7 +143,7 @@ public class Sculptor : MonoBehaviour
         FilterCondition(hitList, tagToSelectList, out hitList);
         
         if (hitList.Count < 1) return false;
-        Debug.Log("hit a valid thing");
+        
         toReturn = hitList.OrderBy(x =>
             Vector3.Distance(new Vector3(ray.origin.x, x.transform.position.y, ray.origin.z), x.transform.position)
         ).ToList();
