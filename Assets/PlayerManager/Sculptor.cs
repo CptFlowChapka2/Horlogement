@@ -49,11 +49,9 @@ public class Sculptor : MonoBehaviour
 
         if (hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))
         {
-            WallPointScript thatOne = hitWall.one;
-            WallPointScript thatTwo = hitWall.two;
+            
             hitWall.Break();
-            thatTwo.CheckWalls();
-            thatOne.CheckWalls();
+           
         }
 
     }

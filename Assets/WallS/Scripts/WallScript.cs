@@ -86,7 +86,16 @@ public class WallScript : MonoBehaviour
     public void Break() 
     {
         if(gameObject is null) return;
+
+        if (one != null)
+        {
+            one.Invoke(nameof(one.CheckWalls),Time.deltaTime);
+        }
         
+        if (two != null)
+        {
+            two.Invoke(nameof(one.CheckWalls),Time.deltaTime);
+        }
         Destroy(gameObject);
     }
 
