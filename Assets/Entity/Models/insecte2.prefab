@@ -912,7 +912,7 @@ MonoBehaviour:
   initialCreated: 0
   initialDefault: 0
   justCreated: 0
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 5509656382291258916}
   inPLay: 0
 --- !u!82 &5509656382291258916
 AudioSource:

@@ -102,6 +102,7 @@ public class EntityScript : MonoBehaviour
         thisIdentity = new EntityIdentity();
         thisIdentity.Create(dataHolder,key, key2);
         rb = GetComponent<Rigidbody>();
+        audioSource=GetComponent<AudioSource>();
         rb.linearVelocity = Vector3.zero;
         
 
