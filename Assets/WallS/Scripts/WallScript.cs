@@ -89,14 +89,16 @@ public class WallScript : MonoBehaviour
 
         if (one != null)
         {
-            one.Invoke(nameof(one.CheckWalls),Time.deltaTime);
             one.walls.Remove(this);
+            one.Invoke(nameof(one.CheckWalls),Time.deltaTime);
+            
         }
         
         if (two != null)
         {
-            two.Invoke(nameof(one.CheckWalls),Time.deltaTime);
             two.walls.Remove(this);
+            two.Invoke(nameof(one.CheckWalls),Time.deltaTime);
+            
             
         }
         
