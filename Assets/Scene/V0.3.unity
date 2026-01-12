@@ -139,6 +139,10 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+    - target: {fileID: 1895324684526878687, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
+      propertyPath: thisIdentityKeys
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 2378818248948873298, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -183,6 +187,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2530197825615873990, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
+      propertyPath: onMatt
+      value: 
+      objectReference: {fileID: 2100000, guid: b950862bed64a1044ae17a1e02ebb9df, type: 2}
     - target: {fileID: 2564290763451342390, guid: 8e9a2264b6e197a46a3512a2efd28e5a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -433,6 +441,10 @@ PrefabInstance:
       propertyPath: speed
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color0
+      value: 
+      objectReference: {fileID: 2100000, guid: a1a8adc22ad455143b96868aed3b56cf, type: 2}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: sound1
       value: 

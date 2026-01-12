@@ -1123,7 +1123,7 @@
     "m_ObjectId": "0d059d6f3843468c97ff80e79b7fa1a3",
     "m_Title": "forme and color ",
     "m_Position": {
-        "x": -1617.3330078125,
+        "x": -1617.33349609375,
         "y": -2225.999755859375
     }
 }
@@ -3662,7 +3662,7 @@
     "m_ObjectId": "677a27b45ecf491ea890d7711251ef6f",
     "m_Title": "Agrandissement et retrecissement",
     "m_Position": {
-        "x": -3306.6669921875,
+        "x": -3306.666748046875,
         "y": 824.66650390625
     }
 }
@@ -4054,8 +4054,8 @@
     "m_ObjectId": "7f518a7e06ea43d888ee3882ff5ca2e2",
     "m_Title": "mouvement noise",
     "m_Position": {
-        "x": -3249.99951171875,
-        "y": -592.0001220703125
+        "x": -3249.999755859375,
+        "y": -592.0
     }
 }
 
@@ -5674,8 +5674,8 @@
     "m_ObjectId": "cb64a8c090884f9798fde172b6740e7e",
     "m_Title": "Mouvement de texture",
     "m_Position": {
-        "x": -2708.6669921875,
-        "y": 1922.666748046875
+        "x": -2708.666748046875,
+        "y": 1922.66650390625
     }
 }
 
