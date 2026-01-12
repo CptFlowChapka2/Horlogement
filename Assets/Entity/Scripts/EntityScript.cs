@@ -117,8 +117,8 @@ public class EntityScript : MonoBehaviour
         
         child =transform.GetChild(0).Find("Color").gameObject ;
         
-        child.GetComponent<MeshRenderer>().material=thisIdentity.Color;
-        child.GetComponent<TrailRenderer>().material=thisIdentity.Color;
+        child.GetComponent<MeshRenderer>().material=thisIdentity.ColorMain;
+        child.GetComponent<TrailRenderer>().material=thisIdentity.ColorTrail;
         Invoke(nameof(FalseJustCreated), invulTime);
 
         if (gameObject.tag.Equals("Entity"))

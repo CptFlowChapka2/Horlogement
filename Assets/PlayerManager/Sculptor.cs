@@ -11,11 +11,13 @@ public class Sculptor : MonoBehaviour
     private Tile firstTile;
     private WallPointScript firstTilePoint;
     private WallPointScript secondTilePoint;
+    public Vector3 cursorCheckSize = new Vector3(1, 30, 1);
 
 
     private void Start()
     {
         wallCreator = GetComponent<WallCreator>();
+        cursorCheckSize = new Vector3(cursorCheckSize.x / 2, cursorCheckSize.y / 2, cursorCheckSize.z / 2);
     }
     private void Update()
     {
@@ -47,7 +49,11 @@ public class Sculptor : MonoBehaviour
 
         if (hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))
         {
+            WallPointScript thatOne = hitWall.one;
+            WallPointScript thatTwo = hitWall.two;
             hitWall.Break();
+            thatTwo.CheckWalls();
+            thatOne.CheckWalls();
         }
 
     }
@@ -118,10 +124,11 @@ public class Sculptor : MonoBehaviour
 
     }
 
-    private static bool SelectObjectByCursor(string[] tagToSelect, out List<RaycastHit> toReturn)
+    private bool SelectObjectByCursor(string[] tagToSelect, out List<RaycastHit> toReturn)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit[] hits = Physics.RaycastAll(ray);
+        RaycastHit[] hits = Physics.BoxCastAll(ray.origin,cursorCheckSize,ray.direction);
+        
        List<RaycastHit> hitList = new List<RaycastHit>();
        toReturn = new List<RaycastHit>();
 

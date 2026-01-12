@@ -13,7 +13,8 @@ public class EntityIdentity
         holder = dataHolder;
         identityKeys tempIdentity = MergeIdentity(key,key2);
         IdentityKey = tempIdentity;
-        Color = (Material)holder.entityIdentity[tempIdentity]["color"];
+        ColorMain = ((Dictionary<string,Material>)holder.entityIdentity[tempIdentity]["color"])["main"];
+        ColorTrail = ((Dictionary<string,Material>)holder.entityIdentity[tempIdentity]["color"])["trail"];
         DefaultDirection =(Vector3)holder.entityIdentity[tempIdentity]["Vector"];
         SoundBounce = ((Dictionary<string,AudioClip>)holder.entityIdentity[tempIdentity]["sound"])["bounce"];
         SoundFuse = ((Dictionary<string,AudioClip>)holder.entityIdentity[tempIdentity]["sound"])["fuse"];
@@ -22,7 +23,8 @@ public class EntityIdentity
 
     public identityKeys IdentityKey { get; set; }
 
-    public Material Color { get; set; }
+    public Material ColorTrail { get; set; }
+    public Material ColorMain { get; set; }
 
     public AudioClip SoundBounce { get; set; }
     public AudioClip SoundFuse { get; set; }

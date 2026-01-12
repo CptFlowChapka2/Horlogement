@@ -28,10 +28,7 @@ public class WallPointScript : MonoBehaviour
 
 
 
-    private void Update()
-    {
-        if (walls.TrueForAll(x => x is null))  DestroyImmediate(gameObject);
-    }
+   
 
     private void Start()
     {
@@ -40,6 +37,8 @@ public class WallPointScript : MonoBehaviour
         wallCreator = FindAnyObjectByType<WallCreator>();
         mouse = InputSystem.actions.FindAction("Look");
         thisCollider = GetComponent<SphereCollider>();
+        
+        InvokeRepeating(nameof(CheckWalls),0,5);
     }
     public void Create(Tile tile)
     {
@@ -83,7 +82,7 @@ public class WallPointScript : MonoBehaviour
             Destroy(gameObject);
         }
         
-        
+       CheckWalls();
         walls.ForEach(x=>x.ToggleColision(false));
 
         results = null;
@@ -114,5 +113,10 @@ public class WallPointScript : MonoBehaviour
             linkedTile.currentWallPointScript = null;
         }
         
+    }
+
+    public void CheckWalls()
+    {
+        if (walls.TrueForAll(x => x ==null))  Destroy(gameObject);
     }
 }
