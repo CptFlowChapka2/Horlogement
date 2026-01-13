@@ -11,11 +11,13 @@ public class Sculptor : MonoBehaviour
     private Tile firstTile;
     private WallPointScript firstTilePoint;
     private WallPointScript secondTilePoint;
+    public Vector3 cursorCheckSize = new Vector3(1, 30, 1);
 
 
     private void Start()
     {
         wallCreator = GetComponent<WallCreator>();
+        cursorCheckSize = new Vector3(cursorCheckSize.x / 2, cursorCheckSize.y / 2, cursorCheckSize.z / 2);
     }
     private void Update()
     {
@@ -47,7 +49,12 @@ public class Sculptor : MonoBehaviour
 
         if (hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))
         {
+            WallPointScript one = hitWall.one;   
+            WallPointScript two = hitWall.two;   
             hitWall.Break();
+            one.CheckWalls();
+            two.CheckWalls();
+           
         }
 
     }
@@ -83,6 +90,17 @@ public class Sculptor : MonoBehaviour
             return;
         }
         if(secondTilePoint is null) return;
+
+        if (secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).Count >= 1)
+        {
+            Destroy(secondTilePoint.gameObject);
+            secondTilePoint = null;
+            firstTile = null;
+            Destroy(firstTilePoint.gameObject);
+            firstTilePoint = null;
+            return;
+        }
+        
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.white));
         secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
         secondTilePoint.EndMouvement();
@@ -98,20 +116,25 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
+        
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.black));
+        
+        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(Color.red));
 
         
 
     }
 
-    private static bool SelectObjectByCursor(string[] tagToSelect, out List<RaycastHit> toReturn)
+    private bool SelectObjectByCursor(string[] tagToSelect, out List<RaycastHit> toReturn)
     {
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        RaycastHit[] hits = Physics.RaycastAll(ray);
+        RaycastHit[] hits = Physics.BoxCastAll(ray.origin,cursorCheckSize,ray.direction);
+        
        List<RaycastHit> hitList = new List<RaycastHit>();
        toReturn = new List<RaycastHit>();
 
         if (hits.Length < 1) return false;
-        Debug.Log("hit something");
+        
         hitList = hits.ToList();
         
        
@@ -120,7 +143,7 @@ public class Sculptor : MonoBehaviour
         FilterCondition(hitList, tagToSelectList, out hitList);
         
         if (hitList.Count < 1) return false;
-        Debug.Log("hit a valid thing");
+        
         toReturn = hitList.OrderBy(x =>
             Vector3.Distance(new Vector3(ray.origin.x, x.transform.position.y, ray.origin.z), x.transform.position)
         ).ToList();
@@ -133,5 +156,15 @@ public class Sculptor : MonoBehaviour
     {
        
         returnList = aList.Where(a => yList.Any(y => a.collider.gameObject.CompareTag(y))).ToList();
+    }
+
+    private bool CheckForIntersection(WallScript wallToCheck)
+    {
+        
+        Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,(wallToCheck.length/2)*0.8f);
+        List<Collider> boxCastList = Physics.OverlapBox(wallToCheck.transform.position,dimensionToCheck,wallToCheck.transform.rotation).ToList();
+        boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!x.gameObject.CompareTag("Wall"));
+        return boxCastList.Count > 0;
+
     }
 }

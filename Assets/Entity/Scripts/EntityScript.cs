@@ -102,6 +102,7 @@ public class EntityScript : MonoBehaviour
         thisIdentity = new EntityIdentity();
         thisIdentity.Create(dataHolder,key, key2);
         rb = GetComponent<Rigidbody>();
+        audioSource=GetComponent<AudioSource>();
         rb.linearVelocity = Vector3.zero;
         
 
@@ -114,11 +115,11 @@ public class EntityScript : MonoBehaviour
         Physics.IgnoreLayerCollision(7, 8, true);
 
         initialDefault = thisIdentity.IdentityKey;
-        Debug.Log(thisIdentity.Color);
+        
         child =transform.GetChild(0).Find("Color").gameObject ;
         
-        child.GetComponent<MeshRenderer>().material=thisIdentity.Color;
-        child.GetComponent<TrailRenderer>().material=thisIdentity.Color;
+        child.GetComponent<MeshRenderer>().material=thisIdentity.ColorMain;
+        child.GetComponent<TrailRenderer>().material=thisIdentity.ColorTrail;
         Invoke(nameof(FalseJustCreated), invulTime);
 
         if (gameObject.tag.Equals("Entity"))
@@ -171,7 +172,7 @@ public class EntityScript : MonoBehaviour
 
     private void Bounce(Vector3 surfaceNormal)
     {
-        Debug.Log(gameObject.name+" just bounced ");
+       
         rb.linearVelocity = Vector3.Reflect(lastVelocity, surfaceNormal);
         
 
@@ -202,19 +203,19 @@ public class EntityScript : MonoBehaviour
     }
     private void FalseJustCreated()
     {
-        Debug.Log("oi");
+      
         justCreated = false;
     }
 
     
     private void OnMouseUp()
     {
-        initialCreated = true;
+        //initialCreated = true;
     }
 
     private void OnBecameInvisible()
     {
-        Debug.Log("Killed By outside the cam");
+        
         Destroy(gameObject);
     }
     

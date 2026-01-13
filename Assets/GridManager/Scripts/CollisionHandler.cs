@@ -64,6 +64,7 @@ public class CollisionHandler : MonoBehaviour
             fusedEntityScript.speed = speed;
             fusedEntityScript.OnCreation(identityKeysList[0], identityKeysList.Count < 2 ? default : identityKeysList[1],
                 fusedEntityScript.CreateDir(vector3s[1], vector3s[2]));
+            fusedEntityScript.audioSource.PlayOneShot(fusedEntityScript.thisIdentity.SoundFuse);
 
 
         }

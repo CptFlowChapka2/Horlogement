@@ -6,6 +6,8 @@ using UnityEngine;
 public class Boreal : MonoBehaviour
 {
     public List<GameObject> allEntity = new List<GameObject>();
+    public float cooldownMax = 0.6f;
+    public float cooldownCurrent = 0f;
     private List<BorealBorder> allBorder = new List<BorealBorder>();
     private List<GameObject> allVoidWall = new List<GameObject>();
     private GameObject theVoid;
@@ -33,7 +35,17 @@ public class Boreal : MonoBehaviour
 
         if ((allEntity.Count >= minEntity))
         {
+            allBorder.ForEach(x=>x.ChangeMat(false));
+        }
+        else
+        {
+            allBorder.ForEach(x=>x.ChangeMat(true));
+        }
+
+        if (cooldownCurrent<=cooldownMax)
+        {
             allBorder.ForEach(x=>x.SetUnSpawnable());
+            cooldownCurrent += 1 * Time.deltaTime;
             return;
         }
         allBorder.ForEach(x=>x.SetSpawnable());

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Unity.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -27,10 +28,7 @@ public class WallPointScript : MonoBehaviour
 
 
 
-    private void Update()
-    {
-        if (walls.TrueForAll(x => x is null))  DestroyImmediate(gameObject);
-    }
+   
 
     private void Start()
     {
@@ -39,6 +37,8 @@ public class WallPointScript : MonoBehaviour
         wallCreator = FindAnyObjectByType<WallCreator>();
         mouse = InputSystem.actions.FindAction("Look");
         thisCollider = GetComponent<SphereCollider>();
+        
+        //InvokeRepeating(nameof(CheckWalls),0,0.2f);
     }
     public void Create(Tile tile)
     {
@@ -47,9 +47,12 @@ public class WallPointScript : MonoBehaviour
         gameObject.transform.position = linkedTile.transform.position;
     }
 
-    
+    private void Update()
+    {
+        CheckWalls();
+    }
 
-    
+
     public void EndMouvement()
     {
 
@@ -68,24 +71,41 @@ public class WallPointScript : MonoBehaviour
             linkedTile = results;
             transform.position = results.transform.position;
             walls.ForEach(x=>x.Moove());
-            walls.FindAll(x => x.length > maxMouvment * 1.1f).ForEach(x=>x.Break());
+           List<WallScript> toBreak = walls.FindAll(x => x.length > maxMouvment * 1.1f);
+           foreach (var el in toBreak)
+           {
+               WallPointScript one = el.one;   
+               WallPointScript two = el.two;   
+               el.Break();
+               one.CheckWalls();
+               two.CheckWalls();
+           }
+           
 
 
         }
-        else if (linkedTile.currentWallPointScript is  null||linkedTile.currentWallPointScript.Equals(this))
+        else if(results.currentWallPointScript)
         {
-            Debug.Log("hi");
-            transform.position = linkedTile.transform.position;
+            walls.FindAll(x => x!=null)
+                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager));
             walls.ForEach(x=>x.Moove());
-            walls.FindAll(x => x.length > maxMouvment * 1.1f).ForEach(x=>x.Break());
+            walls.Clear();
+            Destroy(gameObject);
         }
         else
         {
-            walls.FindAll(x=>x is not null).ForEach(x=>x.MergeWalls(results.currentWallPointScript,this,gridManager));
-           
-
-            Destroy(gameObject);
+            
+            foreach (var el in walls)
+            {
+                WallPointScript one = el.one;   
+                WallPointScript two = el.two;   
+                el.Break();
+                one.CheckWalls();
+                two.CheckWalls();
+            }
         }
+        
+       CheckWalls();
         walls.ForEach(x=>x.ToggleColision(false));
 
         results = null;
@@ -98,7 +118,7 @@ public class WallPointScript : MonoBehaviour
 
         if ((Vector3.Distance(this.transform.position, resultsList.First().transform.position) > anchorCheckRange))
         {
-            Debug.Log("destroy cuz range");
+            
             Destroy(gameObject);
             results = null;
             return true;
@@ -116,5 +136,14 @@ public class WallPointScript : MonoBehaviour
             linkedTile.currentWallPointScript = null;
         }
         
+    }
+
+    public void CheckWalls()
+    {
+        if (walls.TrueForAll(x => x == null))
+        {
+            walls.Clear();
+            Destroy(gameObject);
+        }
     }
 }

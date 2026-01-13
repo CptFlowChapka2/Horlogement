@@ -17,11 +17,20 @@ public class WallScript : MonoBehaviour
         one = inOne;
         two = inTwo;
         tileSize = inGridManager.tileSize.x;
-        thisCollider = GetComponent<BoxCollider>();
-        meshRenderer = GetComponent<MeshRenderer>();
-        
+        if (!(thisCollider && meshRenderer))
+        {
+            thisCollider = GetComponent<BoxCollider>();
+            meshRenderer = GetComponent<MeshRenderer>(); 
+        }
+
+        if (one == two)
+        {
+            Break();
+            return;
+        }
         one.walls.Add(this);
         two.walls.Add(this);
+        
         
         
         Moove();
@@ -30,7 +39,14 @@ public class WallScript : MonoBehaviour
 
     public void Moove(bool check=true)
     {
-        
+        if (one == two)
+        {
+           
+            
+            Break();
+            
+            return;
+        }
         
         Vector3 a = one.transform.position; 
         Vector3 b = two.transform.position;
@@ -46,12 +62,11 @@ public class WallScript : MonoBehaviour
         length = diff.magnitude;
         if (!check&&length == 0)
         {
-            Debug.Log("lenth is 0");
             Break();
             return;
         }
         
-        transform.localScale = new Vector3(0.3f, 5f, length);
+        transform.localScale = new Vector3(0.2f, 5f, length);
         transform.rotation = Quaternion.LookRotation(diff);
     }
 
@@ -59,32 +74,48 @@ public class WallScript : MonoBehaviour
     {
         if (one == newOne || two == newOne )
         {
+            Debug.Log("oi");
             Break();
             return;
         }
 
         if (origine == one)
         {
-            Create(newOne,two,gridManager);
+            //Create(newOne,two,gridManager);
+            Create(one,origine,gridManager);
+            
             return;
         }
 
         if (origine == two)
         {
-            Create(one,origine,gridManager);
-            return;
+           // Create(one,origine,gridManager);
+            Create(newOne,two,gridManager);
+            
+            return; 
         }
     }
 
-    public void Break()
+    public void Break() 
     {
+        if(gameObject is null) return;
+        
         Destroy(gameObject);
     }
 
     private void OnDestroy()
     {
-        one.walls.Remove(this);
-        two.walls.Remove(this);
+        if (one != null)
+        { one.walls.Remove(this);
+            one.CheckWalls();
+            two.CheckWalls();
+        }
+        
+        if (two != null)
+        { two.walls.Remove(this);
+            one.CheckWalls();
+            two.CheckWalls();
+        }
     }
 
     public void ToggleColision(bool maybe)
