@@ -64,6 +64,7 @@ GameObject:
   - component: {fileID: 6869927631272565049}
   - component: {fileID: 4937975755028435810}
   - component: {fileID: 855399662892286117}
+  - component: {fileID: 383878007969577874}
   m_Layer: 0
   m_Name: PlayerManager
   m_TagString: Untagged
@@ -99,9 +100,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82bbf07b449c6f74c962fa0d7e7a400c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activateNewMode: 0
   wallPrefab: {fileID: 159847252217830659, guid: efacc3e9ff353c04ca3e7f54a229462e, type: 3}
   wallPointPrefab: {fileID: 6806604708571825848, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+  sculptor: {fileID: 855399662892286117}
+  soundHandler: {fileID: 383878007969577874}
   gridManager: {fileID: 0}
+  maxWallSize: 2000
 --- !u!114 &855399662892286117
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -114,9 +119,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 33c38daf456732b44bd33b916174c45c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wallCreationCounterMax: 2
-  wallCreationCounter: 0
-  mouseSpeed: 2
-  checkSize: 1.5
-  unCollideWallOnMouv: 1
-  currentSelection: {fileID: 0}
+  secondTilePoint: {fileID: 0}
+  cursorCheckSize: {x: 1, y: 30, z: 1}
+--- !u!114 &383878007969577874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8543778284721961792}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 139773f30c4e69f42996f770d55501cf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundObjectPrefab: {fileID: 8534816254399505661, guid: d3be94b7f41130b4ba25f9f625b4b9c8, type: 3}
+  soundObjectScriptList: []
+  toDestroySoundObjectScriptList: []

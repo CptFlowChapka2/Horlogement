@@ -9,16 +9,19 @@ public class WallCreator : MonoBehaviour
     public GameObject wallPrefab;
     public GameObject wallPointPrefab;
     public Sculptor sculptor;
+    public SoundHandler soundHandler;
     
     private Tile firstPoint = null;
     public GridManager gridManager;
     private float squareRootof2 =(float)Math.Sqrt(2f) ;
     public float maxWallSize = 1;
+    
 
 
     private void Start()
     {
         sculptor = FindAnyObjectByType<Sculptor>();
+        soundHandler = FindAnyObjectByType<SoundHandler>();
     }
     void Update()
     {
@@ -106,7 +109,7 @@ public class WallCreator : MonoBehaviour
         
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager,sculptor);
+        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager,sculptor,soundHandler);
         
         firstPoint = null;
     }
@@ -121,7 +124,7 @@ public class WallCreator : MonoBehaviour
         
         GameObject newWallPoint= Instantiate(wallPointPrefab, tile.transform.position, Quaternion.identity);
         WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
-        toReturn.Create(tile);
+        toReturn.Create(tile,soundHandler);
         return toReturn;
     }
     
@@ -135,7 +138,7 @@ public class WallCreator : MonoBehaviour
     {
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one,two,gridManager,sculptor);
+        wallScript.Create(one,two,gridManager,sculptor,soundHandler);
     }
     
     

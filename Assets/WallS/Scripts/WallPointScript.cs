@@ -23,6 +23,7 @@ public class WallPointScript : MonoBehaviour
     private Sculptor sculptor;
 
     private Tile foundTile;
+    private SoundHandler soundHandler;
 
     public bool isSelected = false;
 
@@ -40,10 +41,11 @@ public class WallPointScript : MonoBehaviour
         
         //InvokeRepeating(nameof(CheckWalls),0,0.2f);
     }
-    public void Create(Tile tile)
+    public void Create(Tile tile,SoundHandler soundHandlar)
     {
         linkedTile = tile;
         tile.currentWallPointScript = this;
+        soundHandler = soundHandlar;
         gameObject.transform.position = linkedTile.transform.position;
     }
 
@@ -87,7 +89,7 @@ public class WallPointScript : MonoBehaviour
         else if(results.currentWallPointScript)
         {
             walls.FindAll(x => x!=null)
-                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor));
+                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor,soundHandler));
             walls.ForEach(x=>x.Moove());
             walls.Clear();
             Destroy(gameObject);

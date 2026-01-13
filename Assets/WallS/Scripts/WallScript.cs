@@ -17,13 +17,16 @@ public class WallScript : MonoBehaviour
     private Sculptor sculptor;
     public Material illegalWall;
     public Material phantomlWall;
+
+    private SoundHandler soundHandler;
     
-    public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager,Sculptor sculptoar)
+    public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager,Sculptor sculptoar,SoundHandler soundhalder)
     {
         one = inOne;
         two = inTwo;
         tileSize = inGridManager.tileSize.x;
         sculptor = sculptoar;
+        soundHandler = soundhalder;
         if (!(thisCollider && meshRenderer))
         {
             thisCollider = GetComponent<BoxCollider>();
@@ -89,7 +92,7 @@ public class WallScript : MonoBehaviour
         if (origine == one)
         {
             //Create(newOne,two,gridManager);
-            Create(one,origine,gridManager,sculptor);
+            Create(one,origine,gridManager,sculptor,soundHandler);
             
             return;
         }
@@ -97,7 +100,7 @@ public class WallScript : MonoBehaviour
         if (origine == two)
         {
            // Create(one,origine,gridManager);
-            Create(newOne,two,gridManager,sculptor);
+            Create(newOne,two,gridManager,sculptor,soundHandler);
             
             return; 
         }

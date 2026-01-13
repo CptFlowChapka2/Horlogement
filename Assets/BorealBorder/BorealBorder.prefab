@@ -11,8 +11,8 @@ GameObject:
   - component: {fileID: 6533939300979370332}
   - component: {fileID: 7902519773215396862}
   - component: {fileID: 8801812324257614781}
-  - component: {fileID: 8143894658512821814}
   - component: {fileID: 8662676840359097385}
+  - component: {fileID: 832434738454278160}
   m_Layer: 0
   m_Name: BorealBorder
   m_TagString: Untagged
@@ -88,7 +88,24 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8143894658512821814
+--- !u!114 &8662676840359097385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5013704621719407605}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ff89445920c5e849a8c80b0feef321a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  lowFeedBackMatt: {fileID: 2100000, guid: 3e6e53d7b97da1346b880b4221645fd0, type: 2}
+  highFeedBackMatt: {fileID: 2100000, guid: b9986000a848ff943997ddae98718459, type: 2}
+  thisIdentityKeys: 1
+  onOff: 0
+  meshRenderer: {fileID: 8801812324257614781}
+--- !u!65 &832434738454278160
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -107,22 +124,5 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8662676840359097385
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5013704621719407605}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ff89445920c5e849a8c80b0feef321a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  lowFeedBackMatt: {fileID: 2100000, guid: 3e6e53d7b97da1346b880b4221645fd0, type: 2}
-  highFeedBackMatt: {fileID: 2100000, guid: b9986000a848ff943997ddae98718459, type: 2}
-  thisIdentityKeys: 1
-  onOff: 0
-  meshRenderer: {fileID: 8801812324257614781}
+  m_Size: {x: 10, y: 5.773615, z: 10}
+  m_Center: {x: 0, y: -0.25322878, z: 0}

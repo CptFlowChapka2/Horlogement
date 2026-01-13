@@ -67,6 +67,7 @@ public class BorealBorder : MonoBehaviour
     }
     private void OnMouseUpAsButton()
     {
+        
         if (onOff)
         {
             SpawnEntity();
