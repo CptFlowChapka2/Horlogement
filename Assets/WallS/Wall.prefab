@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 3964517024155126626}
   - component: {fileID: 6006365625801822636}
   - component: {fileID: -4699517979175977062}
+  - component: {fileID: 1686971474476057151}
   m_Layer: 0
   m_Name: Wall
   m_TagString: Wall
@@ -107,8 +108,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 1.0312448, z: 1}
+  m_Center: {x: 0, y: 0.015619211, z: 0}
 --- !u!114 &-4699517979175977062
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -121,6 +122,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 44aca748ac52e4b42bd197e21985f28f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  thisCollider: {fileID: 0}
   one: {fileID: 0}
   two: {fileID: 0}
   length: 0
+  coroutineRunning: 0
+  willDestroylWall: {fileID: 2100000, guid: 2aa16e48dabab594faa04b96dae79338, type: 2}
+  normallWall: {fileID: 2100000, guid: 6d97e4a28e9de7441afaa444ea571eff, type: 2}
+  illegalWall: {fileID: 2100000, guid: 6b3308041179b5c4084f505595c65f0e, type: 2}
+  phantomlWall: {fileID: 2100000, guid: fb45d3672a344af4bb32bf771c11635c, type: 2}
+--- !u!65 &1686971474476057151
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 159847252217830659}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 3.8783507, y: 0.41100982, z: 1}
+  m_Center: {x: 0.05103685, y: 0.7055061, z: 0}

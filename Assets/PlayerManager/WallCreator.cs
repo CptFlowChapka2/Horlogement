@@ -8,12 +8,18 @@ public class WallCreator : MonoBehaviour
     public bool activateNewMode = true;
     public GameObject wallPrefab;
     public GameObject wallPointPrefab;
-
+    public Sculptor sculptor;
+    
     private Tile firstPoint = null;
     public GridManager gridManager;
     private float squareRootof2 =(float)Math.Sqrt(2f) ;
     public float maxWallSize = 1;
 
+
+    private void Start()
+    {
+        sculptor = FindAnyObjectByType<Sculptor>();
+    }
     void Update()
     {
         if (activateNewMode)
@@ -100,7 +106,7 @@ public class WallCreator : MonoBehaviour
         
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager);
+        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager,sculptor);
         
         firstPoint = null;
     }
@@ -129,7 +135,7 @@ public class WallCreator : MonoBehaviour
     {
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one,two,gridManager);
+        wallScript.Create(one,two,gridManager,sculptor);
     }
     
     

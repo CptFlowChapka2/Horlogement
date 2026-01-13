@@ -10,8 +10,10 @@ public class Sculptor : MonoBehaviour
     private WallCreator wallCreator;
     private Tile firstTile;
     private WallPointScript firstTilePoint;
-    private WallPointScript secondTilePoint;
+    public WallPointScript secondTilePoint;
     public Vector3 cursorCheckSize = new Vector3(1, 30, 1);
+    
+    
 
 
     private void Start()
@@ -32,6 +34,11 @@ public class Sculptor : MonoBehaviour
 
     private void DestoryWallOnClic()
     {
+        if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;
+
+        if (!hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))return;
+        
+        
         if (!Input.GetMouseButtonDown(1)) return;
 
         if (secondTilePoint is not null)
@@ -43,19 +50,14 @@ public class Sculptor : MonoBehaviour
             firstTilePoint = null;
             return;
         }
-
-        if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;
         
-
-        if (hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))
-        {
             WallPointScript one = hitWall.one;   
             WallPointScript two = hitWall.two;   
             hitWall.Break();
             one.CheckWalls();
             two.CheckWalls();
            
-        }
+        
 
     }
 
@@ -85,7 +87,7 @@ public class Sculptor : MonoBehaviour
 
             secondTilePoint = wallCreator.ExtendWallPoint(firstTilePoint.transform.position+Vector3.up);
             wallCreator.ExtendWall(firstTilePoint,secondTilePoint);
-            secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.black));
+            secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.phantomlWall));
             secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
             return;
         }
@@ -101,7 +103,7 @@ public class Sculptor : MonoBehaviour
             return;
         }
         
-        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.white));
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.normallWall));
         secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
         secondTilePoint.EndMouvement();
         firstTile = null;
@@ -117,9 +119,9 @@ public class Sculptor : MonoBehaviour
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
         
-        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(Color.black));
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.phantomlWall));
         
-        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(Color.red));
+        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(y.illegalWall));
 
         
 

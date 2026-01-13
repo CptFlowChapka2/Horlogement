@@ -87,7 +87,7 @@ public class WallPointScript : MonoBehaviour
         else if(results.currentWallPointScript)
         {
             walls.FindAll(x => x!=null)
-                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager));
+                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor));
             walls.ForEach(x=>x.Moove());
             walls.Clear();
             Destroy(gameObject);

@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -10,13 +11,19 @@ public class WallScript : MonoBehaviour
     public float length;
     private float tileSize;
     private MeshRenderer meshRenderer;
-
+    public bool coroutineRunning = false;
+    public Material willDestroylWall;
+    public Material normallWall;
+    private Sculptor sculptor;
+    public Material illegalWall;
+    public Material phantomlWall;
     
-    public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager)
+    public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager,Sculptor sculptoar)
     {
         one = inOne;
         two = inTwo;
         tileSize = inGridManager.tileSize.x;
+        sculptor = sculptoar;
         if (!(thisCollider && meshRenderer))
         {
             thisCollider = GetComponent<BoxCollider>();
@@ -82,7 +89,7 @@ public class WallScript : MonoBehaviour
         if (origine == one)
         {
             //Create(newOne,two,gridManager);
-            Create(one,origine,gridManager);
+            Create(one,origine,gridManager,sculptor);
             
             return;
         }
@@ -90,7 +97,7 @@ public class WallScript : MonoBehaviour
         if (origine == two)
         {
            // Create(one,origine,gridManager);
-            Create(newOne,two,gridManager);
+            Create(newOne,two,gridManager,sculptor);
             
             return; 
         }
@@ -123,9 +130,27 @@ public class WallScript : MonoBehaviour
         thisCollider.isTrigger = maybe;
     }
 
-    public void SetFeedBackColor(Color color)
+    public void SetFeedBackColor(Material color)
     {
-        meshRenderer.material.color = color;
+        
+        meshRenderer.material = color;
+        
     }
+
+    private void OnMouseOver()
+    {
+        if(sculptor.secondTilePoint)return;
+        SetFeedBackColor(willDestroylWall);
+    }
+    private void OnMouseExit()
+    {
+        if (!sculptor.secondTilePoint || meshRenderer.material == willDestroylWall)
+        {
+            SetFeedBackColor(normallWall);
+        }
+        
+    }
+
+
 
 }
