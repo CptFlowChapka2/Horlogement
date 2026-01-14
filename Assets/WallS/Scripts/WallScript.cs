@@ -19,6 +19,7 @@ public class WallScript : MonoBehaviour
     public Material phantomlWall;
 
     private SoundHandler soundHandler;
+
     
     public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager,Sculptor sculptoar,SoundHandler soundhalder)
     {
@@ -147,6 +148,10 @@ public class WallScript : MonoBehaviour
     }
     private void OnMouseExit()
     {
+        if (sculptor.secondTilePoint)
+        {
+            SetFeedBackColor(normallWall);
+        }
         if (!sculptor.secondTilePoint || meshRenderer.material == willDestroylWall)
         {
             SetFeedBackColor(normallWall);
@@ -154,6 +159,7 @@ public class WallScript : MonoBehaviour
         
     }
 
+    
 
 
 }
