@@ -171,7 +171,10 @@ public class Sculptor : MonoBehaviour
         
         Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,(wallToCheck.length/2)*0.8f);
         List<Collider> boxCastList = Physics.OverlapBox(wallToCheck.transform.position,dimensionToCheck,wallToCheck.transform.rotation).ToList();
-        boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!x.gameObject.CompareTag("Wall"));
+        
+        string[] keepTags = {"Wall", "Entity","EntityColor"};
+        boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!keepTags.Contains(x.gameObject.tag));
+        
         return boxCastList.Count > 0;
 
     }
