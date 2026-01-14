@@ -77,6 +77,7 @@ public class WallScript : MonoBehaviour
             return;
         }
         
+        soundHandler.Moove(gameObject);
         transform.localScale = new Vector3(0.2f, 5f, length);
         transform.rotation = Quaternion.LookRotation(diff);
     }

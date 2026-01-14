@@ -113,8 +113,7 @@ public class WallPointScript : MonoBehaviour
                 two.CheckWalls();
             }
         }
-
-        Debug.Assert(soundHandler!=null);
+        soundHandler.Moove(gameObject);
        CheckWalls();
         walls.ForEach(x=>x.ToggleColision(false));
 
@@ -140,9 +139,10 @@ public class WallPointScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        if(soundHandler == null||gameObject == null) return;
         soundHandler.Kill(null,gameObject);
         walls.ForEach(x=>x.Break());
-        if (linkedTile is not null)
+        if (linkedTile is not null) 
         {
             linkedTile.currentWallPointScript = null;
         }

@@ -123,6 +123,7 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
+        soundHandler.Moove(secondTilePoint.gameObject);
         
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.phantomlWall));
         
