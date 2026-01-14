@@ -102,7 +102,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   activateNewMode: 0
   wallPrefab: {fileID: 159847252217830659, guid: efacc3e9ff353c04ca3e7f54a229462e, type: 3}
-  wallPointPrefab: {fileID: 6806604708571825848, guid: 94571cb950d861f4094bfdb6c1fd4dca, type: 3}
+  wallPointPrefab: {fileID: 6806604708571825848, guid: a196ae7c328f356438c77a5e60a04592, type: 3}
   sculptor: {fileID: 855399662892286117}
   soundHandler: {fileID: 383878007969577874}
   gridManager: {fileID: 0}
@@ -121,6 +121,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   secondTilePoint: {fileID: 0}
   cursorCheckSize: {x: 1, y: 30, z: 1}
+  soundHandler: {fileID: 383878007969577874}
+  wallCreate2: {fileID: 8300000, guid: 03bb86596586f8e4d959ea06f32f7287, type: 3}
+  wallCreate1: {fileID: 0}
 --- !u!114 &383878007969577874
 MonoBehaviour:
   m_ObjectHideFlags: 0
