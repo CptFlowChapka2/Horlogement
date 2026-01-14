@@ -24,6 +24,7 @@ public class WallPointScript : MonoBehaviour
 
     private Tile foundTile;
     private SoundHandler soundHandler;
+    public AudioClip wallCreate2;
 
     public bool isSelected = false;
 
@@ -47,6 +48,9 @@ public class WallPointScript : MonoBehaviour
         tile.currentWallPointScript = this;
         soundHandler = soundHandlar;
         gameObject.transform.position = linkedTile.transform.position;
+        
+        
+        soundHandlar.CreateAudioSource(gameObject);
     }
 
     private void Update()
@@ -106,7 +110,9 @@ public class WallPointScript : MonoBehaviour
                 two.CheckWalls();
             }
         }
-        
+
+        Debug.Assert(soundHandler!=null);
+        soundHandler.Play(gameObject,wallCreate2);
        CheckWalls();
         walls.ForEach(x=>x.ToggleColision(false));
 
@@ -132,6 +138,7 @@ public class WallPointScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        soundHandler.Kill(null,gameObject);
         walls.ForEach(x=>x.Break());
         if (linkedTile is not null)
         {
