@@ -102,7 +102,7 @@ public class Sculptor : MonoBehaviour
             Destroy(secondTilePoint.gameObject);
             secondTilePoint = null;
             firstTile = null;
-            Destroy(firstTilePoint.gameObject);
+            firstTilePoint.CheckWalls();
             firstTilePoint = null;
             return;
         }

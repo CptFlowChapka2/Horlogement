@@ -117,7 +117,7 @@ public class WallScript : MonoBehaviour
 
     public void Break() 
     {
-        if(gameObject is null) return;
+        if(gameObject ==null) return;
         
         Destroy(gameObject);
     }
