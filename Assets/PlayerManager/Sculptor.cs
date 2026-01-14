@@ -24,7 +24,7 @@ public class Sculptor : MonoBehaviour
     private void Update()
     {
         DestoryWallOnClic();
-        if (secondTilePoint is not null)
+        if (secondTilePoint != null)
         {
             MoovePhantom();
         }
@@ -41,7 +41,7 @@ public class Sculptor : MonoBehaviour
         
         if (!Input.GetMouseButtonDown(1)) return;
 
-        if (secondTilePoint is not null)
+        if (secondTilePoint != null)
         {
             Destroy(secondTilePoint.gameObject);
             secondTilePoint = null;
