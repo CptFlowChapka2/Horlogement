@@ -124,14 +124,16 @@ public class WallCreator : MonoBehaviour
         
         GameObject newWallPoint= Instantiate(wallPointPrefab, tile.transform.position, Quaternion.identity);
         WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
-        toReturn.Create(tile,soundHandler);
+        toReturn.Create(soundHandler,tile);
         return toReturn;
     }
     
     public WallPointScript ExtendWallPoint(Vector3 origine)
     {
         GameObject newWallPoint= Instantiate(wallPointPrefab, origine, Quaternion.identity);
-        return newWallPoint.GetComponent<WallPointScript>();
+        WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
+        toReturn.Create(soundHandler);
+        return toReturn;
     }
 
     public void ExtendWall(WallPointScript one ,WallPointScript two)

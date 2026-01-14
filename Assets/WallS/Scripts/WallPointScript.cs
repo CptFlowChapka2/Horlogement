@@ -42,13 +42,16 @@ public class WallPointScript : MonoBehaviour
         
         //InvokeRepeating(nameof(CheckWalls),0,0.2f);
     }
-    public void Create(Tile tile,SoundHandler soundHandlar)
+    public void Create(SoundHandler soundHandlar,Tile tile=null)
     {
-        linkedTile = tile;
-        tile.currentWallPointScript = this;
-        soundHandler = soundHandlar;
-        gameObject.transform.position = linkedTile.transform.position;
+        if (tile is not null)
+        {
+            linkedTile = tile;
+            tile.currentWallPointScript = this;
         
+            gameObject.transform.position = linkedTile.transform.position;
+        }
+        soundHandler = soundHandlar;
         
         soundHandlar.CreateAudioSource(gameObject);
     }
