@@ -23,6 +23,8 @@ public class WallPointScript : MonoBehaviour
     private Sculptor sculptor;
 
     private Tile foundTile;
+    private SoundHandler soundHandler;
+   
 
     public bool isSelected = false;
 
@@ -40,11 +42,18 @@ public class WallPointScript : MonoBehaviour
         
         //InvokeRepeating(nameof(CheckWalls),0,0.2f);
     }
-    public void Create(Tile tile)
+    public void Create(SoundHandler soundHandlar,Tile tile=null)
     {
-        linkedTile = tile;
-        tile.currentWallPointScript = this;
-        gameObject.transform.position = linkedTile.transform.position;
+        if (tile is not null)
+        {
+            linkedTile = tile;
+            tile.currentWallPointScript = this;
+        
+            gameObject.transform.position = linkedTile.transform.position;
+        }
+        soundHandler = soundHandlar;
+        
+        soundHandlar.CreateAudioSource(gameObject);
     }
 
     private void Update()
@@ -87,7 +96,7 @@ public class WallPointScript : MonoBehaviour
         else if(results.currentWallPointScript)
         {
             walls.FindAll(x => x!=null)
-                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager));
+                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor,soundHandler));
             walls.ForEach(x=>x.Moove());
             walls.Clear();
             Destroy(gameObject);
@@ -104,7 +113,8 @@ public class WallPointScript : MonoBehaviour
                 two.CheckWalls();
             }
         }
-        
+
+        Debug.Assert(soundHandler!=null);
        CheckWalls();
         walls.ForEach(x=>x.ToggleColision(false));
 
@@ -130,6 +140,7 @@ public class WallPointScript : MonoBehaviour
 
     private void OnDestroy()
     {
+        soundHandler.Kill(null,gameObject);
         walls.ForEach(x=>x.Break());
         if (linkedTile is not null)
         {

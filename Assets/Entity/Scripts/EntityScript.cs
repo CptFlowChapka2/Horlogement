@@ -23,7 +23,8 @@ public class EntityScript : MonoBehaviour
     public identityKeys initialDefault;
     public EntityIdentity thisIdentity = new EntityIdentity();
     public bool justCreated;
-    public AudioSource audioSource;
+   
+    public SoundHandler soundHandler;
 
     public bool inPLay = false;
    
@@ -34,7 +35,9 @@ public class EntityScript : MonoBehaviour
         initialCreated = false;
         dataHolder = FindAnyObjectByType<DataHolder>();
         collisionHandler = FindAnyObjectByType<CollisionHandler>();
-        audioSource=GetComponent<AudioSource>();
+        
+
+        soundHandler=dataHolder.soundHandler;
 
     }
 
@@ -44,7 +47,7 @@ public class EntityScript : MonoBehaviour
         {
             if (inPLay)
             {
-                audioSource.PlayOneShot(thisIdentity.SoundBounce);
+                soundHandler.Play(gameObject,thisIdentity.SoundBounce);
             }
             Vector3 surfaceNormal = other.GetContact(0).normal;
             Bounce(surfaceNormal);
@@ -102,7 +105,7 @@ public class EntityScript : MonoBehaviour
         thisIdentity = new EntityIdentity();
         thisIdentity.Create(dataHolder,key, key2);
         rb = GetComponent<Rigidbody>();
-        audioSource=GetComponent<AudioSource>();
+        soundHandler=dataHolder.soundHandler;
         rb.linearVelocity = Vector3.zero;
         
 
@@ -121,6 +124,10 @@ public class EntityScript : MonoBehaviour
         child.GetComponent<MeshRenderer>().material=thisIdentity.ColorMain;
         child.GetComponent<TrailRenderer>().material=thisIdentity.ColorTrail;
         Invoke(nameof(FalseJustCreated), invulTime);
+        
+        
+        soundHandler.CreateAudioSource(gameObject);
+        
 
         if (gameObject.tag.Equals("Entity"))
         {
@@ -141,14 +148,7 @@ public class EntityScript : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (justCreated)
-        {
-            child.layer = 8;
-        }
-        else
-        {
-            child.layer = 7;
-        }
+        child.layer = justCreated ? 8 : 7;
         
         if (initialCreated)
         {
@@ -230,6 +230,11 @@ public class EntityScript : MonoBehaviour
         }
 
         return child;
+    }
+
+    private void OnDestroy()
+    {
+        soundHandler.Kill(null,gameObject);
     }
 
 

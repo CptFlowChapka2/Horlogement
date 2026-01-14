@@ -8,12 +8,21 @@ public class WallCreator : MonoBehaviour
     public bool activateNewMode = true;
     public GameObject wallPrefab;
     public GameObject wallPointPrefab;
-
+    public Sculptor sculptor;
+    public SoundHandler soundHandler;
+    
     private Tile firstPoint = null;
     public GridManager gridManager;
     private float squareRootof2 =(float)Math.Sqrt(2f) ;
     public float maxWallSize = 1;
+    
 
+
+    private void Start()
+    {
+        sculptor = FindAnyObjectByType<Sculptor>();
+        soundHandler = FindAnyObjectByType<SoundHandler>();
+    }
     void Update()
     {
         if (activateNewMode)
@@ -100,7 +109,7 @@ public class WallCreator : MonoBehaviour
         
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager);
+        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager,sculptor,soundHandler);
         
         firstPoint = null;
     }
@@ -115,21 +124,23 @@ public class WallCreator : MonoBehaviour
         
         GameObject newWallPoint= Instantiate(wallPointPrefab, tile.transform.position, Quaternion.identity);
         WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
-        toReturn.Create(tile);
+        toReturn.Create(soundHandler,tile);
         return toReturn;
     }
     
     public WallPointScript ExtendWallPoint(Vector3 origine)
     {
         GameObject newWallPoint= Instantiate(wallPointPrefab, origine, Quaternion.identity);
-        return newWallPoint.GetComponent<WallPointScript>();
+        WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
+        toReturn.Create(soundHandler);
+        return toReturn;
     }
 
     public void ExtendWall(WallPointScript one ,WallPointScript two)
     {
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one,two,gridManager);
+        wallScript.Create(one,two,gridManager,sculptor,soundHandler);
     }
     
     

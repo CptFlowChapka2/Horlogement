@@ -70,24 +70,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc4cd3d700b588488bd108dcd49794d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  intantiateDummy: {fileID: 8640734319900639471, guid: a6c595872fefade49b04e0bb40d259f4, type: 3}
-  color0: {fileID: 2100000, guid: 32a76832b79e84347ad9df08b12709c3, type: 2}
-  color1: {fileID: 2100000, guid: 1298434fa64657845b6d68550da469d9, type: 2}
-  color2: {fileID: 2100000, guid: 62d5d2a9b0597a248ac93aadadc1c161, type: 2}
-  color3: {fileID: 2100000, guid: 2a66abdbab435b34285b4ca1f420f29c, type: 2}
-  color4: {fileID: 2100000, guid: 1f76aca1994a0ae4ba955448c62fa33f, type: 2}
-  color5: {fileID: 2100000, guid: d73f8bee3933df64f87719b6ac8562b1, type: 2}
-  color6: {fileID: 2100000, guid: f8bfd6b2fdaea8b4bbcaab27da350bf7, type: 2}
-  sound0: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
-  sound1: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
-  sound2: {fileID: 8300000, guid: d5903e78f2789924fa68661d34340242, type: 3}
-  sound3: {fileID: 0}
-  sound4: {fileID: 0}
-  sound5: {fileID: 0}
-  sound6: {fileID: 0}
-  speed: 1
+  intantiateDummy: {fileID: 6798610620599150608, guid: 78b27e681ac2bbf4bb9fe7555f5d43a3, type: 3}
+  soundHandler: {fileID: 0}
+  color_main_0: {fileID: 2100000, guid: 32a76832b79e84347ad9df08b12709c3, type: 2}
+  color_trail_0: {fileID: 2100000, guid: 32a76832b79e84347ad9df08b12709c3, type: 2}
+  sound_0_bounce: {fileID: 8300000, guid: 8c308218474765f4f8f5447f07a70c9a, type: 3}
+  sound_0_fuse: {fileID: 8300000, guid: 33b73be0b2b8f864a9c18558d8012b38, type: 3}
+  color_main_1: {fileID: 2100000, guid: 1298434fa64657845b6d68550da469d9, type: 2}
+  color_trail_1: {fileID: 2100000, guid: 1298434fa64657845b6d68550da469d9, type: 2}
+  sound_1_bounce: {fileID: 8300000, guid: 7d91e87f84cd4b2408a2a0f82fb115d5, type: 3}
+  sound_1_fuse: {fileID: 8300000, guid: 33b73be0b2b8f864a9c18558d8012b38, type: 3}
+  color_main_2: {fileID: 2100000, guid: 62d5d2a9b0597a248ac93aadadc1c161, type: 2}
+  color_trail_2: {fileID: 2100000, guid: 62d5d2a9b0597a248ac93aadadc1c161, type: 2}
+  sound_2_bounce: {fileID: 8300000, guid: 298a1206326bc6a43bbc492f163333ec, type: 3}
+  sound_2_fuse: {fileID: 8300000, guid: 33b73be0b2b8f864a9c18558d8012b38, type: 3}
+  color_main_3: {fileID: 2100000, guid: 2a66abdbab435b34285b4ca1f420f29c, type: 2}
+  color_trail_3: {fileID: 2100000, guid: 2a66abdbab435b34285b4ca1f420f29c, type: 2}
+  sound_3_bounce: {fileID: 8300000, guid: 5e1afd0386619af418de97c0914a0fa6, type: 3}
+  sound_3_fuse: {fileID: 8300000, guid: 33b73be0b2b8f864a9c18558d8012b38, type: 3}
+  color_main_4: {fileID: 2100000, guid: 1f76aca1994a0ae4ba955448c62fa33f, type: 2}
+  color_trail_4: {fileID: 2100000, guid: 1f76aca1994a0ae4ba955448c62fa33f, type: 2}
+  sound_4_bounce: {fileID: 8300000, guid: 746dfdfca4781e7489553bcdf53788bf, type: 3}
+  sound_4_fuse: {fileID: 8300000, guid: 33b73be0b2b8f864a9c18558d8012b38, type: 3}
+  color_main_5: {fileID: 2100000, guid: d73f8bee3933df64f87719b6ac8562b1, type: 2}
+  color_trail_5: {fileID: 2100000, guid: d73f8bee3933df64f87719b6ac8562b1, type: 2}
+  sound_5_bounce: {fileID: 8300000, guid: 10c22c1a34ab37e438cc15cd64942386, type: 3}
+  sound_5_fuse: {fileID: 8300000, guid: 33b73be0b2b8f864a9c18558d8012b38, type: 3}
+  color_main_6: {fileID: 2100000, guid: f8bfd6b2fdaea8b4bbcaab27da350bf7, type: 2}
+  color_trail_6: {fileID: 2100000, guid: f8bfd6b2fdaea8b4bbcaab27da350bf7, type: 2}
+  sound_6_bounce: {fileID: 8300000, guid: f15f329efbdf8c24a83133c7e7f43dd5, type: 3}
+  sound_6_fuse: {fileID: 8300000, guid: 33b73be0b2b8f864a9c18558d8012b38, type: 3}
+  speed: 5
   addedAngle: 51.42
-  allColor: []
 --- !u!114 &1515161670020583064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -113,5 +127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   allEntity: []
+  cooldownMax: 0.6
+  cooldownCurrent: 2
   checkFrequency: 2.5
   minEntity: 2

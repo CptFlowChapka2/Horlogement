@@ -18,6 +18,7 @@ public enum identityKeys
 public class DataHolder : MonoBehaviour
 {
     public GameObject intantiateDummy;
+    public SoundHandler soundHandler;
 
     
     
