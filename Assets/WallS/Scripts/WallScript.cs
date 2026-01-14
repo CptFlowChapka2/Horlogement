@@ -19,7 +19,7 @@ public class WallScript : MonoBehaviour
     public Material phantomlWall;
 
     private SoundHandler soundHandler;
-
+    private bool hasCreated = false;
     
     public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager,Sculptor sculptoar,SoundHandler soundhalder)
     {
@@ -44,6 +44,7 @@ public class WallScript : MonoBehaviour
         
         
         soundhalder.CreateAudioSource(gameObject);
+        hasCreated = true;
         Moove();
         
     }
@@ -76,8 +77,12 @@ public class WallScript : MonoBehaviour
             Break();
             return;
         }
-        
-        soundHandler.Moove(gameObject);
+
+        if (hasCreated)
+        {
+            soundHandler.Moove(gameObject);
+        }
+       
         transform.localScale = new Vector3(0.2f, 5f, length);
         transform.rotation = Quaternion.LookRotation(diff);
     }
