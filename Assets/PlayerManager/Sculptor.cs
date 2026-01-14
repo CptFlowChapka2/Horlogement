@@ -92,7 +92,7 @@ public class Sculptor : MonoBehaviour
             secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.phantomlWall));
             secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
             
-            soundHandler.Play(firstTilePoint.gameObject,wallCreate1);
+            // soundHandler.Play(firstTilePoint.gameObject,wallCreate1);
             return;
         }
         if(secondTilePoint is null) return;
