@@ -12,8 +12,9 @@ public class Sculptor : MonoBehaviour
     private WallPointScript firstTilePoint;
     public WallPointScript secondTilePoint;
     public Vector3 cursorCheckSize = new Vector3(1, 30, 1);
-    
-    
+    public SoundHandler soundHandler;
+    public AudioClip wallCreate2;
+    public AudioClip wallCreate1;
 
 
     private void Start()
@@ -41,7 +42,7 @@ public class Sculptor : MonoBehaviour
         
         if (!Input.GetMouseButtonDown(1)) return;
 
-        if (secondTilePoint != null)
+        if (secondTilePoint != null)//anulation de phatom
         {
             Destroy(secondTilePoint.gameObject);
             secondTilePoint = null;
@@ -50,6 +51,7 @@ public class Sculptor : MonoBehaviour
             firstTilePoint = null;
             return;
         }
+        //destruction
         
             WallPointScript one = hitWall.one;   
             WallPointScript two = hitWall.two;   
@@ -89,6 +91,8 @@ public class Sculptor : MonoBehaviour
             wallCreator.ExtendWall(firstTilePoint,secondTilePoint);
             secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.phantomlWall));
             secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
+            
+            soundHandler.Play(firstTilePoint.gameObject,wallCreate1);
             return;
         }
         if(secondTilePoint is null) return;
@@ -106,6 +110,7 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.normallWall));
         secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
         secondTilePoint.EndMouvement();
+        soundHandler.Play(secondTilePoint.gameObject,wallCreate2);
         firstTile = null;
         secondTilePoint = null;
         firstTilePoint = null;

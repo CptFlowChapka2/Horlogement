@@ -24,7 +24,7 @@ public class WallPointScript : MonoBehaviour
 
     private Tile foundTile;
     private SoundHandler soundHandler;
-    public AudioClip wallCreate2;
+   
 
     public bool isSelected = false;
 
@@ -115,7 +115,6 @@ public class WallPointScript : MonoBehaviour
         }
 
         Debug.Assert(soundHandler!=null);
-        soundHandler.Play(gameObject,wallCreate2);
        CheckWalls();
         walls.ForEach(x=>x.ToggleColision(false));
 
