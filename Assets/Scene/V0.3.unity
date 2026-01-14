@@ -530,6 +530,10 @@ PrefabInstance:
       propertyPath: gridManager
       value: 
       objectReference: {fileID: 1515462796}
+    - target: {fileID: 4937975755028435810, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
+      propertyPath: wallPointPrefab
+      value: 
+      objectReference: {fileID: 6806604708571825848, guid: a196ae7c328f356438c77a5e60a04592, type: 3}
     - target: {fileID: 6869927631272565049, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
       propertyPath: m_LocalPosition.x
       value: 6.6352935
