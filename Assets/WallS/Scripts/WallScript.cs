@@ -43,7 +43,7 @@ public class WallScript : MonoBehaviour
         two.walls.Add(this);
         
         
-        
+        soundhalder.CreateAudioSource(gameObject);
         Moove();
         
     }
