@@ -77,4 +77,16 @@ public class SoundHandler : MonoBehaviour
         
     }
 
+    public bool CheckByValue(SoundObjectScript soundObjectScript)
+    {
+        return accessDico.ContainsValue(soundObjectScript);
+
+    }
+    
+    public bool CheckByKey(GameObject key)
+    {
+        return accessDico.ContainsKey(key);
+
+    }
+
 }

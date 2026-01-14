@@ -41,9 +41,11 @@ public class WallScript : MonoBehaviour
         }
         one.walls.Add(this);
         two.walls.Add(this);
-        
-        
-        soundhalder.CreateAudioSource(gameObject);
+
+
+        if (!soundHandler.CheckByKey(gameObject))
+        {soundhalder.CreateAudioSource(gameObject);
+        }
         hasCreated = true;
         Moove();
         
