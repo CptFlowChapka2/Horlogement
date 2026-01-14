@@ -14,6 +14,8 @@ public class EntityScript : MonoBehaviour
     private Rigidbody rb;
     private Vector3 currentDir;
     private GameObject child;
+    private LightScript lightChild;
+    private Light lightChildScript;
     private SphereCollider childCollider;
     
      
@@ -45,12 +47,14 @@ public class EntityScript : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Wall"))
         {
+            ContactPoint surfaceNormal = other.GetContact(0);
             if (inPLay)
             {
                 soundHandler.Play(gameObject,thisIdentity.SoundBounce);
+                lightChild.Trigger(surfaceNormal.point);
             }
-            Vector3 surfaceNormal = other.GetContact(0).normal;
-            Bounce(surfaceNormal);
+            
+            Bounce(surfaceNormal.normal);
         }
 
        if( !other.gameObject.TryGetComponent<EntityScript>(out EntityScript otherEntityScript)) return;
@@ -120,6 +124,8 @@ public class EntityScript : MonoBehaviour
         initialDefault = thisIdentity.IdentityKey;
         
         child =transform.GetChild(0).Find("Color").gameObject ;
+        lightChild =transform.GetChild(0).Find("Light").gameObject.GetComponent<LightScript>() ;
+        lightChild.ChangeColor(thisIdentity.ColorMain.color);
         
         child.GetComponent<MeshRenderer>().material=thisIdentity.ColorMain;
         child.GetComponent<TrailRenderer>().material=thisIdentity.ColorTrail;
