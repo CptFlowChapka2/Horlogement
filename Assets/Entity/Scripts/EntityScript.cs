@@ -51,7 +51,8 @@ public class EntityScript : MonoBehaviour
             if (inPLay)
             {
                 soundHandler.Play(gameObject,thisIdentity.SoundBounce);
-                lightChild.Trigger(surfaceNormal.point);
+                Vector3 pos = surfaceNormal.otherCollider.ClosestPointOnBounds(surfaceNormal.point + Vector3.up * 5);
+                lightChild.Trigger(pos);
             }
             
             Bounce(surfaceNormal.normal);
@@ -154,6 +155,8 @@ public class EntityScript : MonoBehaviour
 
     private void FixedUpdate()
     {
+        
+        soundHandler.Moove(gameObject);
         child.layer = justCreated ? 8 : 7;
         
         if (initialCreated)
