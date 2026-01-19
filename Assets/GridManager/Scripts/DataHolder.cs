@@ -109,7 +109,7 @@ public class DataHolder : MonoBehaviour
     public Dictionary<identityKeys, Dictionary<string,object>> entityIdentity = new Dictionary<identityKeys, Dictionary<string,object>>();
     
 
-    private void Start()
+    private void Awake()
     {
         CreateDictionary();
     }

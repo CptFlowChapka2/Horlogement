@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 
 public class SoundHandler : MonoBehaviour
@@ -24,6 +25,12 @@ public class SoundHandler : MonoBehaviour
 
     public void Play(GameObject parentKey,AudioClip clip)
     {
+        if (clip == null)
+        {
+            Debug.Log("Received AudioClip is NUll .Check in DataHolder");
+            return;
+        }
+            
         accessDico[parentKey].Play(clip);
     }
     public void Moove(GameObject parentKey)
@@ -42,12 +49,14 @@ public class SoundHandler : MonoBehaviour
 
     public void Kill(SoundObjectScript objectScript,GameObject key=null)
     {
+        
         if (key is not null)
         {
+            
             objectScript = accessDico[key];
         }
 
-        if (objectScript is null) return;
+        if (objectScript == null) return;
         
         if (!objectScript.thisAudioSource.isPlaying && objectScript.parent == null)
         {

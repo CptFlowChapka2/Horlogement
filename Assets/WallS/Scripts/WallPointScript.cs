@@ -142,9 +142,14 @@ public class WallPointScript : MonoBehaviour
     private void OnDestroy()
     {
         if(soundHandler == null||gameObject == null) return;
-        soundHandler.Kill(null,gameObject);
+
+        if (gameObject != null)
+        {
+            soundHandler.Kill(null,gameObject);
+        }
+        
         walls.ForEach(x=>x.Break());
-        if (linkedTile is not null) 
+        if (linkedTile != null) 
         {
             linkedTile.currentWallPointScript = null;
         }
