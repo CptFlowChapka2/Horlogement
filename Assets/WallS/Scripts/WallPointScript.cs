@@ -24,6 +24,7 @@ public class WallPointScript : MonoBehaviour
 
     private Tile foundTile;
     private SoundHandler soundHandler;
+    private DataHolder dataHolder;
    
 
     public bool isSelected = false;
@@ -42,8 +43,9 @@ public class WallPointScript : MonoBehaviour
         
         //InvokeRepeating(nameof(CheckWalls),0,0.2f);
     }
-    public void Create(SoundHandler soundHandlar,Tile tile=null)
+    public void Create(SoundHandler soundHandlar,DataHolder datoHolder,Tile tile=null)
     {
+        dataHolder = datoHolder;
         if (tile is not null)
         {
             linkedTile = tile;
@@ -96,7 +98,7 @@ public class WallPointScript : MonoBehaviour
         else if(results.currentWallPointScript)
         {
             walls.FindAll(x => x!=null)
-                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor,soundHandler));
+                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor,soundHandler,dataHolder));
             walls.ForEach(x=>x.Moove());
             walls.Clear();
             Destroy(gameObject);

@@ -15,6 +15,7 @@ public class WallCreator : MonoBehaviour
     public GridManager gridManager;
     private float squareRootof2 =(float)Math.Sqrt(2f) ;
     public float maxWallSize = 1;
+    public DataHolder dataHolder;
     
 
 
@@ -22,6 +23,7 @@ public class WallCreator : MonoBehaviour
     {
         sculptor = FindAnyObjectByType<Sculptor>();
         soundHandler = FindAnyObjectByType<SoundHandler>();
+        dataHolder = FindAnyObjectByType<DataHolder>();
     }
     void Update()
     {
@@ -109,7 +111,7 @@ public class WallCreator : MonoBehaviour
         
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager,sculptor,soundHandler);
+        wallScript.Create(one.currentWallPointScript,two.currentWallPointScript,gridManager,sculptor,soundHandler,dataHolder);
         
         firstPoint = null;
     }
@@ -124,7 +126,7 @@ public class WallCreator : MonoBehaviour
         
         GameObject newWallPoint= Instantiate(wallPointPrefab, tile.transform.position, Quaternion.identity);
         WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
-        toReturn.Create(soundHandler,tile);
+        toReturn.Create(soundHandler,dataHolder,tile);
         return toReturn;
     }
     
@@ -132,7 +134,7 @@ public class WallCreator : MonoBehaviour
     {
         GameObject newWallPoint= Instantiate(wallPointPrefab, origine, Quaternion.identity);
         WallPointScript toReturn = newWallPoint.GetComponent<WallPointScript>();
-        toReturn.Create(soundHandler);
+        toReturn.Create(soundHandler,dataHolder);
         return toReturn;
     }
 
@@ -140,7 +142,7 @@ public class WallCreator : MonoBehaviour
     {
         GameObject wall = Instantiate(wallPrefab, Vector3.zero, Quaternion.identity);
         WallScript wallScript = wall.GetComponent<WallScript>();
-        wallScript.Create(one,two,gridManager,sculptor,soundHandler);
+        wallScript.Create(one,two,gridManager,sculptor,soundHandler,dataHolder);
     }
     
     

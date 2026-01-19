@@ -20,6 +20,15 @@ public class DataHolder : MonoBehaviour
     public GameObject intantiateDummy;
     public SoundHandler soundHandler;
 
+    [Space] [Header("Boreal")] [Space] public int startingNbr=2;
+    
+    [Space][Header("WallFeedback")][Space]
+    [SerializeField]public AudioClip wallCreate2;
+    [SerializeField]public AudioClip wallCreate1;
+    public Material willDestroylWall;
+    public Material normallWall;
+    public Material illegalWall;
+    public Material phantomlWall;
     
     
     
@@ -28,12 +37,18 @@ public class DataHolder : MonoBehaviour
     [SerializeField] private Material color_trail_0 ;
     [SerializeField] private AudioClip sound_0_bounce ;
     [SerializeField] private AudioClip sound_0_fuse ;
+    public Material borealLowFeedBackMatt0;
+    public Material borealHighFeedBackMatt0;
+    public Material borealOffFeedBackMatt0;
     
     [Space][Header("identity 1")][Space]
     [SerializeField] private Material color_main_1 ;
     [SerializeField] private Material color_trail_1 ;
     [SerializeField] private AudioClip sound_1_bounce ;
     [SerializeField] private AudioClip sound_1_fuse ;
+    public Material borealLowFeedBackMatt1;
+    public Material borealHighFeedBackMatt1;
+    public Material borealOffFeedBackMatt1;
    
     [Space][Header("identity 2")][Space]
     [SerializeField] private Material color_main_2 ;
@@ -41,12 +56,19 @@ public class DataHolder : MonoBehaviour
     
     [SerializeField] private AudioClip sound_2_bounce ;
     [SerializeField] private AudioClip sound_2_fuse ;
+    
+    public Material borealLowFeedBackMatt2;
+    public Material borealHighFeedBackMatt2;
+    public Material borealOffFeedBackMatt2;
     [Space][Header("identity 3")][Space]
     [SerializeField] private Material color_main_3 ;
     [SerializeField] private Material color_trail_3 ;
     [SerializeField] private AudioClip sound_3_bounce ;
     [SerializeField] private AudioClip sound_3_fuse ;
     
+    public Material borealLowFeedBackMatt3;
+    public Material borealHighFeedBackMatt3;
+    public Material borealOffFeedBackMatt3;
     
     [Space][Header("identity 4")][Space]
     [SerializeField] private Material color_main_4 ;
@@ -54,6 +76,9 @@ public class DataHolder : MonoBehaviour
     [SerializeField] private AudioClip sound_4_bounce ;
     [SerializeField] private AudioClip sound_4_fuse ;
     
+    public Material borealLowFeedBackMatt4;
+    public Material borealHighFeedBackMatt4;
+    public Material borealOffFeedBackMatt4;
     
     [Space][Header("identity 5")][Space]
 
@@ -62,6 +87,9 @@ public class DataHolder : MonoBehaviour
     [SerializeField] private AudioClip sound_5_bounce ;
     [SerializeField] private AudioClip sound_5_fuse ;
     
+    public Material borealLowFeedBackMatt5;
+    public Material borealHighFeedBackMatt5;
+    public Material borealOffFeedBackMatt5;
     
     [Space][Header("identity 6")][Space]
     [SerializeField] private Material color_main_6 ;
@@ -69,6 +97,9 @@ public class DataHolder : MonoBehaviour
     [SerializeField] private AudioClip sound_6_bounce ;
     [SerializeField] private AudioClip sound_6_fuse ;
 
+    public Material borealLowFeedBackMatt6;
+    public Material borealHighFeedBackMatt6;
+    public Material borealOffFeedBackMatt6;
     
     
     public float speed =1;
