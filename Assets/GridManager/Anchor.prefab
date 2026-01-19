@@ -49,11 +49,6 @@ MonoBehaviour:
   coords: {x: 0, y: 0}
   isWall: 0
   currentWallPointScript: {fileID: 0}
-  maxToCharge: 2
-  currentCharge: 0
-  chargeSpeed: 1.2
-  deChargeSpeed: 0.5
-  cooldDown: 1
 --- !u!135 &5328014848791114670
 SphereCollider:
   m_ObjectHideFlags: 0
