@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -8,6 +9,7 @@ public class Boreal : MonoBehaviour
 {
     public List<EntityScript> allEntity = new List<EntityScript>();
     public float cooldownMax = 0.6f;
+    public int identitySpread = 7;
     public float cooldownCurrent = 0f;
     private List<BorealBorder> allBorder = new List<BorealBorder>();
     private List<BorealBorder> allActiveBorder = new List<BorealBorder>();
@@ -25,7 +27,7 @@ public class Boreal : MonoBehaviour
     {
         FindObjectsByType<BorealBorder>(FindObjectsInactive.Exclude,FindObjectsSortMode.None).ToList().ForEach(x=>allBorder.Add(x));
         allVoidWall = GameObject.FindGameObjectsWithTag("VoidWall").ToList();
-        theVoid = GameObject.FindGameObjectsWithTag("Void").First();
+        theVoid = GameObject.FindGameObjectWithTag("Void");
         dataHolder = FindAnyObjectByType<DataHolder>();
         
         
@@ -106,7 +108,7 @@ public class Boreal : MonoBehaviour
     {
         while (keyInPlay.Count<nbr)
         {
-            keyInPlay.Add((identityKeys)Random.Range(1, 6));
+            keyInPlay.Add((identityKeys)Random.Range(1, identitySpread));
         }
     }
 }

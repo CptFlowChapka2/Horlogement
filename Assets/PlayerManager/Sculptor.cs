@@ -34,6 +34,8 @@ public class Sculptor : MonoBehaviour
     private void Update()
     {
         DestoryWallOnClic();
+        
+        if(wallCreator.activateNewMode)return;
         if (secondTilePoint != null)
         {
             MoovePhantom();
@@ -65,6 +67,7 @@ public class Sculptor : MonoBehaviour
             WallPointScript one = hitWall.one;   
             WallPointScript two = hitWall.two;   
             hitWall.Break();
+            if(one is null ||two is null)return;
             one.CheckWalls();
             two.CheckWalls();
            

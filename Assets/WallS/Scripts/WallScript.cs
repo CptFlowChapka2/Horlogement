@@ -14,7 +14,7 @@ public class WallScript : MonoBehaviour
     public bool coroutineRunning = false;
     private Material willDestroylWall;
     private Material normallWall;
-    private Sculptor sculptor;
+    public Sculptor sculptor;
     private DataHolder dataHolder;
    
 
@@ -52,6 +52,19 @@ public class WallScript : MonoBehaviour
         }
         hasCreated = true;
         Moove();
+        
+    }
+
+    private void Start()
+    {
+        if (!(thisCollider && meshRenderer&&dataHolder))
+        {
+            thisCollider = GetComponent<BoxCollider>();
+            meshRenderer = GetComponent<MeshRenderer>();
+            dataHolder = FindAnyObjectByType<DataHolder>();
+            willDestroylWall = dataHolder.willDestroylWall;
+            normallWall = dataHolder.normallWall;
+        }
         
     }
 
@@ -154,7 +167,7 @@ public class WallScript : MonoBehaviour
     }
 
     private void OnMouseOver()
-    {
+    { 
         if(sculptor.secondTilePoint)return;
         SetFeedBackColor(willDestroylWall);
     }
