@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -9,32 +8,27 @@ public class SceneMangerScript : MonoBehaviour
 
     AsyncOperation asyncLoad;
     bool bLoadDone;
-    public SceneAsset titleMenu;
-    private string titleMenuString;
-    
-    public SceneAsset playScene;
-    private string playSceneString;
+   
     
   
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        titleMenuString = titleMenu.name;
-        playSceneString = playScene.name;
+        
 
     }
 
 
     public void Load(titleButton tbutton)
     {
-        string toCarry = tbutton switch
+        int toCarry = tbutton switch
         {
-            titleButton.Title => titleMenuString,
-            titleButton.Play1 => playSceneString,
+            titleButton.Title => 0,
+            titleButton.Play1 => 1,
             _ => throw new ArgumentOutOfRangeException(nameof(tbutton), tbutton, null)
         };
         
-        SceneManager.LoadSceneAsync(toCarry);
+        SceneManager.LoadSceneAsync(1);
     }
     
     IEnumerator LoadAsyncScene(string targetScene)
