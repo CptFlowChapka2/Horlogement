@@ -451,9 +451,25 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: illegalWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: 2aa16e48dabab594faa04b96dae79338, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: normallWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d97e4a28e9de7441afaa444ea571eff, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: soundHandler
       value: 
       objectReference: {fileID: 2104890021}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: phantomlWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: fb45d3672a344af4bb32bf771c11635c, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: willDestroylWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b3308041179b5c4084f505595c65f0e, type: 2}
     - target: {fileID: 4748139777306146256, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

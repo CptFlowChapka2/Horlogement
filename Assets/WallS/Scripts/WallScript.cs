@@ -165,7 +165,8 @@ public class WallScript : MonoBehaviour
     public void SetFeedBackColor(Material color,Material color2=null)
     {
 
-        meshRenderer.materials[0] = color;
+        
+        meshRenderer.material = color;
         if (color2 is null) return;
         meshRenderer.materials[1] = color2;
 
