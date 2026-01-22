@@ -1,10 +1,13 @@
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
 public class GridManager : MonoBehaviour
 {
+    public bool isMainMenu=false;
+    
+    
     public Vector2Int gridSize = new Vector2Int(10, 10);
     public Vector2 tileSize = Vector2.one;
     public GameObject tilePrefab;
@@ -34,6 +37,7 @@ public class GridManager : MonoBehaviour
         camObject = GameObject.FindGameObjectWithTag("MainCamera");
         camScript = camObject.GetComponent<Camera>();
 
+        if(isMainMenu)return;
         playSpace = GameObject.FindGameObjectWithTag("PlaySpace");
         theVoid = GameObject.FindGameObjectWithTag("Void");
         CreateGrid();
@@ -95,6 +99,7 @@ public class GridManager : MonoBehaviour
 
     private void Update()
     {
+        if(isMainMenu)return;
         if (screensize.x != Screen.width || screensize.y != Screen.height)
         {
             PositionPlanes();

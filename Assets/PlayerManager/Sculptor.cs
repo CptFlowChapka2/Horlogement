@@ -1,32 +1,58 @@
-using System;
+
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
+
 using UnityEngine;
-using UnityEngine.InputSystem;
+
 
 public class Sculptor : MonoBehaviour
 {
     private WallCreator wallCreator;
+    private DataHolder dataHolder;
+    private GridManager gridManager;
     private Tile firstTile;
     private WallPointScript firstTilePoint;
     public WallPointScript secondTilePoint;
     public Vector3 cursorCheckSize = new Vector3(1, 30, 1);
     public SoundHandler soundHandler;
-    public AudioClip wallCreate2;
-    public AudioClip wallCreate1;
-
+    private AudioClip wallCreate2;
+    private AudioClip wallCreate1; 
+    private Material illegalWall;
+    private Material phantomlWall;
+    private Material normallWall;
+    private Material illegalWall2;
+    private Material phantomlWall2;
+    private Material normallWall2;
+    private Camera camera1;
+   
 
     private void Start()
     {
+        
+        camera1 = Camera.main;
         wallCreator = GetComponent<WallCreator>();
         cursorCheckSize = new Vector3(cursorCheckSize.x / 2, cursorCheckSize.y / 2, cursorCheckSize.z / 2);
+        dataHolder = FindAnyObjectByType<DataHolder>();
+        gridManager = FindAnyObjectByType<GridManager>();
+        wallCreate1 = dataHolder.wallCreate1;
+        wallCreate2 = dataHolder.wallCreate2;
+        illegalWall = dataHolder.illegalWall;
+        phantomlWall = dataHolder.phantomlWall;
+        illegalWall2 = dataHolder.illegalWall2;
+        phantomlWall2 = dataHolder.phantomlWall2;
+        normallWall = dataHolder.normallWall;
+        normallWall2 = dataHolder.normallWall2;
     }
+    
     private void Update()
     {
         DestoryWallOnClic();
+        
+        if(wallCreator.activateNewMode)return;
+        gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
         if (secondTilePoint != null)
         {
+            
             MoovePhantom();
         }
         Clic();
@@ -56,6 +82,7 @@ public class Sculptor : MonoBehaviour
             WallPointScript one = hitWall.one;   
             WallPointScript two = hitWall.two;   
             hitWall.Break();
+            if(one is null ||two is null)return;
             one.CheckWalls();
             two.CheckWalls();
            
@@ -89,7 +116,7 @@ public class Sculptor : MonoBehaviour
 
             secondTilePoint = wallCreator.ExtendWallPoint(firstTilePoint.transform.position+Vector3.up);
             wallCreator.ExtendWall(firstTilePoint,secondTilePoint);
-            secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.phantomlWall));
+            secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall));
             secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
             
             // soundHandler.Play(firstTilePoint.gameObject,wallCreate1);
@@ -107,7 +134,7 @@ public class Sculptor : MonoBehaviour
             return;
         }
         
-        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.normallWall));
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(normallWall));
         secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
         secondTilePoint.EndMouvement();
         soundHandler.Play(secondTilePoint.gameObject,wallCreate2);
@@ -119,23 +146,27 @@ public class Sculptor : MonoBehaviour
 
     private void MoovePhantom()
     {
-        Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 newPos = camera1.ScreenToWorldPoint(Input.mousePosition);
         secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
         soundHandler.Moove(secondTilePoint.gameObject);
         
-        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(x.phantomlWall));
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall));
         
-        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(y.illegalWall));
+        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(illegalWall));
+        
+        secondTilePoint.gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
+        secondTilePoint.ProximityCheck(out Tile result);
+        result.ChangeColor(result.on);
 
-        
+
 
     }
 
     private bool SelectObjectByCursor(string[] tagToSelect, out List<RaycastHit> toReturn)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = camera1.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.BoxCastAll(ray.origin,cursorCheckSize,ray.direction);
         
        List<RaycastHit> hitList = new List<RaycastHit>();
@@ -169,11 +200,22 @@ public class Sculptor : MonoBehaviour
     private bool CheckForIntersection(WallScript wallToCheck)
     {
         
-        Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,(wallToCheck.length/2)*0.8f);
-        List<Collider> boxCastList = Physics.OverlapBox(wallToCheck.transform.position,dimensionToCheck,wallToCheck.transform.rotation).ToList();
+        Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,((wallToCheck.length-wallToCheck.transform.localScale.x)/2));
+        Debug.DrawLine(Vector3.zero,wallToCheck.transform.position+
+                                    (wallToCheck.transform.forward * 
+                                     wallToCheck.transform.localScale.x));
+        
+        List<Collider> boxCastList = 
+            Physics.OverlapBox(wallToCheck.transform.position+
+                               (wallToCheck.transform.forward * 
+                                wallToCheck.transform.localScale.x),dimensionToCheck,wallToCheck.transform.rotation).ToList();
         
         string[] keepTags = {"Wall", "Entity","EntityColor"};
         boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!keepTags.Contains(x.gameObject.tag));
+
+        
+        
+        
         
         return boxCastList.Count > 0;
 

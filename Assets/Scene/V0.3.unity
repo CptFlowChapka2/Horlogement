@@ -211,7 +211,7 @@ Light:
   m_InnerSpotAngle: 21.80208
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 2
+    m_Type: 0
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -447,9 +447,29 @@ PrefabInstance:
       value: GridManager
       objectReference: {fileID: 0}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: startingNbr
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: illegalWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: 2aa16e48dabab594faa04b96dae79338, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: normallWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d97e4a28e9de7441afaa444ea571eff, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: soundHandler
       value: 
       objectReference: {fileID: 2104890021}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: phantomlWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: fb45d3672a344af4bb32bf771c11635c, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: willDestroylWall2
+      value: 
+      objectReference: {fileID: 2100000, guid: 6b3308041179b5c4084f505595c65f0e, type: 2}
     - target: {fileID: 4748139777306146256, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -519,9 +539,9 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4937975755028435810, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
-      propertyPath: wallPrefab
+      propertyPath: dataHolder
       value: 
-      objectReference: {fileID: 159847252217830659, guid: efacc3e9ff353c04ca3e7f54a229462e, type: 3}
+      objectReference: {fileID: 2068210732}
     - target: {fileID: 4937975755028435810, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
       propertyPath: gridManager
       value: 
@@ -643,6 +663,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c8faf6912a6a6f34899677dc2b4e45ea, type: 3}
+--- !u!114 &2068210732 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+  m_PrefabInstance: {fileID: 1515462795}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6bc4cd3d700b588488bd108dcd49794d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &2104890021 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 383878007969577874, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}

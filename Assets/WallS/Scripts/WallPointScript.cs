@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Unity.Collections;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -24,6 +24,7 @@ public class WallPointScript : MonoBehaviour
 
     private Tile foundTile;
     private SoundHandler soundHandler;
+    private DataHolder dataHolder;
    
 
     public bool isSelected = false;
@@ -42,8 +43,9 @@ public class WallPointScript : MonoBehaviour
         
         //InvokeRepeating(nameof(CheckWalls),0,0.2f);
     }
-    public void Create(SoundHandler soundHandlar,Tile tile=null)
+    public void Create(SoundHandler soundHandlar,DataHolder datoHolder,Tile tile=null)
     {
+        dataHolder = datoHolder;
         if (tile is not null)
         {
             linkedTile = tile;
@@ -65,7 +67,11 @@ public class WallPointScript : MonoBehaviour
     public void EndMouvement()
     {
 
-        if (ProximityCheck(out var results)) return;
+        if (ProximityCheck(out var results))
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         if (results.currentWallPointScript is null)
         {
@@ -96,7 +102,7 @@ public class WallPointScript : MonoBehaviour
         else if(results.currentWallPointScript)
         {
             walls.FindAll(x => x!=null)
-                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor,soundHandler));
+                .ForEach(x => x.Create(x.one, results.currentWallPointScript, gridManager,sculptor,soundHandler,dataHolder));
             walls.ForEach(x=>x.Moove());
             walls.Clear();
             Destroy(gameObject);
@@ -119,7 +125,7 @@ public class WallPointScript : MonoBehaviour
 
         results = null;
     }
-    private bool ProximityCheck(out Tile results)
+    public bool ProximityCheck(out Tile results)
     {
         var resultsList =gridManager.allTile.OrderBy(
             x => Vector3.Distance(this.transform.position,x.transform.position)
@@ -127,8 +133,6 @@ public class WallPointScript : MonoBehaviour
 
         if ((Vector3.Distance(this.transform.position, resultsList.First().transform.position) > anchorCheckRange))
         {
-            
-            Destroy(gameObject);
             results = null;
             return true;
         }
@@ -140,9 +144,14 @@ public class WallPointScript : MonoBehaviour
     private void OnDestroy()
     {
         if(soundHandler == null||gameObject == null) return;
-        soundHandler.Kill(null,gameObject);
+
+        if (gameObject != null)
+        {
+            soundHandler.Kill(null,gameObject);
+        }
+        
         walls.ForEach(x=>x.Break());
-        if (linkedTile is not null) 
+        if (linkedTile != null) 
         {
             linkedTile.currentWallPointScript = null;
         }

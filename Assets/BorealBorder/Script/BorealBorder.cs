@@ -1,13 +1,12 @@
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using UnityEditor.Experimental.GraphView;
+
 using UnityEngine;
 
 public class BorealBorder : MonoBehaviour
 {
     public Material lowFeedBackMatt;
     public Material highFeedBackMatt;
+    public Material offFeedBackMatt;
     public identityKeys thisIdentityKeys;
     private DataHolder dataHolder;
     private Boreal boreal;
@@ -18,6 +17,7 @@ public class BorealBorder : MonoBehaviour
     public MeshRenderer meshRenderer;
 
     private Vector3 spawnDir;
+   
     
 
     private void Start()
@@ -26,10 +26,55 @@ public class BorealBorder : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         dataHolder = FindAnyObjectByType<DataHolder>();
         gridManager = FindAnyObjectByType<GridManager>();
-        meshRenderer.material = lowFeedBackMatt;
-        onOff = false;
         
+        onOff = false;
 
+        switch (thisIdentityKeys)
+        {
+
+            case identityKeys.notAsignated:
+                throw new ArgumentException();
+                
+            case identityKeys.A:
+                lowFeedBackMatt=dataHolder.borealLowFeedBackMatt0;
+                highFeedBackMatt=dataHolder.borealHighFeedBackMatt0;
+                offFeedBackMatt=dataHolder.borealOffFeedBackMatt0;
+                break;
+            case identityKeys.B:
+                lowFeedBackMatt=dataHolder.borealLowFeedBackMatt1;
+                highFeedBackMatt=dataHolder.borealHighFeedBackMatt1;
+                offFeedBackMatt=dataHolder.borealOffFeedBackMatt1;
+                break;
+            case identityKeys.C:
+                lowFeedBackMatt=dataHolder.borealLowFeedBackMatt2;
+                highFeedBackMatt=dataHolder.borealHighFeedBackMatt2;
+                offFeedBackMatt=dataHolder.borealOffFeedBackMatt2;
+                break;
+            case identityKeys.D:
+                lowFeedBackMatt=dataHolder.borealLowFeedBackMatt3;
+                highFeedBackMatt=dataHolder.borealHighFeedBackMatt3;
+                offFeedBackMatt=dataHolder.borealOffFeedBackMatt3;
+                break;
+            case identityKeys.E:
+                lowFeedBackMatt=dataHolder.borealLowFeedBackMatt4;
+                highFeedBackMatt=dataHolder.borealHighFeedBackMatt4;
+                offFeedBackMatt=dataHolder.borealOffFeedBackMatt4;
+                break;
+            case identityKeys.F:
+                lowFeedBackMatt=dataHolder.borealLowFeedBackMatt5;
+                highFeedBackMatt=dataHolder.borealHighFeedBackMatt5;
+                offFeedBackMatt=dataHolder.borealOffFeedBackMatt5;
+                break;
+            case identityKeys.G:
+                lowFeedBackMatt=dataHolder.borealLowFeedBackMatt6;
+                highFeedBackMatt=dataHolder.borealHighFeedBackMatt6;
+                offFeedBackMatt=dataHolder.borealOffFeedBackMatt6;
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        meshRenderer.material = offFeedBackMatt;
     }
 
     
@@ -80,14 +125,18 @@ public class BorealBorder : MonoBehaviour
 
     }
 
-    public void ChangeMat(bool mayhaps)
+    public void ChangeMat(int mayhaps)
     {
-        if (mayhaps)
+       
+
+        meshRenderer.material = mayhaps switch
         {
-            meshRenderer.material = highFeedBackMatt;
-            return;
-        }
-        meshRenderer.material = lowFeedBackMatt;
+            -1 => offFeedBackMatt,
+            0 => lowFeedBackMatt,
+            1 => highFeedBackMatt,
+            _ => meshRenderer.material
+        };
+        
     }
     
     public void SetUnSpawnable()

@@ -1,6 +1,4 @@
-using System;
-using System.Collections;
-using Unity.VisualScripting;
+
 using UnityEngine;
 
 public class WallScript : MonoBehaviour
@@ -12,20 +10,23 @@ public class WallScript : MonoBehaviour
     private float tileSize;
     private MeshRenderer meshRenderer;
     public bool coroutineRunning = false;
-    public Material willDestroylWall;
-    public Material normallWall;
-    private Sculptor sculptor;
-    public Material illegalWall;
-    public Material phantomlWall;
+    private Material willDestroylWall;
+    private Material willDestroylWall2;
+    private Material normallWall;
+    private Material normallWall2;
+    public Sculptor sculptor;
+    private DataHolder dataHolder;
+   
 
     private SoundHandler soundHandler;
     private bool hasCreated = false;
     
-    public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager,Sculptor sculptoar,SoundHandler soundhalder)
+    public void Create(WallPointScript inOne,WallPointScript inTwo,GridManager inGridManager,Sculptor sculptoar,SoundHandler soundhalder,DataHolder datoHolder)
     {
         one = inOne;
         two = inTwo;
         tileSize = inGridManager.tileSize.x;
+        dataHolder = datoHolder;
         sculptor = sculptoar;
         soundHandler = soundhalder;
         if (!(thisCollider && meshRenderer))
@@ -33,6 +34,11 @@ public class WallScript : MonoBehaviour
             thisCollider = GetComponent<BoxCollider>();
             meshRenderer = GetComponent<MeshRenderer>(); 
         }
+
+        willDestroylWall = dataHolder.willDestroylWall;
+        normallWall = dataHolder.normallWall;
+        willDestroylWall2 = dataHolder.willDestroylWall2;
+        normallWall2 = dataHolder.normallWall2;
 
         if (one == two)
         {
@@ -48,6 +54,20 @@ public class WallScript : MonoBehaviour
         }
         hasCreated = true;
         Moove();
+        
+    }
+
+    private void Start()
+    {
+      
+            thisCollider = GetComponent<BoxCollider>();
+            meshRenderer = GetComponent<MeshRenderer>();
+            dataHolder = FindAnyObjectByType<DataHolder>();
+            willDestroylWall = dataHolder.willDestroylWall;
+            normallWall = dataHolder.normallWall;
+            willDestroylWall2 = dataHolder.willDestroylWall2;
+            normallWall2 = dataHolder.normallWall2;
+        
         
     }
 
@@ -101,7 +121,7 @@ public class WallScript : MonoBehaviour
         if (origine == one)
         {
             //Create(newOne,two,gridManager);
-            Create(one,origine,gridManager,sculptor,soundHandler);
+            Create(one,origine,gridManager,sculptor,soundHandler,dataHolder);
             
             return;
         }
@@ -109,7 +129,7 @@ public class WallScript : MonoBehaviour
         if (origine == two)
         {
            // Create(one,origine,gridManager);
-            Create(newOne,two,gridManager,sculptor,soundHandler);
+            Create(newOne,two,gridManager,sculptor,soundHandler,dataHolder);
             
             return; 
         }
@@ -142,15 +162,18 @@ public class WallScript : MonoBehaviour
         thisCollider.isTrigger = maybe;
     }
 
-    public void SetFeedBackColor(Material color)
+    public void SetFeedBackColor(Material color,Material color2=null)
     {
+
         
         meshRenderer.material = color;
-        
+        if (color2 is null) return;
+        meshRenderer.materials[1] = color2;
+
     }
 
     private void OnMouseOver()
-    {
+    { 
         if(sculptor.secondTilePoint)return;
         SetFeedBackColor(willDestroylWall);
     }

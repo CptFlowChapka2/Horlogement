@@ -127,10 +127,7 @@ MonoBehaviour:
   two: {fileID: 0}
   length: 0
   coroutineRunning: 0
-  willDestroylWall: {fileID: 2100000, guid: 2aa16e48dabab594faa04b96dae79338, type: 2}
-  normallWall: {fileID: 2100000, guid: 6d97e4a28e9de7441afaa444ea571eff, type: 2}
-  illegalWall: {fileID: 2100000, guid: 6b3308041179b5c4084f505595c65f0e, type: 2}
-  phantomlWall: {fileID: 2100000, guid: fb45d3672a344af4bb32bf771c11635c, type: 2}
+  sculptor: {fileID: 0}
 --- !u!65 &1686971474476057151
 BoxCollider:
   m_ObjectHideFlags: 0
