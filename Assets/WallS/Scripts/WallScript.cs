@@ -55,14 +55,13 @@ public class WallScript : MonoBehaviour
 
     private void Start()
     {
-        if (!(thisCollider && meshRenderer&&dataHolder))
-        {
+      
             thisCollider = GetComponent<BoxCollider>();
             meshRenderer = GetComponent<MeshRenderer>();
             dataHolder = FindAnyObjectByType<DataHolder>();
             willDestroylWall = dataHolder.willDestroylWall;
             normallWall = dataHolder.normallWall;
-        }
+        
         
     }
 

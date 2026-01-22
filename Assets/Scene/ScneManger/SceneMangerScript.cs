@@ -14,7 +14,7 @@ public class SceneMangerScript : MonoBehaviour
     private void Awake()
     {
         DontDestroyOnLoad(gameObject);
-        
+            
 
     }
 

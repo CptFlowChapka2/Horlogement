@@ -47,33 +47,33 @@ public class EntityIdentity
         return (identityKeysArray[0], identityKeysArray[1]) switch
         {
             //A= B+C or C+B or E+D or D+E or F+G G+F 
-            (identityKeys.color1, identityKeys.color2) or (identityKeys.color2, identityKeys.color1) 
-                or (identityKeys.color4,identityKeys.color3)or (identityKeys.color3,identityKeys.color4)
-                or (identityKeys.color6,identityKeys.color5)or(identityKeys.color5,identityKeys.color6)=> identityKeys.color0,
+            (identityKeys.B, identityKeys.C) or (identityKeys.C, identityKeys.B) 
+                or (identityKeys.E,identityKeys.D)or (identityKeys.D,identityKeys.E)
+                or (identityKeys.G,identityKeys.F)or(identityKeys.F,identityKeys.G)=> identityKeys.A,
             //B=C+D
-            (identityKeys.color0, identityKeys.color2) or (identityKeys.color2, identityKeys.color0) 
-                or (identityKeys.color5,identityKeys.color3)or (identityKeys.color3,identityKeys.color5)
-                or (identityKeys.color4,identityKeys.color6)or(identityKeys.color6,identityKeys.color4)=> identityKeys.color1,
+            (identityKeys.A, identityKeys.C) or (identityKeys.C, identityKeys.A) 
+                or (identityKeys.F,identityKeys.D)or (identityKeys.D,identityKeys.F)
+                or (identityKeys.E,identityKeys.G)or(identityKeys.G,identityKeys.E)=> identityKeys.B,
             //C=D+E
-            (identityKeys.color0, identityKeys.color1) or (identityKeys.color1, identityKeys.color0) 
-                or (identityKeys.color3,identityKeys.color6)or (identityKeys.color6,identityKeys.color3)
-                or (identityKeys.color4,identityKeys.color5)or(identityKeys.color5,identityKeys.color4) => identityKeys.color2,
+            (identityKeys.A, identityKeys.B) or (identityKeys.B, identityKeys.A) 
+                or (identityKeys.D,identityKeys.G)or (identityKeys.G,identityKeys.D)
+                or (identityKeys.E,identityKeys.F)or(identityKeys.F,identityKeys.E) => identityKeys.C,
             //D=E+F
-            (identityKeys.color6, identityKeys.color0) or (identityKeys.color0, identityKeys.color6) 
-                or (identityKeys.color4,identityKeys.color1)or (identityKeys.color1,identityKeys.color4)
-                or (identityKeys.color5,identityKeys.color2)or(identityKeys.color2,identityKeys.color5)=> identityKeys.color3,
+            (identityKeys.G, identityKeys.A) or (identityKeys.A, identityKeys.G) 
+                or (identityKeys.E,identityKeys.B)or (identityKeys.B,identityKeys.E)
+                or (identityKeys.F,identityKeys.C)or(identityKeys.C,identityKeys.F)=> identityKeys.D,
             //E=F+G
-            (identityKeys.color1, identityKeys.color3) or (identityKeys.color3, identityKeys.color1) 
-                or (identityKeys.color5,identityKeys.color1)or (identityKeys.color1,identityKeys.color5)
-                or (identityKeys.color6,identityKeys.color2)or(identityKeys.color2,identityKeys.color6) => identityKeys.color4,
+            (identityKeys.A, identityKeys.D) or (identityKeys.D, identityKeys.A) 
+                or (identityKeys.F,identityKeys.B)or (identityKeys.B,identityKeys.F)
+                or (identityKeys.G,identityKeys.C)or(identityKeys.C,identityKeys.G) => identityKeys.E,
             //F=G+A
-            (identityKeys.color4, identityKeys.color1) or (identityKeys.color1, identityKeys.color4) 
-                or (identityKeys.color1,identityKeys.color6)or (identityKeys.color6,identityKeys.color1)
-                or (identityKeys.color3,identityKeys.color2)or(identityKeys.color2,identityKeys.color3) => identityKeys.color5,
+            (identityKeys.E, identityKeys.A) or (identityKeys.A, identityKeys.E) 
+                or (identityKeys.B,identityKeys.G)or (identityKeys.G,identityKeys.B)
+                or (identityKeys.D,identityKeys.C)or(identityKeys.C,identityKeys.D) => identityKeys.F,
             //G=A+B
-            (identityKeys.color5, identityKeys.color0) or (identityKeys.color0, identityKeys.color5) 
-                or (identityKeys.color3,identityKeys.color1)or (identityKeys.color1,identityKeys.color3)
-                or (identityKeys.color2,identityKeys.color4)or(identityKeys.color4,identityKeys.color2) => identityKeys.color6,
+            (identityKeys.F, identityKeys.A) or (identityKeys.A, identityKeys.F) 
+                or (identityKeys.D,identityKeys.B)or (identityKeys.B,identityKeys.D)
+                or (identityKeys.C,identityKeys.E)or(identityKeys.E,identityKeys.C) => identityKeys.G,
             _ => a
         };
 

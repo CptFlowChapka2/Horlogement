@@ -122,7 +122,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   linkedTile: {fileID: 0}
-  anchorCheckRange: 2
+  anchorCheckRange: Infinity
   maxMouvment: 2000
   gridManager: {fileID: 0}
   walls: []

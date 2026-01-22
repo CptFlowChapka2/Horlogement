@@ -9,6 +9,7 @@ public class Sculptor : MonoBehaviour
 {
     private WallCreator wallCreator;
     private DataHolder dataHolder;
+    private GridManager gridManager;
     private Tile firstTile;
     private WallPointScript firstTilePoint;
     public WallPointScript secondTilePoint;
@@ -19,12 +20,17 @@ public class Sculptor : MonoBehaviour
     private Material illegalWall;
     private Material phantomlWall;
     private Material normallWall;
+    private Camera camera1;
+   
 
     private void Start()
     {
+        
+        camera1 = Camera.main;
         wallCreator = GetComponent<WallCreator>();
         cursorCheckSize = new Vector3(cursorCheckSize.x / 2, cursorCheckSize.y / 2, cursorCheckSize.z / 2);
         dataHolder = FindAnyObjectByType<DataHolder>();
+        gridManager = FindAnyObjectByType<GridManager>();
         wallCreate1 = dataHolder.wallCreate1;
         wallCreate2 = dataHolder.wallCreate2;
         illegalWall = dataHolder.illegalWall;
@@ -36,8 +42,10 @@ public class Sculptor : MonoBehaviour
         DestoryWallOnClic();
         
         if(wallCreator.activateNewMode)return;
+        gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
         if (secondTilePoint != null)
         {
+            
             MoovePhantom();
         }
         Clic();
@@ -131,7 +139,7 @@ public class Sculptor : MonoBehaviour
 
     private void MoovePhantom()
     {
-        Vector3 newPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        Vector3 newPos = camera1.ScreenToWorldPoint(Input.mousePosition);
         secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
@@ -140,14 +148,18 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall));
         
         secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(illegalWall));
-
         
+        secondTilePoint.gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
+        secondTilePoint.ProximityCheck(out Tile result);
+        result.ChangeColor(result.on);
+
+
 
     }
 
     private bool SelectObjectByCursor(string[] tagToSelect, out List<RaycastHit> toReturn)
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = camera1.ScreenPointToRay(Input.mousePosition);
         RaycastHit[] hits = Physics.BoxCastAll(ray.origin,cursorCheckSize,ray.direction);
         
        List<RaycastHit> hitList = new List<RaycastHit>();
@@ -182,10 +194,17 @@ public class Sculptor : MonoBehaviour
     {
         
         Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,(wallToCheck.length/2)*0.8f);
-        List<Collider> boxCastList = Physics.OverlapBox(wallToCheck.transform.position,dimensionToCheck,wallToCheck.transform.rotation).ToList();
+        List<Collider> boxCastList = 
+            Physics.OverlapBox(wallToCheck.transform.position+
+                               (wallToCheck.transform.forward * 
+                                (wallToCheck.length * 0.1f)),dimensionToCheck,wallToCheck.transform.rotation).ToList();
         
         string[] keepTags = {"Wall", "Entity","EntityColor"};
         boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!keepTags.Contains(x.gameObject.tag));
+
+        
+        
+        
         
         return boxCastList.Count > 0;
 

@@ -67,7 +67,11 @@ public class WallPointScript : MonoBehaviour
     public void EndMouvement()
     {
 
-        if (ProximityCheck(out var results)) return;
+        if (ProximityCheck(out var results))
+        {
+            Destroy(gameObject);
+            return;
+        }
 
         if (results.currentWallPointScript is null)
         {
@@ -121,7 +125,7 @@ public class WallPointScript : MonoBehaviour
 
         results = null;
     }
-    private bool ProximityCheck(out Tile results)
+    public bool ProximityCheck(out Tile results)
     {
         var resultsList =gridManager.allTile.OrderBy(
             x => Vector3.Distance(this.transform.position,x.transform.position)
@@ -129,8 +133,6 @@ public class WallPointScript : MonoBehaviour
 
         if ((Vector3.Distance(this.transform.position, resultsList.First().transform.position) > anchorCheckRange))
         {
-            
-            Destroy(gameObject);
             results = null;
             return true;
         }
