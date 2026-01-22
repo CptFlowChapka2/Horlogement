@@ -1559,7 +1559,7 @@
     "m_Title": "RADIUS",
     "m_Position": {
         "x": -1585.3333740234375,
-        "y": 1006.6666259765625
+        "y": 1006.666748046875
     }
 }
 
@@ -3100,7 +3100,7 @@
     "m_Title": "Disparaitre",
     "m_Position": {
         "x": 1804.0,
-        "y": 1347.3333740234375
+        "y": 1347.333251953125
     }
 }
 
@@ -4098,7 +4098,7 @@
     "m_Title": "centrer UV",
     "m_Position": {
         "x": -2335.333251953125,
-        "y": 910.6666259765625
+        "y": 910.666748046875
     }
 }
 
@@ -4498,16 +4498,16 @@
     "m_Type": "UnityEditor.ShaderGraph.PropertyNode",
     "m_ObjectId": "92443177b014436f89a5e9505dc10339",
     "m_Group": {
-        "m_Id": ""
+        "m_Id": "86f097e89311426db2601161ca441370"
     },
     "m_Name": "Property",
     "m_DrawState": {
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": -2068.0,
-            "y": 1282.0,
-            "width": 140.666748046875,
+            "x": -2048.6669921875,
+            "y": 1266.6666259765625,
+            "width": 140.6668701171875,
             "height": 36.0
         }
     },

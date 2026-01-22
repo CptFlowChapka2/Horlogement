@@ -447,9 +447,41 @@ PrefabInstance:
       value: GridManager
       objectReference: {fileID: 0}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: normallWall
+      value: 
+      objectReference: {fileID: 2100000, guid: 6d20580ecffd7f843bdd86e6916a0d97, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: startingNbr
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_main_0
+      value: 
+      objectReference: {fileID: 2100000, guid: a002fe55cd19d744e8919b33b77d4076, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_main_1
+      value: 
+      objectReference: {fileID: 2100000, guid: 8c498db0c72460e4ca7536d8b73ad256, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_main_2
+      value: 
+      objectReference: {fileID: 2100000, guid: a902b276486f4e44bbcd0e480eba008a, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_main_3
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f21a8b7d80cc34418d3c7d02b326506, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_main_4
+      value: 
+      objectReference: {fileID: 2100000, guid: a8025e507544919409d27f58d053e5b4, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_main_5
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fcf491705ede7f4d90b8e970bc49b8f, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_main_6
+      value: 
+      objectReference: {fileID: 2100000, guid: e7f49c0223ddf9448839ae0585cee41e, type: 2}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: illegalWall2
       value: 
@@ -457,11 +489,39 @@ PrefabInstance:
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: normallWall2
       value: 
-      objectReference: {fileID: 2100000, guid: 6d97e4a28e9de7441afaa444ea571eff, type: 2}
+      objectReference: {fileID: 2100000, guid: 6d20580ecffd7f843bdd86e6916a0d97, type: 2}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: soundHandler
       value: 
       objectReference: {fileID: 2104890021}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_trail_0
+      value: 
+      objectReference: {fileID: 2100000, guid: a002fe55cd19d744e8919b33b77d4076, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_trail_1
+      value: 
+      objectReference: {fileID: 2100000, guid: 8c498db0c72460e4ca7536d8b73ad256, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_trail_2
+      value: 
+      objectReference: {fileID: 2100000, guid: a902b276486f4e44bbcd0e480eba008a, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_trail_3
+      value: 
+      objectReference: {fileID: 2100000, guid: 8f21a8b7d80cc34418d3c7d02b326506, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_trail_4
+      value: 
+      objectReference: {fileID: 2100000, guid: a8025e507544919409d27f58d053e5b4, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_trail_5
+      value: 
+      objectReference: {fileID: 2100000, guid: 7fcf491705ede7f4d90b8e970bc49b8f, type: 2}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: color_trail_6
+      value: 
+      objectReference: {fileID: 2100000, guid: e7f49c0223ddf9448839ae0585cee41e, type: 2}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: phantomlWall2
       value: 
