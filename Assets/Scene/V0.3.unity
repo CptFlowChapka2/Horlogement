@@ -543,6 +543,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2068210732}
     - target: {fileID: 4937975755028435810, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
+      propertyPath: wallPrefab
+      value: 
+      objectReference: {fileID: 159847252217830659, guid: 91d1b6d561a772944a5356d1098524b3, type: 3}
+    - target: {fileID: 4937975755028435810, guid: 080d4a093a64b9542a5e195ecb6402e0, type: 3}
       propertyPath: gridManager
       value: 
       objectReference: {fileID: 1515462796}
