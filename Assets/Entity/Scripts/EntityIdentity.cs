@@ -47,7 +47,7 @@ public class EntityIdentity
         return (identityKeysArray[0], identityKeysArray[1]) switch
         {
             //A= B+C or C+B or E+D or D+E or F+G G+F 
-            (identityKeys.B, identityKeys.C) or (identityKeys.C, identityKeys.B) 
+            (identityKeys.B, identityKeys.G) or (identityKeys.G, identityKeys.B) 
                 or (identityKeys.E,identityKeys.D)or (identityKeys.D,identityKeys.E)
                 or (identityKeys.G,identityKeys.F)or(identityKeys.F,identityKeys.G)=> identityKeys.A,
             //B=C+D
@@ -68,7 +68,7 @@ public class EntityIdentity
                 or (identityKeys.G,identityKeys.C)or(identityKeys.C,identityKeys.G) => identityKeys.E,
             //F=G+A
             (identityKeys.E, identityKeys.A) or (identityKeys.A, identityKeys.E) 
-                or (identityKeys.B,identityKeys.G)or (identityKeys.G,identityKeys.B)
+                or (identityKeys.B,identityKeys.C)or (identityKeys.C,identityKeys.B)
                 or (identityKeys.D,identityKeys.C)or(identityKeys.C,identityKeys.D) => identityKeys.F,
             //G=A+B
             (identityKeys.F, identityKeys.A) or (identityKeys.A, identityKeys.F) 
