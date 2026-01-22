@@ -11,7 +11,9 @@ public class WallScript : MonoBehaviour
     private MeshRenderer meshRenderer;
     public bool coroutineRunning = false;
     private Material willDestroylWall;
+    private Material willDestroylWall2;
     private Material normallWall;
+    private Material normallWall2;
     public Sculptor sculptor;
     private DataHolder dataHolder;
    
@@ -35,6 +37,8 @@ public class WallScript : MonoBehaviour
 
         willDestroylWall = dataHolder.willDestroylWall;
         normallWall = dataHolder.normallWall;
+        willDestroylWall2 = dataHolder.willDestroylWall2;
+        normallWall2 = dataHolder.normallWall2;
 
         if (one == two)
         {
@@ -61,6 +65,8 @@ public class WallScript : MonoBehaviour
             dataHolder = FindAnyObjectByType<DataHolder>();
             willDestroylWall = dataHolder.willDestroylWall;
             normallWall = dataHolder.normallWall;
+            willDestroylWall2 = dataHolder.willDestroylWall2;
+            normallWall2 = dataHolder.normallWall2;
         
         
     }
@@ -156,27 +162,28 @@ public class WallScript : MonoBehaviour
         thisCollider.isTrigger = maybe;
     }
 
-    public void SetFeedBackColor(Material color)
+    public void SetFeedBackColor(Material color,Material color2)
     {
-        
-        meshRenderer.material = color;
-        
+
+        meshRenderer.materials[0] = color;
+        meshRenderer.materials[1] = color2;
+
     }
 
     private void OnMouseOver()
     { 
         if(sculptor.secondTilePoint)return;
-        SetFeedBackColor(willDestroylWall);
+        SetFeedBackColor(willDestroylWall,willDestroylWall2);
     }
     private void OnMouseExit()
     {
         if (sculptor.secondTilePoint)
         {
-            SetFeedBackColor(normallWall);
+            SetFeedBackColor(normallWall,normallWall2);
         }
         if (!sculptor.secondTilePoint || meshRenderer.material == willDestroylWall)
         {
-            SetFeedBackColor(normallWall);
+            SetFeedBackColor(normallWall,normallWall2);
         }
         
     }

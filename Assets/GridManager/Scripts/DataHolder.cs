@@ -26,9 +26,13 @@ public class DataHolder : MonoBehaviour
     [SerializeField]public AudioClip wallCreate2;
     [SerializeField]public AudioClip wallCreate1;
     public Material willDestroylWall;
+    public Material willDestroylWall2;
     public Material normallWall;
+    public Material normallWall2;
     public Material illegalWall;
+    public Material illegalWall2;
     public Material phantomlWall;
+    public Material phantomlWall2;
     
     
     

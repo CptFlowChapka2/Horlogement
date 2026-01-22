@@ -110,5 +110,6 @@ public class Boreal : MonoBehaviour
         {
             keyInPlay.Add((identityKeys)Random.Range(1, identitySpread));
         }
+        
     }
 }
