@@ -193,11 +193,15 @@ public class Sculptor : MonoBehaviour
     private bool CheckForIntersection(WallScript wallToCheck)
     {
         
-        Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,(wallToCheck.length/2)*0.8f);
+        Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,((wallToCheck.length-wallToCheck.transform.localScale.x)/2));
+        Debug.DrawLine(Vector3.zero,wallToCheck.transform.position+
+                                    (wallToCheck.transform.forward * 
+                                     wallToCheck.transform.localScale.x));
+        
         List<Collider> boxCastList = 
             Physics.OverlapBox(wallToCheck.transform.position+
                                (wallToCheck.transform.forward * 
-                                (wallToCheck.length * 0.1f)),dimensionToCheck,wallToCheck.transform.rotation).ToList();
+                                wallToCheck.transform.localScale.x),dimensionToCheck,wallToCheck.transform.rotation).ToList();
         
         string[] keepTags = {"Wall", "Entity","EntityColor"};
         boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!keepTags.Contains(x.gameObject.tag));
