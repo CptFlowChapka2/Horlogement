@@ -162,10 +162,11 @@ public class WallScript : MonoBehaviour
         thisCollider.isTrigger = maybe;
     }
 
-    public void SetFeedBackColor(Material color,Material color2)
+    public void SetFeedBackColor(Material color,Material color2=null)
     {
 
         meshRenderer.materials[0] = color;
+        if (color2 is null) return;
         meshRenderer.materials[1] = color2;
 
     }
@@ -173,17 +174,17 @@ public class WallScript : MonoBehaviour
     private void OnMouseOver()
     { 
         if(sculptor.secondTilePoint)return;
-        SetFeedBackColor(willDestroylWall,willDestroylWall2);
+        SetFeedBackColor(willDestroylWall);
     }
     private void OnMouseExit()
     {
         if (sculptor.secondTilePoint)
         {
-            SetFeedBackColor(normallWall,normallWall2);
+            SetFeedBackColor(normallWall);
         }
         if (!sculptor.secondTilePoint || meshRenderer.material == willDestroylWall)
         {
-            SetFeedBackColor(normallWall,normallWall2);
+            SetFeedBackColor(normallWall);
         }
         
     }

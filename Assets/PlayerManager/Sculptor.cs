@@ -116,7 +116,7 @@ public class Sculptor : MonoBehaviour
 
             secondTilePoint = wallCreator.ExtendWallPoint(firstTilePoint.transform.position+Vector3.up);
             wallCreator.ExtendWall(firstTilePoint,secondTilePoint);
-            secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall,phantomlWall2));
+            secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall));
             secondTilePoint.walls.ForEach(x=>x.ToggleColision(true));
             
             // soundHandler.Play(firstTilePoint.gameObject,wallCreate1);
@@ -134,7 +134,7 @@ public class Sculptor : MonoBehaviour
             return;
         }
         
-        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(normallWall,normallWall2));
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(normallWall));
         secondTilePoint.walls.ForEach(x=>x.ToggleColision(false));
         secondTilePoint.EndMouvement();
         soundHandler.Play(secondTilePoint.gameObject,wallCreate2);
@@ -152,9 +152,9 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
         soundHandler.Moove(secondTilePoint.gameObject);
         
-        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall,phantomlWall2));
+        secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall));
         
-        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(illegalWall,illegalWall));
+        secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(illegalWall));
         
         secondTilePoint.gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
         secondTilePoint.ProximityCheck(out Tile result);
