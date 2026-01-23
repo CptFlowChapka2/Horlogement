@@ -6,6 +6,7 @@ using UnityEngine;
 public class CollisionHandler : MonoBehaviour
 {
     public HashSet<HashSet<object>> toProcess = new HashSet<HashSet<object>>();
+    public GameObject fuseFeedBack;
     private bool readyToProcess = false;
 
     public void AddToProcess(HashSet<object> list)
@@ -65,6 +66,7 @@ public class CollisionHandler : MonoBehaviour
             fusedEntityScript.OnCreation(identityKeysList[0], identityKeysList.Count < 2 ? default : identityKeysList[1],
                 fusedEntityScript.CreateDir(vector3s[1], vector3s[2]));
             fusedEntityScript.soundHandler.Play(fusedEntityScript.gameObject,fusedEntityScript.thisIdentity.SoundFuse);
+            Instantiate(fuseFeedBack, fusedEntity.transform.position, Quaternion.Euler(90,0,0));
 
 
         }

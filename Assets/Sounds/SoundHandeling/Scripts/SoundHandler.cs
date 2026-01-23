@@ -4,9 +4,11 @@ using System.Linq;
 
 using UnityEngine;
 
+
 public class SoundHandler : MonoBehaviour
 {
     public GameObject soundObjectPrefab;
+    
     public List<SoundObjectScript> soundObjectScriptList = new List<SoundObjectScript>();
     public List<SoundObjectScript> toDestroySoundObjectScriptList = new List<SoundObjectScript>();
     private Dictionary<GameObject, SoundObjectScript> accessDico = new Dictionary<GameObject, SoundObjectScript>();

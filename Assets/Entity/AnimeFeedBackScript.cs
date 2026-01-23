@@ -4,7 +4,7 @@ using UnityEngine;
 public class AnimeFeedBackScript : MonoBehaviour
 {
     private Animator animator;
-    public string animName;
+    public string animName="End";
 
 
     private void Start()
@@ -15,7 +15,7 @@ public class AnimeFeedBackScript : MonoBehaviour
     {
         if (animator.GetCurrentAnimatorStateInfo(0).IsName(animName))
         {
-            
+            Destroy(gameObject);
         }
     }
 }
