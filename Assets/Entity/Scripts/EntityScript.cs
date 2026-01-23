@@ -126,7 +126,7 @@ public class EntityScript : MonoBehaviour
         
         child =transform.GetChild(0).Find("Color").gameObject ;
         lightChild =transform.GetChild(0).Find("Light").gameObject.GetComponent<LightScript>() ;
-        lightChild.ChangeColor(thisIdentity.ColorMain.color);
+        lightChild.ChangeColor(thisIdentity.ColorMain.GetColor("_Color"));
         
         child.GetComponent<MeshRenderer>().material=thisIdentity.ColorMain;
         child.GetComponent<TrailRenderer>().material=thisIdentity.ColorTrail;
