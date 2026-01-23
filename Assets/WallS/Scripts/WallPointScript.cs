@@ -125,13 +125,18 @@ public class WallPointScript : MonoBehaviour
 
         results = null;
     }
-    public bool ProximityCheck(out Tile results)
+    public bool ProximityCheck(out Tile results,Vector3 overwrite=default)
     {
+        Vector3 posToCheck = this.transform.position;
+        if (overwrite != default)
+        {
+            posToCheck = overwrite;
+        }
         var resultsList =gridManager.allTile.OrderBy(
-            x => Vector3.Distance(this.transform.position,x.transform.position)
+            x => Vector3.Distance(posToCheck,x.transform.position)
         ).ToArray();
 
-        if ((Vector3.Distance(this.transform.position, resultsList.First().transform.position) > anchorCheckRange))
+        if ((Vector3.Distance(posToCheck, resultsList.First().transform.position) > anchorCheckRange))
         {
             results = null;
             return true;
@@ -162,6 +167,7 @@ public class WallPointScript : MonoBehaviour
     {
         if (walls.TrueForAll(x => x == null))
         {
+           
             walls.Clear();
             Destroy(gameObject);
         }

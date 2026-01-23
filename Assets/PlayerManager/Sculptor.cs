@@ -147,18 +147,32 @@ public class Sculptor : MonoBehaviour
     private void MoovePhantom()
     {
         Vector3 newPos = camera1.ScreenToWorldPoint(Input.mousePosition);
-        secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
+       
+        
+        secondTilePoint.ProximityCheck(out Tile result,newPos);
+        if (!result.Equals(firstTilePoint.linkedTile))
+        {
+            secondTilePoint.transform.position=Vector3.MoveTowards(secondTilePoint.transform.position
+                ,new Vector3(result.transform.position.x, secondTilePoint.transform.position.y, result.transform.position.z),
+                50*Time.deltaTime);
+            
+        }
+        else
+        {
+            secondTilePoint.transform.position = new Vector3(newPos.x, secondTilePoint.transform.position.y, newPos.z);
+        }
         
         secondTilePoint.walls.ForEach(x=>x.Moove(false));
         soundHandler.Moove(secondTilePoint.gameObject);
+        
         
         secondTilePoint.walls.ForEach(x=>x.SetFeedBackColor(phantomlWall));
         
         secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(illegalWall));
         
         secondTilePoint.gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
-        secondTilePoint.ProximityCheck(out Tile result);
-        result.ChangeColor(result.on);
+       
+        
 
 
 
