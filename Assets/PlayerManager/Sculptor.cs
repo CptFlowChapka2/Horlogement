@@ -152,9 +152,11 @@ public class Sculptor : MonoBehaviour
         secondTilePoint.ProximityCheck(out Tile result,newPos);
         if (!result.Equals(firstTilePoint.linkedTile))
         {
+            float dist = Vector3.Distance(secondTilePoint.transform.position
+                , new Vector3(result.transform.position.x, secondTilePoint.transform.position.y, result.transform.position.z));
             secondTilePoint.transform.position=Vector3.MoveTowards(secondTilePoint.transform.position
                 ,new Vector3(result.transform.position.x, secondTilePoint.transform.position.y, result.transform.position.z),
-                50*Time.deltaTime);
+               Mathf.Clamp( dist * 0.25f, 100f, Mathf.Infinity) *Time.deltaTime);
             
         }
         else
@@ -214,15 +216,14 @@ public class Sculptor : MonoBehaviour
     private bool CheckForIntersection(WallScript wallToCheck)
     {
         
-        Vector3 dimensionToCheck = new Vector3(wallToCheck.transform.localScale.x/2,wallToCheck.transform.localScale.x/2,((wallToCheck.length-wallToCheck.transform.localScale.x)/2));
+        Vector3 dimensionToCheck = new Vector3(0,wallToCheck.transform.localScale.x/2,((wallToCheck.length)/2-wallToCheck.transform.localScale.x*4));
         Debug.DrawLine(Vector3.zero,wallToCheck.transform.position+
-                                    (wallToCheck.transform.forward * 
-                                     wallToCheck.transform.localScale.x));
+                                    (wallToCheck.transform.forward * (wallToCheck.transform.localScale.x * 3)));
         
         List<Collider> boxCastList = 
             Physics.OverlapBox(wallToCheck.transform.position+
-                               (wallToCheck.transform.forward * 
-                                wallToCheck.transform.localScale.x),dimensionToCheck,wallToCheck.transform.rotation).ToList();
+                               (wallToCheck.transform.forward * (wallToCheck.transform.localScale.x * 3))
+                ,dimensionToCheck,wallToCheck.transform.rotation).ToList();
         
         string[] keepTags = {"Wall", "Entity","EntityColor"};
         boxCastList.RemoveAll(x => x==wallToCheck.thisCollider||!keepTags.Contains(x.gameObject.tag));

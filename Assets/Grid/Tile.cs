@@ -17,7 +17,8 @@ public class Tile : MonoBehaviour
    
    public void Initialize(Vector2Int coords, GridManager gridManager,DataHolder newDataHolder)
    {
-      meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+      meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>(); 
+      transform.Rotate(Vector3.up,Random.Range(0f,359f));
       this.coords = coords;
       this.gridManager = gridManager;
    }
