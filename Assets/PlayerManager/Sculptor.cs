@@ -24,6 +24,9 @@ public class Sculptor : MonoBehaviour
     private Material phantomlWall2;
     private Material normallWall2;
     private Camera camera1;
+
+    public float timeDelmax = 0.1f;
+    private float timeDel = 0f;
    
 
     private void Start()
@@ -61,12 +64,17 @@ public class Sculptor : MonoBehaviour
 
     private void DestoryWallOnClic()
     {
+
+
+
+        if (!Input.GetMouseButton(1) || timeDel >= timeDelmax)
+        {
+            timeDel = 0f;
+            return ;}
+        timeDel += Time.deltaTime;
         if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;
 
         if (!hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))return;
-        
-        
-        if (!Input.GetMouseButtonDown(1)) return;
 
         if (secondTilePoint != null)//anulation de phatom
         {
