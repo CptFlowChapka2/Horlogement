@@ -453,7 +453,7 @@ PrefabInstance:
     - target: {fileID: 1515161670020583064, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: fuseFeedBack
       value: 
-      objectReference: {fileID: 959410638285863879, guid: 7f689592a559bae45acf3c94b4a143b5, type: 3}
+      objectReference: {fileID: 5566737008293985265, guid: 3f5c393e58d28004090eab7dde292b16, type: 3}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: normallWall
       value: 
