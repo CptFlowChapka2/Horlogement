@@ -1,4 +1,5 @@
 
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Tile : MonoBehaviour
@@ -11,14 +12,19 @@ public class Tile : MonoBehaviour
    private MeshRenderer meshRenderer;
    public Color off=Color.white;
    public Color on=Color.yellow;
+
+   private MeshFilter meshFilter;
+   public List<Mesh> randomMeshs = new List<Mesh>();
    
    
    
    
    public void Initialize(Vector2Int coords, GridManager gridManager,DataHolder newDataHolder)
    {
-      meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>(); 
       
+      meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
+      meshFilter = meshRenderer.gameObject.GetComponent<MeshFilter>();
+      meshFilter.mesh = randomMeshs[Random.Range(0, randomMeshs.Count)];
       this.coords = coords;
       this.gridManager = gridManager;
    }
