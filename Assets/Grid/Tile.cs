@@ -9,12 +9,12 @@ public class Tile : MonoBehaviour
    private GridManager gridManager;
    public bool isWall = false;
    public WallPointScript currentWallPointScript;
-   private MeshRenderer meshRenderer;
+   private SpriteRenderer spriteRenderer;
    public Color off=Color.white;
    public Color on=Color.yellow;
 
    private MeshFilter meshFilter;
-   public List<Mesh> randomMeshs = new List<Mesh>();
+   public List<Sprite> randomSprites = new List<Sprite>();
    
    
    
@@ -22,17 +22,13 @@ public class Tile : MonoBehaviour
    public void Initialize(Vector2Int coords, GridManager gridManager,DataHolder newDataHolder)
    {
       
-      meshRenderer = transform.GetChild(0).GetComponent<MeshRenderer>();
-      meshFilter = meshRenderer.gameObject.GetComponent<MeshFilter>();
-      meshFilter.mesh = randomMeshs[Random.Range(0, randomMeshs.Count)];
+      spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+      spriteRenderer.sprite = randomSprites[Random.Range(0, randomSprites.Count)];
       this.coords = coords;
       this.gridManager = gridManager;
    }
 
-   public void ChangeColor(Color color)
-   {
-      meshRenderer.material.color = color;
-   }
+   
 
    
 }

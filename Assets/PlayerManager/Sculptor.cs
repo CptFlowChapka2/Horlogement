@@ -52,7 +52,7 @@ public class Sculptor : MonoBehaviour
         DestoryWallOnClic();
         
         if(wallCreator.activateNewMode)return;
-        gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
+      
         if (secondTilePoint != null)
         {
             
@@ -183,7 +183,7 @@ public class Sculptor : MonoBehaviour
         
         secondTilePoint.walls.FindAll(x=>CheckForIntersection(x)).ForEach(y=>y.SetFeedBackColor(illegalWall));
         
-        secondTilePoint.gridManager.allTile.ForEach(x=>x.ChangeColor(x.off));
+       
        
         
 
