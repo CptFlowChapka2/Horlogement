@@ -25,13 +25,15 @@ public class SceneMangerScript : MonoBehaviour
         {
             titleButton.Title => 0,
             titleButton.Play1 => 1,
+            titleButton.PlayRigged => 2,
             _ => throw new ArgumentOutOfRangeException(nameof(tbutton), tbutton, null)
         };
-        
-        SceneManager.LoadSceneAsync(1);
+
+        StartCoroutine(LoadAsyncScene(toCarry));
+
     }
     
-    IEnumerator LoadAsyncScene(string targetScene)
+   private IEnumerator LoadAsyncScene(int targetScene)
     {
         asyncLoad = SceneManager.LoadSceneAsync(targetScene, LoadSceneMode.Single);
         asyncLoad.allowSceneActivation = false;
@@ -49,10 +51,18 @@ public class SceneMangerScript : MonoBehaviour
         bLoadDone = asyncLoad.isDone;
     }
 
+    private void Update()
+    {
+        if(!Input.GetKeyDown(KeyCode.R))return;
+        
+        Load(titleButton.Title);
+    }
+
 }
 
 public enum titleButton
 {
     Title,
-    Play1
+    Play1,
+    PlayRigged
 }
