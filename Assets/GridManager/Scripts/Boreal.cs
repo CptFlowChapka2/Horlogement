@@ -23,6 +23,8 @@ public class Boreal : MonoBehaviour
 
     private DataHolder dataHolder;
 
+    public identityKeys[] riggedKeys = new[] {identityKeys.A,identityKeys.E};
+
     private void Start()
     {
         FindObjectsByType<BorealBorder>(FindObjectsInactive.Exclude,FindObjectsSortMode.None).ToList().ForEach(x=>allBorder.Add(x));
@@ -106,6 +108,13 @@ public class Boreal : MonoBehaviour
 
     private void RandomStartingSet(int nbr)
     {
+        if (nbr == -1)
+        {
+            keyInPlay.Add(riggedKeys[0]);
+            keyInPlay.Add(riggedKeys[1]);
+            return;
+        }
+        
         while (keyInPlay.Count<nbr)
         {
             keyInPlay.Add((identityKeys)Random.Range(1, identitySpread));
