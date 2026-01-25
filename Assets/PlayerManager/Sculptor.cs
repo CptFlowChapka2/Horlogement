@@ -167,7 +167,7 @@ public class Sculptor : MonoBehaviour
                 , new Vector3(result.transform.position.x, secondTilePoint.transform.position.y, result.transform.position.z));
             secondTilePoint.transform.position=Vector3.MoveTowards(secondTilePoint.transform.position
                 ,new Vector3(result.transform.position.x, secondTilePoint.transform.position.y, result.transform.position.z),
-               Mathf.Clamp( dist * 0.25f, 100f, Mathf.Infinity) *Time.deltaTime);
+               Mathf.Clamp( dist * 0.25f, 175f, Mathf.Infinity) *Time.deltaTime);
             
         }
         else

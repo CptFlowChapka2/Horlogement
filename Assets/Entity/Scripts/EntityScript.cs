@@ -224,7 +224,7 @@ public class EntityScript : MonoBehaviour
 
     private void OnBecameInvisible()
     {
-        
+        soundHandler.Play(gameObject,dataHolder.onVoided);
         Destroy(gameObject);
     }
     

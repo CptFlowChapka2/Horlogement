@@ -33,8 +33,9 @@ public class DataHolder : MonoBehaviour
     public Material illegalWall2;
     public Material phantomlWall;
     public Material phantomlWall2;
-    
-    
+
+
+    public AudioClip onVoided;
     
     [Space][Header("identity 0")][Space]
     [SerializeField] private Material color_main_0 ;
