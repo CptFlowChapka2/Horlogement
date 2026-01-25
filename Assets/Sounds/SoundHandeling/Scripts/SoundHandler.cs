@@ -29,7 +29,6 @@ public class SoundHandler : MonoBehaviour
     {
         if (clip == null)
         {
-            Debug.Log("Received AudioClip is NUll .Check in DataHolder");
             return;
         }
             

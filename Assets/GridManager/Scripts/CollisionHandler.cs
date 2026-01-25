@@ -66,7 +66,8 @@ public class CollisionHandler : MonoBehaviour
             fusedEntityScript.OnCreation(identityKeysList[0], identityKeysList.Count < 2 ? default : identityKeysList[1],
                 fusedEntityScript.CreateDir(vector3s[1], vector3s[2]));
             fusedEntityScript.soundHandler.Play(fusedEntityScript.gameObject,fusedEntityScript.thisIdentity.SoundFuse);
-            Instantiate(fuseFeedBack, fusedEntity.transform.position, Quaternion.Euler(90,0,0));
+            SpriteRenderer sprite=Instantiate(fuseFeedBack, fusedEntity.transform.position, Quaternion.Euler(90,0,0)).GetComponent<SpriteRenderer>();
+            sprite.color = fusedEntityScript.thisIdentity.ColorMain.color;
 
 
         }
