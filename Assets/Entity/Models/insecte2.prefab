@@ -1133,6 +1133,42 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_Emitting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_MinVertexDistance
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_ApplyActiveColorSpace
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_Parameters.textureScale.x
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_Parameters.textureScale.y
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_Parameters.colorGradient.key1.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7393635307991172954, guid: fd1b06629b02aef408a0238e077e7020, type: 3}
+      propertyPath: m_Parameters.colorGradient.m_ColorSpace
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

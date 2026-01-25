@@ -1197,7 +1197,7 @@
     "m_AlphaMode": 0,
     "m_RenderFace": 0,
     "m_AlphaClip": false,
-    "m_CastShadows": true,
+    "m_CastShadows": false,
     "m_ReceiveShadows": true,
     "m_DisableTint": false,
     "m_AdditionalMotionVectorMode": 0,
@@ -2243,7 +2243,7 @@
     "m_Title": "MOUVEMENT",
     "m_Position": {
         "x": -3483.999755859375,
-        "y": 848.0
+        "y": 848.0001220703125
     }
 }
 
@@ -3658,7 +3658,7 @@
     "m_Title": "EFFACEMENT ",
     "m_Position": {
         "x": -1212.666748046875,
-        "y": 223.33334350585938
+        "y": 223.33331298828126
     }
 }
 
