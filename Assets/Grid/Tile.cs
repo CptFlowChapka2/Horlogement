@@ -23,7 +23,7 @@ public class Tile : MonoBehaviour
    {
       
       spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-      spriteRenderer.sprite = randomSprites[Random.Range(0, randomSprites.Count)];
+      spriteRenderer.sprite = randomSprites[Random.Range(0, randomSprites.Count-1)];
       this.coords = coords;
       this.gridManager = gridManager;
    }
