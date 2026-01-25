@@ -65,13 +65,16 @@ public class Sculptor : MonoBehaviour
     private void DestoryWallOnClic()
     {
 
-
-
-        if (!Input.GetMouseButton(1) || timeDel >= timeDelmax)
+        if (timeDel < timeDelmax)
         {
-            timeDel = 0f;
-            return ;}
-        timeDel += Time.deltaTime;
+            timeDel += Time.deltaTime;
+            return;
+        }
+
+
+        if (!Input.GetMouseButton(1)) return;
+        
+        timeDel = 0f;
         if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;
 
         if (!hitsList.First().collider.gameObject.TryGetComponent(out WallScript hitWall))return;

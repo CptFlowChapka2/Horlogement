@@ -832,7 +832,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   voidSpeed: 2
-  invulTime: 2
+  invulTime: 0.3
   initialCreated: 0
   initialDefault: 0
   justCreated: 0
