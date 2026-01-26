@@ -22,10 +22,11 @@ public class Tile : MonoBehaviour
    public void Initialize(Vector2Int coords, GridManager gridManager,DataHolder newDataHolder)
    {
       
-      spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
-      spriteRenderer.sprite = randomSprites[Random.Range(0, randomSprites.Count-1)];
+      
       this.coords = coords;
       this.gridManager = gridManager;
+      spriteRenderer = transform.GetChild(0).GetComponent<SpriteRenderer>();
+      spriteRenderer.sprite = randomSprites[Random.Range(0, randomSprites.Count)];
    }
 
    

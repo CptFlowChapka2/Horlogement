@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-
+using Unity.VisualScripting;
 using UnityEngine;
 using Random = UnityEngine.Random;
 
@@ -108,13 +108,23 @@ public class Boreal : MonoBehaviour
 
     private void RandomStartingSet(int nbr)
     {
-        if (nbr == -1)
+        switch (nbr)
         {
-            keyInPlay.Add(riggedKeys[0]);
-            keyInPlay.Add(riggedKeys[1]);
-            return;
+            case -1:
+                keyInPlay.Add(riggedKeys[0]);
+                keyInPlay.Add(riggedKeys[1]);
+                return;
+            case 7:
+                keyInPlay.Add(identityKeys.A);
+                keyInPlay.Add(identityKeys.B);
+                keyInPlay.Add(identityKeys.C);
+                keyInPlay.Add(identityKeys.D);
+                keyInPlay.Add(identityKeys.E);
+                keyInPlay.Add(identityKeys.F);
+                keyInPlay.Add(identityKeys.G);
+                return;
         }
-        
+
         while (keyInPlay.Count<nbr)
         {
             keyInPlay.Add((identityKeys)Random.Range(1, identitySpread));

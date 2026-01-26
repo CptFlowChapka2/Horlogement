@@ -20,6 +20,20 @@ public class DataHolder : MonoBehaviour
     public GameObject intantiateDummy;
     public SoundHandler soundHandler;
 
+    [Space] [Header("Cursor")] [Space] [SerializeField]
+    public Texture2D cursorNull;
+    [SerializeField]public Texture2D cursorDestroyWall;
+    [SerializeField]public Texture2D cursorPhantom;
+    [SerializeField]public Texture2D cursorBoreal0;
+    [SerializeField]public Texture2D cursorBoreal1;
+    [SerializeField]public Texture2D cursorBoreal2;
+    [SerializeField]public Texture2D cursorBoreal3;
+    [SerializeField]public Texture2D cursorBoreal4;
+    [SerializeField]public Texture2D cursorBoreal5;
+    [SerializeField]public Texture2D cursorBoreal6;
+    
+    
+    
     [Space] [Header("Boreal")] [Space] public int startingNbr=2;
     
     [Space][Header("WallFeedback")][Space]

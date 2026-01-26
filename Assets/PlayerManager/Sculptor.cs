@@ -105,7 +105,7 @@ public class Sculptor : MonoBehaviour
     {
         if (!Input.GetMouseButtonDown(0)) return;
         if(!SelectObjectByCursor(new []{"WallPoint","Anchor"},out List<RaycastHit> hitList))return;
-        
+        Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
 
         Tile hitTile = null;
         if( !hitList.First().collider.gameObject.TryGetComponent(out WallPointScript hitPoint )&&
@@ -159,7 +159,7 @@ public class Sculptor : MonoBehaviour
     {
         Vector3 newPos = camera1.ScreenToWorldPoint(Input.mousePosition);
        
-        
+        Cursor.SetCursor(dataHolder.cursorPhantom,Vector2.zero,CursorMode.ForceSoftware);
         secondTilePoint.ProximityCheck(out Tile result,newPos);
         if (!result.Equals(firstTilePoint.linkedTile))
         {

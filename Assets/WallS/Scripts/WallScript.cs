@@ -176,9 +176,12 @@ public class WallScript : MonoBehaviour
     { 
         if(sculptor.secondTilePoint)return;
         SetFeedBackColor(willDestroylWall);
+        Cursor.SetCursor(dataHolder.cursorDestroyWall,Vector2.zero,CursorMode.ForceSoftware);
     }
+    
     private void OnMouseExit()
     {
+        Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
         if (sculptor.secondTilePoint)
         {
             SetFeedBackColor(normallWall);

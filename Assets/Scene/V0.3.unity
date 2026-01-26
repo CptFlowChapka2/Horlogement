@@ -677,17 +677,29 @@ PrefabInstance:
       propertyPath: m_Name
       value: GridManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1309636436071739521, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: 'riggedKeys.Array.data[0]'
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1309636436071739521, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: 'riggedKeys.Array.data[1]'
+      value: 7
+      objectReference: {fileID: 0}
     - target: {fileID: 1515161670020583064, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: fuseFeedBack
       value: 
       objectReference: {fileID: 5566737008293985265, guid: 3f5c393e58d28004090eab7dde292b16, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorNull
+      value: 
+      objectReference: {fileID: 2800000, guid: 991c62607388bcc4fbe141b78be6b3bb, type: 3}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: normallWall
       value: 
       objectReference: {fileID: 2100000, guid: 6d20580ecffd7f843bdd86e6916a0d97, type: 2}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: startingNbr
-      value: 2
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: color_main_0
@@ -758,6 +770,38 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2100000, guid: 45446a10c9b5d824485944abf407e651, type: 2}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorBoreal0
+      value: 
+      objectReference: {fileID: 2800000, guid: 59ef0fd0fe5e8fa48a36120a22780f86, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorBoreal1
+      value: 
+      objectReference: {fileID: 2800000, guid: 0f1f246c318a0e24695674c726194a7b, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorBoreal2
+      value: 
+      objectReference: {fileID: 2800000, guid: 1fe069b062bd7f5439ba2e3924e6e503, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorBoreal3
+      value: 
+      objectReference: {fileID: 2800000, guid: c33bf1f4c5714444298e1acc7f4d504f, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorBoreal4
+      value: 
+      objectReference: {fileID: 2800000, guid: 0c6cce27507d38744ad3edc2650e2b1a, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorBoreal5
+      value: 
+      objectReference: {fileID: 2800000, guid: de27250d6260e7d4ba7eadb9c0e2ea03, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorBoreal6
+      value: 
+      objectReference: {fileID: 2800000, guid: e0d886c00b69e5943aa466a4bc82ae14, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorPhantom
+      value: 
+      objectReference: {fileID: 2800000, guid: 16a0fe6aecdf8e846b49933df6d94e08, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: phantomlWall2
       value: 
       objectReference: {fileID: 2100000, guid: fb45d3672a344af4bb32bf771c11635c, type: 2}
@@ -789,6 +833,10 @@ PrefabInstance:
       propertyPath: sound_6_bounce
       value: 
       objectReference: {fileID: 8300000, guid: 93998b84eef6a814fabca3f581f8e585, type: 3}
+    - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
+      propertyPath: cursorDestroyWall
+      value: 
+      objectReference: {fileID: 2800000, guid: 4ad0565f76e47f94d8fc29404b24718f, type: 3}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: willDestroylWall2
       value: 

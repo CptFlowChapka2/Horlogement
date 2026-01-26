@@ -17,6 +17,7 @@ public class BorealBorder : MonoBehaviour
     public MeshRenderer meshRenderer;
 
     private Vector3 spawnDir;
+    private Texture2D cursor;
    
     
 
@@ -26,7 +27,17 @@ public class BorealBorder : MonoBehaviour
         meshRenderer = GetComponent<MeshRenderer>();
         dataHolder = FindAnyObjectByType<DataHolder>();
         gridManager = FindAnyObjectByType<GridManager>();
-        
+
+        cursor = thisIdentityKeys switch {
+            identityKeys.A => dataHolder.cursorBoreal0,
+            identityKeys.B => dataHolder.cursorBoreal1,
+            identityKeys.C => dataHolder.cursorBoreal2,
+            identityKeys.D => dataHolder.cursorBoreal3,
+            identityKeys.E => dataHolder.cursorBoreal4,
+            identityKeys.F => dataHolder.cursorBoreal5,
+            identityKeys.G => dataHolder.cursorBoreal6,
+            _ => throw new ArgumentOutOfRangeException()
+        };
         onOff = false;
 
         switch (thisIdentityKeys)
@@ -117,6 +128,15 @@ public class BorealBorder : MonoBehaviour
         {
             SpawnEntity();
         }
+    }
+
+    private void OnMouseOver()
+    {
+        Cursor.SetCursor(cursor,Vector2.zero,CursorMode.ForceSoftware);
+    }
+    private void OnMouseExit()
+    {
+        Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
     }
 
     public void SetSpawnable()
