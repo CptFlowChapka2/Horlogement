@@ -52,8 +52,8 @@ MonoBehaviour:
   off: {r: 1, g: 1, b: 1, a: 1}
   on: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
   randomSprites:
-  - {fileID: 21300000, guid: 102a63709759bab48813cc9ea9e3358d, type: 3}
-  - {fileID: 21300000, guid: d31d7699c410d24469e1df694911c65e, type: 3}
+  - {fileID: 21300000, guid: 880618b7192604042963c8a4ac312245, type: 3}
+  - {fileID: 21300000, guid: fb53eb544425aff4b91454ddc394af6d, type: 3}
 --- !u!135 &5328014848791114670
 SphereCollider:
   m_ObjectHideFlags: 0
