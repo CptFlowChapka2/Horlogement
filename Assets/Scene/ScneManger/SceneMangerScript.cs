@@ -26,6 +26,8 @@ public class SceneMangerScript : MonoBehaviour
             titleButton.Title => 0,
             titleButton.Play1 => 1,
             titleButton.PlayRigged => 2,
+            titleButton.PlayFull => 3,
+            titleButton.Reset => SceneManager.GetActiveScene().buildIndex,
             _ => throw new ArgumentOutOfRangeException(nameof(tbutton), tbutton, null)
         };
 
@@ -53,9 +55,28 @@ public class SceneMangerScript : MonoBehaviour
 
     private void Update()
     {
-        if(!Input.GetKeyDown(KeyCode.R))return;
+        if (Input.GetKeyDown(KeyCode.A))//&
+        {
+            Load(titleButton.Play1);
+        }
+        if (Input.GetKeyDown(KeyCode.Z))
+        {
+            Load(titleButton.PlayFull);
+        }
+        if (Input.GetKeyDown(KeyCode.E))
+        {
+            Load(titleButton.PlayRigged);
+        }
+        if (Input.GetKeyDown(KeyCode.R))
+        {
+            Load(titleButton.Reset);
+        }
+        if (Input.GetKeyDown(KeyCode.T))
+        {
+            Load(titleButton.Title);
+        }
         
-        Load(titleButton.Title);
+        
     }
 
 }
@@ -64,5 +85,7 @@ public enum titleButton
 {
     Title,
     Play1,
-    PlayRigged
+    PlayRigged,
+    PlayFull,
+    Reset
 }
