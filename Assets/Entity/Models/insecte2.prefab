@@ -138,7 +138,7 @@ MonoBehaviour:
   parent: {fileID: 6798610620599150608}
   playing: 0
   unPlaying: 0
-  maxRange: 5
+  maxRange: 10
 --- !u!1 &3028156488755461495
 GameObject:
   m_ObjectHideFlags: 0
