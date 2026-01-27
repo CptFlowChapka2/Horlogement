@@ -1,12 +1,16 @@
 using System;
-
+using System.Linq;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BorealBorder : MonoBehaviour
 {
     public Material lowFeedBackMatt;
+    public Material overLowFeedBackMatt;
     public Material highFeedBackMatt;
+    public Material overHighFeedBackMatt;
     public Material offFeedBackMatt;
+    public Material overOffFeedBackMatt;
     public identityKeys thisIdentityKeys;
     private DataHolder dataHolder;
     private Boreal boreal;
@@ -48,44 +52,68 @@ public class BorealBorder : MonoBehaviour
                 
             case identityKeys.A:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt0;
+                overLowFeedBackMatt=dataHolder.borealOverLowFeedBackMatt0;
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt0;
+                overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt0;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt0;
+                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt0;
                 break;
             case identityKeys.B:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt1;
+                overLowFeedBackMatt=dataHolder.borealOverLowFeedBackMatt1;
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt1;
+                overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt1;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt1;
+                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt1;
                 break;
             case identityKeys.C:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt2;
+                overLowFeedBackMatt=dataHolder.borealOverLowFeedBackMatt2;
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt2;
+                overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt2;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt2;
+                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt2;
                 break;
             case identityKeys.D:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt3;
+                overLowFeedBackMatt=dataHolder.borealOverLowFeedBackMatt3;
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt3;
+                overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt3;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt3;
+                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt3;
                 break;
             case identityKeys.E:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt4;
+                overLowFeedBackMatt=dataHolder.borealOverLowFeedBackMatt4;
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt4;
+                overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt4;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt4;
+                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt4;
                 break;
             case identityKeys.F:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt5;
+                overLowFeedBackMatt=dataHolder.borealOverLowFeedBackMatt5;
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt5;
+                overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt5;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt5;
+                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt5;
                 break;
             case identityKeys.G:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt6;
+                overLowFeedBackMatt=dataHolder.borealOverLowFeedBackMatt6;
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt6;
+                overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt6;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt6;
+                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt6;
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
         }
 
         meshRenderer.material = offFeedBackMatt;
+        
+        
+        
     }
 
     
@@ -130,13 +158,19 @@ public class BorealBorder : MonoBehaviour
         }
     }
 
-    private void OnMouseOver()
+    private void OnMouseEnter()
     {
         Cursor.SetCursor(cursor,Vector2.zero,CursorMode.ForceSoftware);
+        OverChangeMat(meshRenderer.material,true);
+        
+        
     }
     private void OnMouseExit()
     {
         Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
+        OverChangeMat(meshRenderer.material,false);
+        
+        
     }
 
     public void SetSpawnable()
@@ -157,6 +191,10 @@ public class BorealBorder : MonoBehaviour
             _ => meshRenderer.material
         };
         
+        
+        
+
+
     }
     
     public void SetUnSpawnable()
@@ -164,5 +202,24 @@ public class BorealBorder : MonoBehaviour
         onOff = false;
         
     }
-    
+
+    private void OverChangeMat(Material currentMat,bool overNot)
+    {
+        if (overNot)
+        {
+            if (currentMat == lowFeedBackMatt) meshRenderer.material = overLowFeedBackMatt;
+            else if (currentMat == highFeedBackMatt) meshRenderer.material = overHighFeedBackMatt;
+            else if (currentMat == offFeedBackMatt) meshRenderer.material = overOffFeedBackMatt;
+        }
+        else
+        {
+            if (currentMat == overHighFeedBackMatt) meshRenderer.material =highFeedBackMatt;
+            else if (currentMat == overLowFeedBackMatt) meshRenderer.material = lowFeedBackMatt;
+            else if (currentMat == overOffFeedBackMatt) meshRenderer.material = offFeedBackMatt;
+        }
+        
+
+
+    }
+
 }
