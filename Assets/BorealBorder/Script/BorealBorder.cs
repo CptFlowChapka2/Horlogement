@@ -22,6 +22,7 @@ public class BorealBorder : MonoBehaviour
 
     private Vector3 spawnDir;
     private Texture2D cursor;
+    public colorState colorStated;
    
     
 
@@ -161,15 +162,13 @@ public class BorealBorder : MonoBehaviour
     private void OnMouseEnter()
     {
         Cursor.SetCursor(cursor,Vector2.zero,CursorMode.ForceSoftware);
-        OverChangeMat(meshRenderer.material,true);
-        
+        OverChangeMat(true);
         
     }
     private void OnMouseExit()
     {
         Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
-        OverChangeMat(meshRenderer.material,false);
-        
+        OverChangeMat(false);
         
     }
 
@@ -190,9 +189,16 @@ public class BorealBorder : MonoBehaviour
             1 => highFeedBackMatt,
             _ => meshRenderer.material
         };
-        
-        
-        
+
+        colorStated= mayhaps switch
+        {
+            -1 => colorState.off,
+            0 => colorState.low,
+            1 => colorState.high,
+            _ => colorStated
+        };
+
+
 
 
     }
@@ -203,23 +209,46 @@ public class BorealBorder : MonoBehaviour
         
     }
 
-    private void OverChangeMat(Material currentMat,bool overNot)
+    private void OverChangeMat(bool maybe)
     {
-        if (overNot)
+        Debug.Log(meshRenderer.material);
+
+        if (maybe)
         {
-            if (currentMat == lowFeedBackMatt) meshRenderer.material = overLowFeedBackMatt;
-            else if (currentMat == highFeedBackMatt) meshRenderer.material = overHighFeedBackMatt;
-           
+            meshRenderer.material = colorStated switch
+            {
+                colorState.off => offFeedBackMatt,
+                colorState.low => overLowFeedBackMatt,
+                colorState.high => overHighFeedBackMatt,
+                _ => meshRenderer.material
+            };
         }
         else
         {
-            if (currentMat == overHighFeedBackMatt) meshRenderer.material =highFeedBackMatt;
-            else if (currentMat == overLowFeedBackMatt) meshRenderer.material = lowFeedBackMatt;
-          
+            meshRenderer.material = colorStated switch
+            {
+                colorState.off => offFeedBackMatt,
+                colorState.low => lowFeedBackMatt,
+                colorState.high => highFeedBackMatt,
+                _ => meshRenderer.material
+            };
         }
+        
+          
+        
         
 
 
     }
 
+}
+
+ public enum colorState
+{
+    high,
+    
+    low,
+   
+    off
+    
 }
