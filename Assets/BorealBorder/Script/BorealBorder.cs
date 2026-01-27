@@ -10,7 +10,7 @@ public class BorealBorder : MonoBehaviour
     public Material highFeedBackMatt;
     public Material overHighFeedBackMatt;
     public Material offFeedBackMatt;
-    public Material overOffFeedBackMatt;
+   
     public identityKeys thisIdentityKeys;
     private DataHolder dataHolder;
     private Boreal boreal;
@@ -56,7 +56,7 @@ public class BorealBorder : MonoBehaviour
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt0;
                 overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt0;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt0;
-                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt0;
+               
                 break;
             case identityKeys.B:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt1;
@@ -64,7 +64,7 @@ public class BorealBorder : MonoBehaviour
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt1;
                 overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt1;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt1;
-                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt1;
+               
                 break;
             case identityKeys.C:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt2;
@@ -72,7 +72,7 @@ public class BorealBorder : MonoBehaviour
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt2;
                 overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt2;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt2;
-                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt2;
+               
                 break;
             case identityKeys.D:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt3;
@@ -80,7 +80,7 @@ public class BorealBorder : MonoBehaviour
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt3;
                 overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt3;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt3;
-                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt3;
+               
                 break;
             case identityKeys.E:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt4;
@@ -88,7 +88,7 @@ public class BorealBorder : MonoBehaviour
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt4;
                 overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt4;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt4;
-                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt4;
+               
                 break;
             case identityKeys.F:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt5;
@@ -96,7 +96,7 @@ public class BorealBorder : MonoBehaviour
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt5;
                 overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt5;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt5;
-                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt5;
+               
                 break;
             case identityKeys.G:
                 lowFeedBackMatt=dataHolder.borealLowFeedBackMatt6;
@@ -104,7 +104,7 @@ public class BorealBorder : MonoBehaviour
                 highFeedBackMatt=dataHolder.borealHighFeedBackMatt6;
                 overHighFeedBackMatt=dataHolder.borealOverHighFeedBackMatt6;
                 offFeedBackMatt=dataHolder.borealOffFeedBackMatt6;
-                overOffFeedBackMatt=dataHolder.borealOverOffFeedBackMatt6;
+               
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -209,13 +209,13 @@ public class BorealBorder : MonoBehaviour
         {
             if (currentMat == lowFeedBackMatt) meshRenderer.material = overLowFeedBackMatt;
             else if (currentMat == highFeedBackMatt) meshRenderer.material = overHighFeedBackMatt;
-            else if (currentMat == offFeedBackMatt) meshRenderer.material = overOffFeedBackMatt;
+           
         }
         else
         {
             if (currentMat == overHighFeedBackMatt) meshRenderer.material =highFeedBackMatt;
             else if (currentMat == overLowFeedBackMatt) meshRenderer.material = lowFeedBackMatt;
-            else if (currentMat == overOffFeedBackMatt) meshRenderer.material = offFeedBackMatt;
+          
         }
         
 

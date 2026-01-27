@@ -61,7 +61,7 @@ public class DataHolder : MonoBehaviour
     public Material borealHighFeedBackMatt0;
     public Material borealOverHighFeedBackMatt0;
     public Material borealOffFeedBackMatt0;
-    public Material borealOverOffFeedBackMatt0;
+    
     
     [Space][Header("identity 1")][Space]
     [SerializeField] private Material color_main_1 ;
@@ -73,7 +73,7 @@ public class DataHolder : MonoBehaviour
     public Material borealHighFeedBackMatt1;
     public Material borealOverHighFeedBackMatt1;
     public Material borealOffFeedBackMatt1;
-    public Material borealOverOffFeedBackMatt1;
+    
    
     [Space][Header("identity 2")][Space]
     [SerializeField] private Material color_main_2 ;
@@ -87,7 +87,7 @@ public class DataHolder : MonoBehaviour
     public Material borealHighFeedBackMatt2;
     public Material borealOverHighFeedBackMatt2;
     public Material borealOffFeedBackMatt2;
-    public Material borealOverOffFeedBackMatt2;
+    
     [Space][Header("identity 3")][Space]
     [SerializeField] private Material color_main_3 ;
     [SerializeField] private Material color_trail_3 ;
@@ -99,7 +99,7 @@ public class DataHolder : MonoBehaviour
     public Material borealHighFeedBackMatt3;
     public Material borealOverHighFeedBackMatt3;
     public Material borealOffFeedBackMatt3;
-    public Material borealOverOffFeedBackMatt3;
+   
     
     [Space][Header("identity 4")][Space]
     [SerializeField] private Material color_main_4 ;
@@ -112,7 +112,7 @@ public class DataHolder : MonoBehaviour
     public Material borealHighFeedBackMatt4;
     public Material borealOverHighFeedBackMatt4;
     public Material borealOffFeedBackMatt4;
-    public Material borealOverOffFeedBackMatt4;
+    
     
     [Space][Header("identity 5")][Space]
 
@@ -126,7 +126,7 @@ public class DataHolder : MonoBehaviour
     public Material borealHighFeedBackMatt5;
     public Material borealOverHighFeedBackMatt5;
     public Material borealOffFeedBackMatt5;
-    public Material borealOverOffFeedBackMatt5;
+    
     
     [Space][Header("identity 6")][Space]
     [SerializeField] private Material color_main_6 ;
@@ -139,7 +139,7 @@ public class DataHolder : MonoBehaviour
     public Material borealHighFeedBackMatt6;
     public Material borealOverHighFeedBackMatt6;
     public Material borealOffFeedBackMatt6;
-    public Material borealOverOffFeedBackMatt6;
+   
     
     
     public float speed =1;
