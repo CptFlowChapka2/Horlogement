@@ -692,7 +692,7 @@ PrefabInstance:
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: cursorNull
       value: 
-      objectReference: {fileID: 2800000, guid: 991c62607388bcc4fbe141b78be6b3bb, type: 3}
+      objectReference: {fileID: 2800000, guid: c914147fa80b01f4495bca81b4014fce, type: 3}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: normallWall
       value: 
@@ -800,7 +800,7 @@ PrefabInstance:
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: cursorPhantom
       value: 
-      objectReference: {fileID: 2800000, guid: 16a0fe6aecdf8e846b49933df6d94e08, type: 3}
+      objectReference: {fileID: 2800000, guid: 2282456305a7b544cb76a33991f5c4bd, type: 3}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: phantomlWall2
       value: 
@@ -836,7 +836,7 @@ PrefabInstance:
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: cursorDestroyWall
       value: 
-      objectReference: {fileID: 2800000, guid: 4ad0565f76e47f94d8fc29404b24718f, type: 3}
+      objectReference: {fileID: 2800000, guid: 1b8780b07e924a046890509ee5b7022d, type: 3}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: willDestroylWall2
       value: 
