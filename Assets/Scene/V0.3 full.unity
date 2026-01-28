@@ -699,7 +699,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 6d20580ecffd7f843bdd86e6916a0d97, type: 2}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: startingNbr
-      value: 2
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: wallCreate2
