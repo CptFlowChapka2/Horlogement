@@ -55,23 +55,23 @@ public class SceneMangerScript : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.A))//&
+        if (Input.GetKeyUp(KeyCode.A))//&
         {
             Load(titleButton.Play1);
         }
-        if (Input.GetKeyDown(KeyCode.Z))
+        if (Input.GetKeyUp(KeyCode.Z))
         {
             Load(titleButton.PlayFull);
         }
-        if (Input.GetKeyDown(KeyCode.E))
+        if (Input.GetKeyUp(KeyCode.E))
         {
             Load(titleButton.PlayRigged);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyUp(KeyCode.R))
         {
             Load(titleButton.Reset);
         }
-        if (Input.GetKeyDown(KeyCode.T))
+        if (Input.GetKeyUp(KeyCode.T))
         {
             Load(titleButton.Title);
         }
