@@ -72,7 +72,10 @@ public class Sculptor : MonoBehaviour
         }
 
 
-        if (!Input.GetMouseButton(1)) return;
+        if (!Input.GetMouseButton(1))
+        {
+            Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);;
+            return;}
         
         timeDel = 0f;
         if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;

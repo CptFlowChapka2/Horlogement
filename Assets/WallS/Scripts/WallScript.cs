@@ -137,7 +137,7 @@ public class WallScript : MonoBehaviour
 
     public void Break() 
     {
-        Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
+        
         if(gameObject ==null) return;
         
         Destroy(gameObject);
