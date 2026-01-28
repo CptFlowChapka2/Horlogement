@@ -66,7 +66,7 @@ public class LightScript : MonoBehaviour
     private void Interpolate()
     {
         
-        light.intensity = Mathf.Lerp(light.intensity,2,0.1f);
+        light.intensity = Mathf.Lerp(light.intensity,10,0.1f);
         light.range = Mathf.Lerp(light.range,maxRange,0.1f);
 
         if (Mathf.Approximately(light.range, maxRange))

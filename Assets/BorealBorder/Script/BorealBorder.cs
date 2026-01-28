@@ -162,13 +162,13 @@ public class BorealBorder : MonoBehaviour
     private void OnMouseEnter()
     {
         Cursor.SetCursor(cursor,Vector2.zero,CursorMode.ForceSoftware);
-        OverChangeMat(true);
+        
         
     }
     private void OnMouseExit()
     {
         Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
-        OverChangeMat(false);
+        
         
     }
 
@@ -211,8 +211,7 @@ public class BorealBorder : MonoBehaviour
 
     private void OverChangeMat(bool maybe)
     {
-        Debug.Log(meshRenderer.material);
-
+        
         if (maybe)
         {
             meshRenderer.material = colorStated switch
