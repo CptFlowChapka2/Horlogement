@@ -24,6 +24,7 @@ public class Sculptor : MonoBehaviour
     private Material phantomlWall2;
     private Material normallWall2;
     private Camera camera1;
+    private bool wasDestroying = false;
 
     public float timeDelmax = 0.1f;
     private float timeDel = 0f;
@@ -67,6 +68,8 @@ public class Sculptor : MonoBehaviour
 
         if (timeDel < timeDelmax)
         {
+        wasDestroying = true;
+            
             timeDel += Time.deltaTime;
             return;
         }
@@ -74,9 +77,12 @@ public class Sculptor : MonoBehaviour
 
         if (!Input.GetMouseButton(1))
         {
-            Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);;
+            if (!wasDestroying) return;
+            Cursor.SetCursor(dataHolder.cursorNull,Vector2.zero,CursorMode.ForceSoftware);
+            wasDestroying = false;
+
             return;}
-        
+        wasDestroying = true;
         timeDel = 0f;
         if (!SelectObjectByCursor(new []{"Wall"},out List<RaycastHit> hitsList)) return;
 
