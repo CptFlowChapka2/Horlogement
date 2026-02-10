@@ -704,7 +704,7 @@ PrefabInstance:
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: wallCreate2
       value: 
-      objectReference: {fileID: 8300000, guid: a97a7918b5e0f7f438322939ccedfcb5, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 3487034385044876700, guid: 5846960c357ae814fa852af9ce799457, type: 3}
       propertyPath: color_main_0
       value: 
